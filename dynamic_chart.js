@@ -1,4 +1,4 @@
-//require d3.js
+//require d3.v2.js
 //require chart_utils.js
 
 if (!window.DynamicChart){
@@ -501,7 +501,7 @@ if (!window.DynamicChart){
 							}*/
                             
                             //Save the number to use it during drawing (for scaling)
-                            var oldDataLength = Math.max(1, this.__getDatasetLength__() * this.__dataDim__);
+                            var oldDataLength = Math.max(this.__dataDim__, this.__getDatasetLength__() * this.__dataDim__);
                     
                             //Checks how much data can be appended, and if any action is needed to do so
                             newDataArray = this.__canAppendData__(newDataArray);
@@ -543,6 +543,7 @@ if (!window.DynamicChart){
                                 var dataSet = this.__selectData__(this.__data__, j);
                                 
                                 var labelsSet = this.__selectLabels__(this.__data__, j);
+                                
                                 this.__drawNewData__(dataSet, labelsSet, j, this.__xScale__, this.__yScale__[j]);
                                 //Computes the new X and Y scale
                                 this.__xScale__.domain([0, newDataLength]);
@@ -937,9 +938,11 @@ if (!window.DynamicChart){
                                             - Illegal Argument Exception:   if an invalid xScale object is passed.
 							  */                              
             getBarWidth: 	function(xScale){
+                                
                                 if (xScale === undefined){
                                     xScale = this.__xScale__;
                                 }
+                                
                                 if (!xScale){
                                     throw "Illegal Argument: xScale";
                                 }
@@ -1025,7 +1028,7 @@ if (!window.DynamicChart){
                                 return [];
                             }
                             //else, if the bar width still has a valid value, returns the input value, otherwise the empty list
-                            return this.getBarWidth() > 0 ? newDataArray : [];
+                            return this.__getDatasetLength__() === 0 || this.getBarWidth(this.__xScale__) > 0 ? newDataArray : [];
 						},
 						writable: false,
 						enumerable: false,
@@ -1181,7 +1184,7 @@ if (!window.DynamicChart){
 										.attr("opacity", function(d){return that.__getBarOpacity__((0.0 + yScale(d)) / height);});
 										
 									
-									if (that.areLabelsVisible(dataIndex) && barWidth > that.getLabelsSize(dataIndex)){
+									if (that.areLabelsVisible(dataIndex)){
 										labelsSet.enter().append("text").attr("index", "data_" + dataIndex)
 											.text(function(d) {return d;})
 											.attr("text-anchor", "middle")
@@ -1189,7 +1192,14 @@ if (!window.DynamicChart){
 											.attr("y", height)
 											.attr("font-family", "sans-serif")
 											.attr("font-size", that.getLabelsSize(dataIndex))
-											.attr("fill", that.getLabelColor(dataIndex));	
+											.attr("fill", that.getLabelColor(dataIndex))
+                                            .attr("opacity", function(){  //Show the label only if it fits the bar
+                                                                if (this.getComputedTextLength() <= barWidth){
+                                                                    return 1;
+                                                                }else{
+                                                                    return 0;
+                                                                }
+                                                            });
 									}else{
 										labelsSet.remove();
 									}
@@ -1241,11 +1251,18 @@ if (!window.DynamicChart){
                                             .attr("width", barWidth)
                                             .attr("height", function(d){return yScale(d);})
                                             .attr("opacity", function(d){return that.__getBarOpacity__((0.0 + yScale(d)) / height);});									
-                                    if (that.areLabelsVisible(dataIndex) && barWidth > that.getLabelsSize(dataIndex)){
+                                    if (that.areLabelsVisible(dataIndex)){
                                         labelsSet.transition()//.delay(250)
                                                 .text(function(d) {return d;})
                                                 .attr("x", function(d, i){return xScale(i * that.__dataDim__ + dataIndex) + barWidth / 2;})
-                                                .attr("y", function(d){return height - yScale(d) + 15 ;});
+                                                .attr("y", function(d){return height - yScale(d) + 15 ;})
+                                                .attr("opacity", function(){ //Show the label only if it fits the bar
+                                                                    if (this.getComputedTextLength() <= barWidth){
+                                                                        return 1;
+                                                                    }else{
+                                                                        return 0;
+                                                                    }
+                                                                });                                                
                                                 
                                     }else{
                                         labelsSet.remove();
