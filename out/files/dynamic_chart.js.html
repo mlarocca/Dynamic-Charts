@@ -389,17 +389,21 @@ if (!window.DynamicChart){
                             
                             Object&#x27;s destructor: helps garbage collector freeing memory, and removes legend&#x27;s DOM elements.
                             
-                            WARNING: calling destroy on an object will force any further reference 
-                                     to its attributes &#x2F; methods to throw exceptions.
-                            
-                            NOTE:   This function should be override by any class inheriting from this chart.
-                                    In order to properly work, any overriding destroyer should:
-                                    - Free any array specific to the object on which is called;
-                                    - Remove any event listener on chart objects;
-                                    - Call super object&#x27;s destroy method.
+                            Object&#x27;s destructor: helps garbage collector freeing memory, and removes chart DOM elements.&lt;br&gt;
+                            &lt;br&gt;
+                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;: calling destroy on an object will force any further reference 
+                                            to its attributes &#x2F; methods to throw exceptions.&lt;br&gt;
+                            &lt;br&gt;
+                            &lt;b&gt;NOTE&lt;&#x2F;b&gt;:   This function should be override by any class inheriting from this object.&lt;br&gt;
+                                           In order to properly work, any overriding destroyer should:
+                                            &lt;ol&gt;
+                                                &lt;li&gt; Free any array specific to the object on which is called;&lt;&#x2F;li&gt;
+                                                &lt;li&gt; Remove any event listener on chart objects;&lt;&#x2F;li&gt;
+                                                &lt;li&gt; Call super object&#x27;s destroy method.&lt;&#x2F;li&gt;
+                                            &lt;&#x2F;ol&gt;
                             @method destroy
                             @for Legend
-                            @return {null}, to state that the object has been destroyed.
+                            @return {null} to state that the object has been destroyed.
                           *&#x2F;                        
             destroy: 	function(){
                                 
@@ -613,7 +617,7 @@ if (!window.DynamicChart){
                             @method setWidth
                             @chainable
                             @param {Number} width   [Mandatory]
-                                                    The new width of the chart;
+                                                    The new width of the chart;&lt;br&gt;
                                                     Only positive integers and values that can be converted
                                                     to positive Integers are accepted.
                             @return {Object}    This chart object, to allow for method chaining.
@@ -636,7 +640,7 @@ if (!window.DynamicChart){
                             @method setHeight
                             @chainable
                             @param {Number} height  [Mandatory]
-                                                    The new height of the chart; 
+                                                    The new height of the chart; &lt;br&gt;
                                                     Only positive Integers and values that can be converted
                                                     to positive integers are accepted.
                             @return {Object}    This chart object, to allow for method chaining.
@@ -654,7 +658,7 @@ if (!window.DynamicChart){
 							return this;	&#x2F;&#x2F;Method chaining support
 						},	
 
-                        &#x2F;** setTitle(title, size, color, left, top)
+                        &#x2F;** setTitle(title [, size, color, left, top])
                             Sets the title for the chart, including all its attributes.
                             
                             @method setTitle
@@ -720,12 +724,11 @@ if (!window.DynamicChart){
                             Insert new data into the chart, at runtime;
                             @method addLegend
                             @chainable
-                            @param labels:  [Mandatory]
-                                            An array containing exactly one label for each component of the data space.
+                            @param {Array} labels [Mandatory]
+                                            An array containing exactly one label for each component of the data space.&lt;br&gt;
                                             A new legend object will be created and attached to the chart, and then
-                                            for every subcomponent [label] a new item will be added to the legend.
-                                                    
-                            @return: This chart object, to support method chaining;  
+                                            for every subcomponent [label] a new item will be added to the legend.       
+                            @return {Object} This chart object, to support method chaining;  
                             @throws 
                                     -   Illegal Argument Exception: if labels isn&#x27;t an Array object.
                                     -   Invalid array size Exception:   if the number of elements in the array is different
@@ -767,15 +770,16 @@ if (!window.DynamicChart){
 						&#x2F;** appendData(newDataArray)
                             Insert new data into the chart, at runtime;
                             
+                            @method appendData
                             @chainable
-                            @param newDataArray:    [Mandatory]
-                                                    an array containing the next values that needs to be drawn in the chart;
+                            @param {Array} newDataArray [Mandatory]
+                                                    An array containing the next values that needs to be drawn in the chart;&lt;br&gt;
                                                     Each array element, in order to be added to the chart, must be compliant
                                                     with the data format defined by the function __formatData__ (which 
                                                     can itself be set at runtime, and by default accepts arrays of 
                                                     __dataDim__ integers, neglecting to render the negative ones).
                                                     
-                            @return: This chart object, to support method chaining;  
+                            @return {Object} This chart object, to support method chaining;  
                             @throws 
                                     -   Illegal Argument Exception: if newDataArray isn&#x27;t an Array object.
 						  *&#x2F;                         
@@ -844,10 +848,11 @@ if (!window.DynamicChart){
                             Change the data formatting function, allowing to pass a custom handler
                             to cope with JSON or other data formats.
                             
+                            @method setFormatValueFunction
                             @chainable
-                            @param formaValueFunction: [Mandatory] 
-                                        The new function
-                            @return:    This object, to allow for method chaining;
+                            @param {Function} formaValueFunction [Mandatory] 
+                                                                 The new data formatting&#x2F;parsing function;
+                            @return {Object}    This object, to allow for method chaining;
                             @throws     
                                         - Illegal Argument Exception, if the argument passed isn&#x27;t a valid function.
                           *&#x2F;                        
@@ -866,13 +871,14 @@ if (!window.DynamicChart){
                                     },
                         &#x2F;** clearData(n)
                         
-                            Remove all the data or part of it from the chart;
+                            Remove all the data, or part of it, from the chart;
                             
+                            @method clearData
                             @chainable
-                            @param n: [Optional, For internal use only] 
+                            @param {Number} [n] [Optional, For internal use only] 
                                         The number of elements to remove from the beginning of the data array,
                                         i.e. how many of the oldest values should be removed from the chart;
-                            @return:    This object, to allow for method chaining;
+                            @return {Object}    This object, to allow for method chaining;
                             @throws     Illegal Argument Exception, if n is passed but it isn&#x27;t valid, i.e. it isn&#x27;t convertible to a positive int.
                           *&#x2F;
 			clearData:	function(n){
@@ -906,14 +912,15 @@ if (!window.DynamicChart){
                             &#x2F;** toggleLabels([index, visible])
                                 Toggles the visibility of labels in the chart
                             
+                                @method toggleLabels
                                 @chainable
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be affected;
-								@param visible: [Optional]
+								@param {Boolean} [visible] [Optional]
                                                 If specified overwrites toggle behaviour and set
 												the visibility to visible.
-                                @return:    This chart object, to allow for method chaining
+                                @return {Object}    This chart object, to allow for method chaining
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid.
 							  *&#x2F;
@@ -937,11 +944,11 @@ if (!window.DynamicChart){
                                         
                                         Checks if labels for the index-th dimension are visible
                                     
-                                        @chainable
-                                        @param index:   [Optional, default = 0]
+                                        @method areLabelsVisible
+                                        @param {Number} [index=0]   [Optional]
                                                         For multi-dimensional data spaces, specifies
                                                         which component is going to be affected;
-                                        @return:    The visibility of the label 
+                                        @return {Boolean}    The visibility of the label 
                                         @throws 
                                                     Invalid Index Exception:   if the index specified isn&#x27;t valid.
                                       *&#x2F;                            
@@ -957,14 +964,15 @@ if (!window.DynamicChart){
                                 },
                                 &#x2F;** setGlobalScaling()
                                 
-                                    Sets scaling to global
-                                
+                                    Sets scaling to global&lt;br&gt;
+                                    &lt;br&gt;
                                     When data space has a dimension greater than 1 (i.e. when each data value has more than 1 component)
                                     these charts support either global scaling (relative to the whole dataset)
                                     or local scaling (relative to value of the same component) of each subcomponent.
                                     
+                                    @method setGlobalScaling
                                     @chainable
-                                    @return:    This chart object, to allow for method chaining.
+                                    @return {Object}    This chart object, to allow for method chaining.
                                   *&#x2F;
             setGlobalScaling:   function(){
                                     if (this.hasOwnProperty(&quot;__scaleGlobally__&quot;)){
@@ -980,14 +988,14 @@ if (!window.DynamicChart){
                                 },
                                 &#x2F;** setLocalScaling()
                                 
-                                    Sets scaling to local
-                                
-                                    @chainable
+                                    Sets scaling to local&lt;br&gt;
+                                    &lt;br&gt;
                                     When data space has a dimension greater than 1 (i.e. when each data value has more than 1 component)
                                     these charts support either global scaling (relative to the whole dataset)
                                     or local scaling (relative to value of the same component) of each subcomponent.
-                                    
-                                    @return:    This chart object, to allow for method chaining
+                                    @method setLocalScaling
+                                    @chainable                                    
+                                    @return {Object}    This chart object, to allow for method chaining.
                                   *&#x2F;                                
             setLocalScaling:    function(){
                                     if (this.hasOwnProperty(&quot;__scaleGlobally__&quot;)){
@@ -1005,12 +1013,13 @@ if (!window.DynamicChart){
                             &#x2F;** getFillColor([index])
                                 
                                 Gets the fill color used to draw the index-th component of the data space.
-                            
+                                
+                                @method getFillColor
                                 @chainable
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0]   [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    The selected fill color
+                                @return {String|Object}    The selected fill color.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid.
 							  *&#x2F;                                
@@ -1027,11 +1036,12 @@ if (!window.DynamicChart){
                             &#x2F;** getStrokeColor([index])
                                 
                                 Gets the stroke color used to draw the index-th component of the data space.
-                            
-                                @param index:   [Optional, default = 0]
+                                
+                                @method getStrokeColor
+                                @param {Number} [index=0]   [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    The selected stroke color
+                                @return {String}    The selected stroke color.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid.
 							  *&#x2F;                                   
@@ -1048,11 +1058,11 @@ if (!window.DynamicChart){
                             &#x2F;** getLabelColor([index])
                                 
                                 Gets the fill color used for the labels attached to the index-th component of the data space.
-                            
-                                @param index:   [Optional, default = 0]
+                                @method getLabelColor
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    The selected label color
+                                @return {String}    The selected label color.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid.
 							  *&#x2F;                                
@@ -1069,11 +1079,12 @@ if (!window.DynamicChart){
                             &#x2F;** getLabelsSize([index])
                                 
                                 Gets the size used for the labels attached to the index-th component of the data space.
-                            
-                                @param index:   [Optional, default = 0]
+                                
+                                @method getLabelsSize
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    The selected size
+                                @return {Number}    The selected size.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid.
 							  *&#x2F;                               
@@ -1090,14 +1101,15 @@ if (!window.DynamicChart){
                             &#x2F;** setFillColor(color, [index])
                                 
                                 Sets the fill color used to draw the index-th component of the data space.
-                            
+                                
+                                @method setFillColor
                                 @chainable
-                                @param color:   [Mandatory]
+                                @param {String|Object] color   [Mandatory]
                                                 The new fill color for the selected component&#x27;s;
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    This chart object, to allow for method chaining
+                                @return {Object}    This chart object, to allow for method chaining.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid;
 							  *&#x2F;                                 
@@ -1121,13 +1133,14 @@ if (!window.DynamicChart){
                                 
                                 Sets the stroke color used to draw the index-th component of the data space.
                             
+                                @method setStrokeColor
                                 @chainable
-                                @param color:   [Mandatory]
+                                @param {String} color   [Mandatory]
                                                 The new stroke color for the selected component&#x27;s;
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    This chart object, to allow for method chaining
+                                @return {Object}    This chart object, to allow for method chaining.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid;
 							  *&#x2F;                             
@@ -1147,13 +1160,14 @@ if (!window.DynamicChart){
                                 
                                 Sets the fill color used for the labels attached to the index-th component of the data space.
                             
+                                @method setLabelColor
                                 @chainable
-                                @param color:   [Mandatory]
+                                @param {String} color   [Mandatory]
                                                 The new color for the selected component&#x27;s labels;
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    This chart object, to allow for method chaining
+                                @return {Object}    This chart object, to allow for method chaining.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid;
 							  *&#x2F;                               
@@ -1178,15 +1192,16 @@ if (!window.DynamicChart){
                                 
                                 Sets the size used for the labels attached to the index-th component of the data space.
                             
+                                @method setLabelSize
                                 @chainable
-                                @param size:    [Mandatory]
+                                @param {Number} size    [Mandatory]
                                                 The new size for the selected component&#x27;s labels;
                                                 Must be a positive integer, or a value that can be converted
                                                 to a positive integer;
-                                @param index:   [Optional, default = 0]
+                                @param {Number} [index=0] [Optional]
                                                 For multi-dimensional data spaces, specifies
                                                 which component is going to be selected;
-                                @return:    This chart object, to allow for method chaining
+                                @return {Object}    This chart object, to allow for method chaining.
                                 @throws 
                                             - Invalid Index Exception:   if the index specified isn&#x27;t valid;
                                             - Illegal Argument Exception:   if size isn&#x27;t valid (see above). 
@@ -1211,25 +1226,28 @@ if (!window.DynamicChart){
                             
                                 Sets the bars width property;
                                 For this chart, bar width is computed at runtime according to the number of bars plotted,
-                                so this property can&#x27;t be set.
-                                Function is declared to improve the consistency of the interface.
-                                                                
+                                so this property can&#x27;t be set.&lt;br&gt;
+                                &lt;b&gt;Unless overridden, any call to this method will cause an exception to be thrown&lt;&#x2F;b&gt;&lt;br&gt;
+                                This method is declared to improve the consistency of the interface.
+                                     
+                                @method setBarWidth
                                 @throws Read only property Exception
                               *&#x2F;
             setBarWidth: 	function(&#x2F;*barWidth*&#x2F;){
-                                throw &quot;Read only property&quot;;
+                                throw &quot;Read only property: barWidth&quot;;
                             },
-                            &#x2F;** getBarWidth([index])
+                            &#x2F;** getBarWidth([xScale])
                                 
                                 Gets the current bar width for this chart;
                                 For this chart, bar width is computed at runtime according to the number of bars plotted;
                             
-                                @param xScale:  [Optional, default = this.__xScale__]
+                                @method getBarWidth
+                                @param {Object} [xScale=this.__xScale__]  [Optional]
                                                 It is possible to pass a d3 scale object to get the bar width
-                                                computed with respect to a different scale metric;
+                                                computed with respect to a different scale metric;&lt;br&gt;
                                                 On default, the value is computed with respect to this chart&#x27;s
                                                 current metric.
-                                @return:    The value computed for the bar width under current object state.
+                                @return {Number}    The value computed for the bar width under current object state.
                                 @throws 
                                             - Illegal Argument Exception:   if an invalid xScale object is passed.
 							  *&#x2F;                              
@@ -1247,17 +1265,20 @@ if (!window.DynamicChart){
                             
                         &#x2F;** destroy()
                             
-                            Object&#x27;s destructor: helps garbage collector freeing memory, and removes chart DOM elements.
-                            
-                            WARNING: calling destroy on an object will force any further reference 
-                                     to its attributes &#x2F; methods to throw exceptions.
-                            
-                            NOTE:   This function should be override by any class inheriting from this chart.
-                                    In order to properly work, any overriding destroyer should:
-                                    - Free any array specific to the object on which is called;
-                                    - Remove any event listener on chart objects;
-                                    - Call super object&#x27;s destroy method.
-                            @return:    null, to state that the object has been destroyed.
+                            Object&#x27;s destructor: helps garbage collector freeing memory, and removes chart DOM elements.&lt;br&gt;
+                            &lt;br&gt;
+                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;: calling destroy on an object will force any further reference 
+                                            to its attributes &#x2F; methods to throw exceptions.&lt;br&gt;
+                            &lt;br&gt;
+                            &lt;b&gt;NOTE&lt;&#x2F;b&gt;:   This function should be override by any class inheriting from this chart.&lt;br&gt;
+                                           In order to properly work, any overriding destroyer should:
+                                            &lt;ol&gt;
+                                                &lt;li&gt; Free any array specific to the object on which is called;&lt;&#x2F;li&gt;
+                                                &lt;li&gt; Remove any event listener on chart objects;&lt;&#x2F;li&gt;
+                                                &lt;li&gt; Call super object&#x27;s destroy method.&lt;&#x2F;li&gt;
+                                            &lt;&#x2F;ol&gt;
+                            @method destroy
+                            @return {null} to state that the object has been destroyed.
                           *&#x2F;                        
             destroy: 	function(){
                                 &#x2F;&#x2F;Removes all the data from the chart;
@@ -1287,17 +1308,19 @@ if (!window.DynamicChart){
                         
 		};
         
-        &#x2F;&#x2F;  ---------------------  NOT ENUMERABLE METHODS    ---------------------------------------
+        &#x2F;&#x2F;  ---------------------  PROTECTED METHODS    ---------------------------------------
           
          Object.defineProperty(basicBarChartSharedPrototype, &quot;__getDatasetLength__&quot;, {
                                 &#x2F;** __getDatasetLength__()  
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
                                     
                                     Utility function to take account of the number of points currently added to the chart
-                                    @return:    How many points are stored in the dataset right now.
+                                    
+                                    @method __getDatasetLength__
+                                    @protected
+                                    @return {Number}    How many points are stored in the dataset right now.
                                 *&#x2F;
                         value: 	function(){
+                            &#x2F;&#x2F;INVARIANT: there will always be at least 1 element in __data__ array [assumed to avoid defensive programming]
                             return this.__data__[0].length;
 						},
 						writable: false,
@@ -1306,18 +1329,20 @@ if (!window.DynamicChart){
 					});	
                     
         Object.defineProperty(basicBarChartSharedPrototype, &quot;__canAppendData__&quot;, {
-                                &#x2F;** __canAppendData__(newDataArray)   
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
-                                
-                                    Checks that new data can be added to the chart (if the chart can represent only a limited number of points);
-                                    
-                                    WARNING: This function SHOULD be overriden in any class inheriting from the base class
+                                &#x2F;** __canAppendData__(newDataArray)  
+                                 
+                                    Checks that new data can be added to the chart (if the chart can represent only a limited number of points);&lt;br&gt;
+                                    &lt;br&gt;
+                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;: This function SHOULD be overriden in any class inheriting from the base class
                                     in order to handle differents needs
-                                    @param newDataArray:    [Mandatory]
+                                    
+                                    @method __canAppendData__
+                                    @protected
+
+                                    @param {Array} newDataArray    [Mandatory]
                                                             The array of values that should be added;
-                                    @return:    The array of values that can still be added to the chart;
-                                                If no other value can be added, return the empty list.                                              
+                                    @return {Array}    The array of values that can still be added to the chart;&lt;br&gt;
+                                                       If no other value can be added, return the empty list.                                              
                                 *&#x2F;
                         value: 	function(newDataArray){
                             if (!Object.isArray(newDataArray)){
@@ -1333,18 +1358,20 @@ if (!window.DynamicChart){
                     
         Object.defineProperty(basicBarChartSharedPrototype, &quot;__formatValue__&quot;, {
                                 &#x2F;** __formatValue__(value)
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
                                     
                                     Checks that the value passed corresponds to the data format allowed for the current chart;
                                     This function can be overriden in any class inheriting from the base class
                                     in order to handle differents data formats (i.e. Objects or JSON).
                                     
-                                    @param value:   [Mandatory]
-                                                    The value to be tested;
-                                    @return:    An array with properly formatted values, each of whom converted to float
-                                                     &lt;=&gt; value is correctly validated
-                                                null &lt;-&gt; Otherwise
+                                    @method __formatValue__
+                                    @protected
+                                    @param {Array|Object} value   [Mandatory]
+                                                                    The value to be tested;
+                                    @return {Array} &lt;ul&gt;
+                                                        &lt;li&gt;An array with properly formatted values, each of whom 
+                                                            converted to float &lt;=&gt; value is correctly validated&lt;&#x2F;li&gt;
+                                                        &lt;li&gt;null &lt;-&gt; Otherwise&lt;&#x2F;li&gt;
+                                                    &lt;&#x2F;ul&gt;
                                 *&#x2F;
                         value: 	function(value){
                             if (Object.isArray(value)){
@@ -1373,23 +1400,25 @@ if (!window.DynamicChart){
                
 		Object.defineProperty(basicBarChartSharedPrototype, &quot;__selectData__&quot;, {
                                 &#x2F;** __selectData__(data, index [, n])
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
-                                    
+                                
                                     Returns the list of the svg elements used to represent data subcomponents
-                                    with the required index.
+                                    with the required index.&lt;br&gt;
                                     I.e.:   if data space is 3-dimensional (i.e. every point has 3 components)
                                             __selectData__(data, 2) would select the svg elements representing
                                             the 2nd component of every point in data
-                                    @param data:    [Mandatory]
-                                                    The dataset on which selection should be applied
-                                    @param index:   [Mandatory]
-                                                    The index of the required component
-                                                    INVARIANT:  to avoid defensive programming,
-                                                                it is assumed 0 &lt;= index &lt; this.__dataDim__
-                                    @param n:       [Optional]
+                                            
+                                    @method __selectData__
+                                    @protected
+                                    
+                                    @param {Array} data [Mandatory]
+                                                        The dataset on which selection should be applied
+                                    @param {Number} index   [Mandatory]
+                                                    The index of the required component&lt;br&gt;
+                                                    &lt;b&gt;INVARIANT&lt;&#x2F;b&gt;:  to avoid defensive programming,
+                                                                        it is assumed 0 &lt;= index &lt; this.__dataDim__
+                                    @param {Number} [n] [Optional]
                                                     The maximum number of elements to return;
-                                    @return:    The proper set of d3 elements.                    
+                                    @return {Object} The proper set of d3 elements.                    
                                   *&#x2F;
 						value: 	function(data, index, n){
                                     if (n === undefined){
@@ -1405,23 +1434,26 @@ if (!window.DynamicChart){
                     
 		Object.defineProperty(basicBarChartSharedPrototype, &quot;__selectLabels__&quot;, {
                                 &#x2F;** __selectLabels__(data, index [, n])
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
-                                    
+                                  
                                     Returns the list of the svg elements used to draw the labels of
-                                    subcomponents of data with the required index.
+                                    subcomponents of data with the required index.&lt;br&gt;
                                     I.e.:   if data space is 3-dimensional (i.e. every point has 3 components)
                                             __selectLabels__(data, 3) would select the svg elements representing
-                                            the labels of the 3nd component of every point in data
-                                    @param data:    [Mandatory]
+                                            the labels of the 3nd component of every point in data  
+                                    
+                                    @method __selectLabels__
+                                    @protected
+                                    
+
+                                    @param {Array} data [Mandatory]
                                                     The dataset on which selection should be applied;
-                                    @param index:   [Mandatory]
-                                                    The index of the required component;
-                                                    INVARIANT:  to avoid defensive programming,
-                                                                it is assumed 0 &lt;= index &lt; this.__dataDim__
-                                    @param n:       [Optional]
+                                    @param {Number} index   [Mandatory]
+                                                    The index of the required component;&lt;br&gt;
+                                                    &lt;b&gt;INVARIANT&lt;&#x2F;b&gt;:  to avoid defensive programming,
+                                                                        it is assumed 0 &lt;= index &lt; this.__dataDim__
+                                    @param {Number} [n] [Optional]
                                                     The maximum number of elements to return;
-                                    @return:    The proper set of d3 elements.                    
+                                    @return {Object}    The proper set of d3 elements.                    
                                   *&#x2F;      
 						value: 	function(data, index, n){
                                     if (n === undefined){
@@ -1438,32 +1470,32 @@ if (!window.DynamicChart){
                     
 		Object.defineProperty(basicBarChartSharedPrototype, &quot;__drawNewData__&quot;, {
                                 &#x2F;** __drawNewData__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
                                     
                                     Called by appendData() to draw the newly added points in dataSet, once for
-                                    every data subcomponent.
-                                    
-                                    WARNING:    if you inherit from this class you might want to override both
+                                    every data subcomponent.&lt;br&gt;
+                                    &lt;br&gt;
+                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                 this method and __updateDrawing__ in order to obtain a custom chart.
 
                                                 
-                                    @param dataSet: [Mandatory]
-                                                    The set of svg elements created so far to represent the data
-                                                    WARNING: this parameter should be generated by an appropriate
-                                                             call to __selectData__
-                                    @param labelsSet:   [Mandatory]
-                                                        The set of svg elements created so far to represent the labels of the data
-                                                        WARNING: this parameter should be generated by an appropriate
-                                                                call to __selectLabels__     
-                                    @param dataIndex:   [Mandatory]
-                                                        The index of the component of the data which is to be drawn                            
-                                    @param xScale:  [Mandatory]
-                                                    D3 scale object for X axis
-                                    @param yScale:  [Mandatory]
-                                                    D3 scale object for Y axis (specific current component)
                                     
-                                    @return:    Nothing.
+                                    @method __drawNewData__
+                                    @protected
+                                    @param {Object} dataSet [Mandatory]
+                                                    The set of svg elements created so far to represent the data;&lt;br&gt;
+                                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;: this parameter should be generated by an appropriate
+                                                                    call to __selectData__;
+                                    @param {Object} labelsSet [Mandatory]
+                                                        The set of svg elements created so far to represent the labels of the data;&lt;br&gt;
+                                                        &lt;b&gt;WARNING&lt;&#x2F;b&gt;: this parameter should be generated by an appropriate
+                                                                        call to __selectLabels__; 
+                                    @param {Number} dataIndex   [Mandatory]
+                                                                The index of the component of the data which is to be drawn;
+                                    @param {Object} xScale  [Mandatory]
+                                                    D3 scale object for X axis;
+                                    @param {Object} yScale  [Mandatory]
+                                                    D3 scale object for Y axis (specific to current component);
+                                    @return {undefined}
                                   *&#x2F;
 						value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
 									var that = this;
@@ -1509,33 +1541,32 @@ if (!window.DynamicChart){
                     
 		Object.defineProperty(basicBarChartSharedPrototype, &quot;__updateDrawing__&quot;, {
                                 &#x2F;** __updateDrawing__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
                                     
                                     Called by appendData() to update drawing of the points in dataSet, once for
-                                    every data subcomponent.
+                                    every data subcomponent.&lt;br&gt;
                                     After new data is inserted by __drawNewData__, appendData performs adjustments
                                     to accomodate for scale change or shift in the drawing due to time, and this
-                                    function takes care of updating and fixing the chart representation.
-                                    
-                                    WARNING:    if you inherit from this class you might want to override both
-                                                this method and __drawNewData__ in order to obtain a custom chart.
-                                    
-                                    @param dataSet: [Mandatory]
-                                                    The set of svg elements created so far to represent the data
-                                                    WARNING: this parameter should be generated by an appropriate
-                                                             call to __selectData__
-                                    @param labelsSet:   [Mandatory]
-                                                        The set of svg elements created so far to represent the labels of the data
-                                                        WARNING:    this parameter should be generated by an appropriate
-                                                                    call to __selectLabels__     
-                                    @param dataIndex:   [Mandatory]
-                                                        The index of the component of the data which is to be drawn                            
-                                    @param xScale:      [Mandatory]
-                                                        D3 scale object for X axis
-                                    @param yScale:      [Mandatory]
-                                                        D3 scale object for Y axis (specific current component)
-                                    @return:    Nothing.
+                                    function takes care of updating and fixing the chart representation.&lt;br&gt;
+                                    &lt;br&gt;
+                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
+                                                        this method and __drawNewData__ in order to obtain a custom chart.                                    
+                                    @method __updateDrawing__
+                                    @protected
+                                    @param {Object} dataSet [Mandatory]
+                                                    The set of svg elements created so far to represent the data;&lt;br&gt;
+                                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;: this parameter should be generated by an appropriate
+                                                                    call to __selectData__;
+                                    @param {Object} labelsSet   [Mandatory]
+                                                        The set of svg elements created so far to represent the labels of the data;&lt;br&gt;
+                                                        &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    this parameter should be generated by an appropriate
+                                                                            call to __selectLabels__;    
+                                    @param {Number} dataIndex   [Mandatory]
+                                                        The index of the component of the data which is to be drawn;
+                                    @param {Object} xScale  [Mandatory]
+                                                            D3 scale object for X axis;
+                                    @param {Object} yScale  [Mandatory]
+                                                            D3 scale object for Y axis (specific to current component).
+                                    @return {undefined}
                                   *&#x2F;					
                         value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                     var that = this;
@@ -1573,21 +1604,22 @@ if (!window.DynamicChart){
 			Object.defineProperty(basicBarChartSharedPrototype, &quot;__onClearData__&quot;, {
             
                                 &#x2F;** __onClearData__(n)
-                                    @protected
-                                    [Protected method, not supposed to be used by consumers]
                                     
                                     Takes care of the remaining details related to the removal of part of the values from the chart,
-                                    based on to the particular chart needs.
+                                    based on to the particular chart needs.&lt;br&gt;
+                                    &lt;br&gt;
+                                    &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    Inherited objects MIGHT NEED to override this function.
                                     
-                                    WARNING:    Inherited objects MIGHT NEED to override this function
-                                    
-                                    @param n:   [Mandatory]
-                                                Number of elements removed from the chart
-
-                                    @return:    Nothing.
+                                    @method __onClearData__
+                                    @protected
+                                    @param {Number} [n]   [Mandatory]
+                                                          Must be a positive Integer, or a value that
+                                                          can be converted to a positive Integer;
+                                                          Number of elements removed from the chart
+                                    @return {undefined}
                                   *&#x2F;
                         value:	function(n){
-                                    &#x2F;&#x2F;Do nothing
+                                    &#x2F;&#x2F;Do nothing: for this object no special action required (but it&#x27;s required to be in the class interface)
                                     return;     &#x2F;&#x2F;(Pseudo)Private method, no need to return this
                                 },
 						writable: false,
@@ -1597,16 +1629,18 @@ if (!window.DynamicChart){
                     
 			Object.defineProperty(basicBarChartSharedPrototype, &quot;__clearDrawing__&quot;, {            
                                 &#x2F;** __clearDrawing__(dataSet, labelsSet)
+                                    
+                                    Removes the svg objects related to the data cleared by the caller (clearData).
+                                    
+                                    @method __clearDrawing__
                                     @protected
-                                    [Protected method, not supposed to be used by consumers]
+
                                     
-                                    Removes the svg objects related to the data cleared by the caller (clearData)
-                                    
-                                    @param dataSet: [Mandatory]
-                                                    List of drawing objects (default: rects) representing data
-                                    @param labelsSet:   [Mandatory]
-                                                        List of labels related to data removed
-                                    @return:    Nothing.
+                                    @param {Object} dataSet [Mandatory]
+                                                            List of drawing objects (default: rects) representing data
+                                    @param {Object} labelsSet   [Mandatory]
+                                                                List of labels related to data removed
+                                    @return {undefined}
                                   *&#x2F;
                         value:	function(dataSet, labelsSet){
                                     dataSet.remove();
@@ -1621,18 +1655,18 @@ if (!window.DynamicChart){
                     
 			Object.defineProperty(basicBarChartSharedPrototype, &quot;__getBarOpacity__&quot;, {
                             &#x2F;** __getBarOpacity__(val)
-                                @protected
-                                [Protected method, not supposed to be used by consumers]
                                 
-                                Computes and return the suggested value for the opacity of the bar
+                                 Computes and return the suggested value for the opacity of the bar
                                 drawn to represent a certain value.
-                                                                
-                                @param val: [Mandatory]
-                                            The value to be represented, after being normalized
-                                            (scaled between 0 and 1).
-                                            INVARIANT:  to avoid defensive programming,
-                                                        it is assumed 0 &lt;= val &lt;=1                               
-                                @return:    The opacity to apply to the value representation in the chart.
+                                      
+                                @method __getBarOpacity__
+                                @protected
+                                @param {Number} val [Mandatory]
+                                            The value to be represented;&lt;br&gt;
+                                            Accepts only normalized values (scaled between 0 and 1).&lt;br&gt;
+                                            &lt;b&gt;INVARIANT&lt;&#x2F;b&gt;:  to avoid defensive programming,
+                                                                it is assumed 0 &lt;= val &lt;=1                               
+                                @return {Number}    The opacity to apply to the value representation in the chart.
                               *&#x2F;            
 					value:	function(val){
 								return 0.25 + val * 0.75;
@@ -1713,19 +1747,19 @@ if (!window.DynamicChart){
             }  
             
             &#x2F;** __initData__(basicCharObj [, dataDim])
-                @private
-                [Private method]
                 
                 Performs all the settings related to the data handling area of the chart;
                 
-                @param basicCharObj:    [Mandatory]
-                                        The chart object to init;
-                @param dataDim: [Optional, default = 1]
+                @method __initData__
+                @private
+                @param {Object} basicCharObj [Mandatory]
+                                             The chart object to init;
+                @param {Number} [dataDim=1] [Optional]
                                 The dimension of the data space, i.e. the number of subvalues
-                                for each data entry;
+                                for each data entry;&lt;br&gt;
                                 Can take any value that is or can be converted to an integer 
                                 between 1 and MAX_SPACE_DIMENSION.
-                @return:    Nothing;   
+                @return {undefined}   
                 @throws
                                     -   Illegal Argument exception, if dataDim is passed but it&#x27;s 
                                         not valid (not numeric or not positive)
@@ -1742,8 +1776,14 @@ if (!window.DynamicChart){
                         throw &quot;Max number of subvalues for each point (&quot; + MAX_SPACE_DIMENSION + &quot;) exceeded&quot;;
                     }
                 }            
-                                                     &#x2F;** Dimension of the data space, 
+                  
+                                                     &#x2F;** 
+                                                         Dimension of the data space, 
                                                          i.e. number of subcomponents of each data &quot;point&quot;
+                                                         @property __dataDim__
+                                                         @type {Number}
+                                                         @readOnly
+                                                         @protected                                                         
                                                        *&#x2F;
                 Object.defineProperty(basicBarChart, &quot;__dataDim__&quot;, {
                                         value: dataDim,
@@ -1752,8 +1792,13 @@ if (!window.DynamicChart){
                                         configurable: false
                                     });   
                                             
-                                                    &#x2F;** The array that will hold data, separately for each component
+                                                    &#x2F;** 
+                                                        The array that will hold data, separately for each component
                                                         Initially every component&#x27;s array is set to []
+                                                         @property __data__
+                                                         @type {Array}
+                                                         @readOnly
+                                                         @protected                                                          
                                                       *&#x2F;
                 Object.defineProperty(basicBarChart, &quot;__data__&quot;, {
                                         value: ChartUtils.fillArray(function(){return [];}, basicBarChart.__dataDim__),
@@ -1761,9 +1806,14 @@ if (!window.DynamicChart){
                                         enumerable: false,
                                         configurable: false
                                     });
-                                                     &#x2F;** Array of maximum values for each component
-                                                         (used to compute the vertical scale)
-                                                         Defaults to 0
+                                                     &#x2F;** 
+                                                         Array of maximum values for each component
+                                                         (used to compute the vertical scale)&lt;br&gt;
+                                                         @property __maxVals__
+                                                         @type {Number}
+                                                         @readOnly
+                                                         @protected                                                           
+                                                         @default [0]*
                                                        *&#x2F;
                 Object.defineProperty(basicBarChart, &quot;__maxVals__&quot;, {
                                         value: ChartUtils.fillArray(0, basicBarChart.__dataDim__),
@@ -1796,7 +1846,12 @@ if (!window.DynamicChart){
             var __xScale__ = d3.scale.linear().range([0, width]);
             var __yScaleGenerator__ = function(){return d3.scale.linear().range([0, height]);};    
 
-                                                &#x2F;** The parent object to whom the chart is added
+                                                &#x2F;** 
+                                                    The parent object to whom the chart is added
+                                                    @property __parent__
+                                                    @type {Object}
+                                                    @readOnly
+                                                    @protected
                                                   *&#x2F;
             Object.defineProperty(basicBarChart, &quot;__parent__&quot;, {
                                     value: parent,
@@ -1807,6 +1862,10 @@ if (!window.DynamicChart){
             
                                                 &#x2F;**
                                                     The div element that will be a container to the chart&#x27;s svg element
+                                                    @property __divElement__
+                                                    @type {Object}
+                                                    @readOnly
+                                                    @protected                                                    
                                                   *&#x2F;
             Object.defineProperty(basicBarChart, &quot;__divElement__&quot;, {
                                     value: div,
@@ -1817,6 +1876,10 @@ if (!window.DynamicChart){
                                 
                                                 &#x2F;**
                                                     The chart&#x27;s svg element
+                                                    @property __svgElement__
+                                                    @type {Object}
+                                                    @readOnly
+                                                    @protected                                                      
                                                   *&#x2F;                                    
             Object.defineProperty(basicBarChart, &quot;__svgElement__&quot;, {
                                     value: svg,
@@ -1828,6 +1891,10 @@ if (!window.DynamicChart){
                                                 &#x2F;**
                                                     Scale object for the horizontal axis of the chart 
                                                     (common to all data subcomponents)
+                                                    @property __xScale__
+                                                    @type {Object}
+                                                    @readOnly
+                                                    @protected                                                      
                                                   *&#x2F;                                    
             Object.defineProperty(basicBarChart, &quot;__xScale__&quot;, {
                                     value: __xScale__,
@@ -1840,6 +1907,10 @@ if (!window.DynamicChart){
                                                     Scale objects for the vertical axis of the chart 
                                                     (array with one obj for each data subcomponents,
                                                      so that each component can be scaled independently)
+                                                    @property __yScale__
+                                                    @type {Array}
+                                                    @readOnly
+                                                    @protected
                                                   *&#x2F;                                       
             Object.defineProperty(basicBarChart, &quot;__yScale__&quot;, {
                                     value: ChartUtils.fillArray(__yScaleGenerator__, basicBarChart.__dataDim__),
@@ -1847,8 +1918,14 @@ if (!window.DynamicChart){
                                     enumerable: false,
                                     configurable: false
                                 });
-                                                 &#x2F;**For data space with dimension gt 1, states
+                                                 &#x2F;**
+                                                    For data space with dimension gt 1, states
                                                     if the different components should scale locally or globally
+                                                    @property __scaleGlobally__
+                                                    @type {Boolean}
+                                                    @readOnly
+                                                    @protected
+                                                    @default true
                                                    *&#x2F;
             Object.defineProperty(basicBarChart, &quot;__scaleGlobally__&quot;, {
                                     value: true,  &#x2F;&#x2F;By default, scales globally
@@ -1860,7 +1937,11 @@ if (!window.DynamicChart){
                                                  &#x2F;**
                                                     For each data subcomponent, stores the size to be used
                                                     for its label
-                                                    [Defaults to DEFAULT_LABEL_SIZE]
+                                                    @property __labelsSize__
+                                                    @type {Number}
+                                                    @readOnly
+                                                    @protected
+                                                    @default DEFAULT_LABEL_SIZE
                                                   *&#x2F;   
             Object.defineProperty(basicBarChart, &quot;__labelsSize__&quot;, {
                                     value: ChartUtils.fillArray(DEFAULT_LABEL_SIZE, basicBarChart.__dataDim__),
@@ -1871,7 +1952,11 @@ if (!window.DynamicChart){
                                                  &#x2F;**
                                                     For each data subcomponent, states whether or not
                                                     its label is visible
-                                                    [Defaults to true]
+                                                    @property __labelsVisible__
+                                                    @type {Array}
+                                                    @readOnly
+                                                    @protected
+                                                    @default [true]*
                                                   *&#x2F;                                      
             Object.defineProperty(basicBarChart, &quot;__labelsVisible__&quot;, {
                                     value: ChartUtils.fillArray(true, basicBarChart.__dataDim__),    &#x2F;&#x2F;All labels visible by default
@@ -1883,7 +1968,10 @@ if (!window.DynamicChart){
                                                  &#x2F;**
                                                     For each data subcomponent, stores the color to be used
                                                     to fill its drawing component
-                                                    [Defaults to a predefined color sequence]
+                                                    @property __labelsVisible__
+                                                    @type {Array}
+                                                    @readOnly
+                                                    @protected
                                                   *&#x2F;                                      
             Object.defineProperty(basicBarChart, &quot;__fillColors__&quot;, {
                                     value: FILL_COLORS.shallowCopy(basicBarChart.__dataDim__),  &#x2F;&#x2F;Default values
@@ -1895,7 +1983,11 @@ if (!window.DynamicChart){
                                                  &#x2F;**
                                                     For each data subcomponent, stores the color to be used
                                                     for the stroke of its drawing component
-                                                    [Defaults to black]
+                                                    @property __strokeColors__
+                                                    @type {Array}
+                                                    @readOnly
+                                                    @protected
+                                                    @default [&quot;black&quot;]*
                                                   *&#x2F;                                       
             Object.defineProperty(basicBarChart, &quot;__strokeColors__&quot;, {
                                     value: ChartUtils.fillArray(&quot;black&quot;, basicBarChart.__dataDim__),  &#x2F;&#x2F;Default values: black
@@ -1905,7 +1997,12 @@ if (!window.DynamicChart){
                                 });	
                                                  &#x2F;**
                                                     For each data subcomponent, stores the color to be used
-                                                    to draw its labels [Defaults to black]
+                                                    to draw its labels
+                                                    @property __labelColors__
+                                                    @type {Array}
+                                                    @readOnly
+                                                    @protected
+                                                    @default [&quot;black&quot;]*                                                    
                                                   *&#x2F;                                       
             Object.defineProperty(basicBarChart, &quot;__labelColors__&quot;, {
                                     value: ChartUtils.fillArray(&quot;black&quot;, basicBarChart.__dataDim__),  &#x2F;&#x2F;Default values: black
@@ -1914,9 +2011,14 @@ if (!window.DynamicChart){
                                     configurable: false
                                 });	  
 
-                                                 &#x2F;**Placeholder for a possible legend object, if the consumer
+                                                 &#x2F;**
+                                                    Placeholder for a possible legend object, if the consumer
                                                     decides to add a legend to the chart;
-                                                    [Defaults to null]
+                                                    @property __legend__
+                                                    @type {Object}
+                                                    @readOnly
+                                                    @protected
+                                                    @default null
                                                   *&#x2F;                                       
             Object.defineProperty(basicBarChart, &quot;__legend__&quot;, {
                                     value: null,  &#x2F;&#x2F;Default value: none
@@ -2122,7 +2224,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                             
-                                            WARNING: This function SHOULD be overriden in any class inheriting from the base class
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;: This function SHOULD be overriden in any class inheriting from the base class
                                                      in order to handle differents needs
                                                      
                                             @override:  basicBarChartSharedPrototype.__canAppendData__
@@ -2166,7 +2268,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                                                                            
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method and __updateDrawing__ in order to obtain a custom chart.
 
                                             @override:   basicBarChartSharedPrototype.__drawNewData__
@@ -2211,7 +2313,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                             
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method and __drawNewData__ in order to obtain a custom chart.
                                                         
                                             @override:  basicBarChartSharedPrototype.__updateDrawing__
@@ -2512,7 +2614,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                             
-                                            WARNING: This function SHOULD be overriden in any class inheriting from the base class
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;: This function SHOULD be overriden in any class inheriting from the base class
                                                      in order to handle differents needs
                                                      
                                             @override:  fixedWidthBarChart.__canAppendData__
@@ -2585,7 +2687,7 @@ if (!window.DynamicChart){
                                             
                                             Called by __drawNewData__() to redraw the background properly
                                             
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method as well as __drawNewData__ and __updateDrawing__ 
                                                         in order to obtain a custom chart.
                                             
@@ -2623,7 +2725,7 @@ if (!window.DynamicChart){
                                             
                                             Called by __updateDrawing__() to update the labels of the vertical axe
                                             
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method as well as __drawNewData__ and __updateDrawing__ 
                                                         in order to obtain a custom chart.
                                                         
@@ -2669,7 +2771,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                             
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method and __updateDrawing__ in order to obtain a custom chart.
                                                         
                                             @override:   fixedWidthBarChart.__drawNewData__
@@ -2722,7 +2824,7 @@ if (!window.DynamicChart){
                                             @protected
                                             [Protected method, not supposed to be used by consumers]
                                             
-                                            WARNING:    if you inherit from this class you might want to override both
+                                            &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                                         this method and __drawNewData__ in order to obtain a custom chart.
                                                         
                                             @override:  fixedWidthBarChart.__updateDrawing__
@@ -3137,7 +3239,7 @@ if (!window.DynamicChart){
                                 @protected
                                 [Protected method, not supposed to be used by consumers]
                                                                                
-                                WARNING:    if you inherit from this class you might want to override both
+                                &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                             this method and __updateDrawing__ in order to obtain a custom chart.
                                             
                                 @override:   fixedWidthBarChart.__drawNewData__
@@ -3199,7 +3301,7 @@ if (!window.DynamicChart){
                                 @protected
                                 [Protected method, not supposed to be used by consumers]
                                 
-                                WARNING:    if you inherit from this class you might want to override both
+                                &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    if you inherit from this class you might want to override both
                                             this method and __drawNewData__ in order to obtain a custom chart.
                                             
                                 @override:  fixedWidthBarChart.__updateDrawing__
@@ -3243,7 +3345,7 @@ if (!window.DynamicChart){
                                 @protected
                                 [Protected method, not supposed to be used by consumers]
                                 
-                                WARNING:    Inherited objects MIGHT NEED to override this function
+                                &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    Inherited objects MIGHT NEED to override this function
                                 
                                 @override: basicBarChartSharedPrototype.__onClearData__
                               *&#x2F;
@@ -3263,7 +3365,7 @@ if (!window.DynamicChart){
                                 
                                 Updates the drawing of the static elements of the wheel
                                 
-                                WARNING:    Inherited objects MIGHT NEED to override this function
+                                &lt;b&gt;WARNING&lt;&#x2F;b&gt;:    Inherited objects MIGHT NEED to override this function
 
                                 @return:    Nothing.
                               *&#x2F;
@@ -3320,7 +3422,7 @@ if (!window.DynamicChart){
                                 
                                 Object&#x27;s destructor: helps garbage collector freeing memory, and removes chart DOM elements.
                                 
-                                WARNING: calling destroy on an object will force any further reference 
+                                &lt;b&gt;WARNING&lt;&#x2F;b&gt;: calling destroy on an object will force any further reference 
                                          to its attributes &#x2F; methods to throw exceptions.
                                 
                                 NOTE:   This function should be override by any class inheriting from this chart.
@@ -3600,7 +3702,7 @@ if (!window.DynamicChart){
                                     -   Exception, if parent is passed but it is not a valid DOM element                             
               *&#x2F;
             BasicBarChart: function(){
-                               return BasicBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy();
+                               return BasicBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy(true);
                            },
             &#x2F;** 
                 @method FixedWidthBarChart
@@ -3635,7 +3737,7 @@ if (!window.DynamicChart){
                                     -   Exception, if parent is passed but it is not a valid DOM element                
               *&#x2F;                           
             FixedWidthBarChart: function(){
-                               return FixedWidthBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy();
+                               return FixedWidthBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy(true);
                            },
             &#x2F;** 
                 @method SlidingBarChart
@@ -3668,7 +3770,7 @@ if (!window.DynamicChart){
                                     -   Exception, if parent is passed but it is not a valid DOM element                
               *&#x2F;                              
             SlidingBarChart: function(){
-                               return SlidingBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy();
+                               return SlidingBarChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy(true);
                            },
             &#x2F;** 
                 @method TimeWheelChart
@@ -3703,7 +3805,7 @@ if (!window.DynamicChart){
                                     -   Exception, if parent is passed but it is not a valid DOM element                
               *&#x2F;                            
             TimeWheelChart: function(){
-                               return TimeWheelChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy();
+                               return TimeWheelChart.apply(null, Array.prototype.slice.apply(arguments, [0])).createSafeProxy(true);
                            },                           
         };
 		
