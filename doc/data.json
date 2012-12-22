@@ -3,9 +3,15 @@
     "files": {
         "chart_utils.js": {
             "name": "chart_utils.js",
-            "modules": {},
+            "modules": {
+                "ChartUtils": 1
+            },
             "classes": {},
-            "fors": {},
+            "fors": {
+                "Object": 1,
+                "Array": 1,
+                "ChartUtils": 1
+            },
             "namespaces": {}
         },
         "dynamic_chart.js": {
@@ -29,6 +35,25 @@
         }
     },
     "modules": {
+        "ChartUtils": {
+            "name": "ChartUtils",
+            "submodules": {},
+            "classes": {
+                "Object": 1,
+                "Array": 1,
+                "ChartUtils": 1
+            },
+            "fors": {
+                "Object": 1,
+                "Array": 1,
+                "ChartUtils": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "chart_utils.js",
+            "line": 2,
+            "description": "Module ChartUtils\n        \n        Extends Object class with several useful methods to allow better encapsulation mechanisms.\n        Exposes a few utility functions"
+        },
         "DynamicChart": {
             "name": "DynamicChart",
             "submodules": {},
@@ -49,10 +74,43 @@
             "tag": "module",
             "file": "dynamic_chart.js",
             "line": 3007,
-            "description": "Module DynamicChart\n\n        This module requires:\n        \n        {{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}\n        {{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}} \n\n        Exposes methods for creating different types of dynamic charts:\n        * BasicBarChart\n        * FixedWidthBarChart\n        * SlidingBarChart\n        * TimeWheelChart"
+            "description": "Module DynamicChart\n        \n        This module requires:\n        \n        {{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}\n        {{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}} \n\n        Exposes methods for creating different types of dynamic charts:\n        * BasicBarChart\n        * FixedWidthBarChart\n        * SlidingBarChart\n        * TimeWheelChart"
         }
     },
     "classes": {
+        "Object": {
+            "name": "Object",
+            "shortname": "Object",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ChartUtils",
+            "namespace": ""
+        },
+        "Array": {
+            "name": "Array",
+            "shortname": "Array",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ChartUtils",
+            "namespace": ""
+        },
+        "ChartUtils": {
+            "name": "ChartUtils",
+            "shortname": "ChartUtils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ChartUtils",
+            "namespace": ""
+        },
         "DynamicChart": {
             "name": "DynamicChart",
             "shortname": "DynamicChart",
@@ -151,137 +209,410 @@
     "classitems": [
         {
             "file": "chart_utils.js",
-            "line": 2,
-            "description": "module ChartUtils",
-            "class": "DynamicChart"
-        },
-        {
-            "file": "chart_utils.js",
-            "line": 46,
-            "description": "Creates and returns a safe proxy for the object passed\n                                                    that will wrap around it and expose only those methods\n                                                    that are declared as enumerable.",
+            "line": 17,
+            "description": "Creates an object inheriting from a given prototype and then, if required, \ninits it with a list of properties tha can be passed as its second argument.",
+            "itemtype": "method",
+            "name": "init",
             "params": [
                 {
-                    "name": "CanDestroy",
-                    "description": "\n                                                                     States if the proxy consumer has the authority to call destroy \n                                                                     on the original object",
-                    "type": "Boolean, default=false"
+                    "name": "proto",
+                    "description": "The protetype to inherit from;",
+                    "type": "Object"
+                },
+                {
+                    "name": "properties",
+                    "description": "A dictionary of key-value properties to be used for the new object's initialization;",
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "return": {
-                "description": "A proxy wrapping this object;",
+                "description": "The newly created object.",
+                "type": "Object"
+            },
+            "throws": [
+                "Error",
+                "if the wrong number of arguments is passed."
+            ],
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 52,
+            "description": "Deletes every property from an object",
+            "itemtype": "method",
+            "name": "clear",
+            "chainable": 1,
+            "return": {
+                "description": "The same object on whom this method is called.",
+                "type": "Object"
+            },
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 72,
+            "description": "Creates and returns a safe proxy for the object passed, \n                                                    that will wrap around it and expose only those methods\n                                                    marked as public (i.e. those that are declared as enumerable).",
+            "itemtype": "method",
+            "name": "createSafeProxy",
+            "params": [
+                {
+                    "name": "canDestroy",
+                    "description": "States if the proxy consumer has the authority to call destroy \n                                                                     on the original object;<br>\n                                                                     We assume the convention that object's uses destroy method\n                                                                     as their destructor.",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "return": {
+                "description": "A proxy wrapping this object.",
                 "type": "Object"
             },
             "throws": [
                 "Any exception the original object pseudo-constructor might throw."
             ],
-            "class": "DynamicChart"
+            "class": "Object",
+            "module": "ChartUtils"
         },
         {
             "file": "chart_utils.js",
-            "line": 147,
-            "description": "Creates a new array (shallow) copying the elements of the current one",
+            "line": 136,
+            "description": "Clears an Array, removing all its elements;",
+            "itemtype": "method",
+            "name": "clear",
             "params": [
                 {
-                    "name": "n:",
-                    "description": "[Optional]\n            If defined, the max number of elements to copy from the current array"
+                    "name": "deepClear",
+                    "description": "If it is required for all the array elements to be cleared,\n                                   this paramenter should be true; can  be omitted otherwise; <br>\n                                   If deep clearance is required, thie method will try to \n                                   call the clear method for each and every element of this array\n                                   (Object class has already been extended with a clear method).",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
                 }
             ],
-            "class": "DynamicChart"
+            "return": {
+                "description": "This array.",
+                "type": "Array"
+            },
+            "class": "Array",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 163,
+            "description": "Maps a function on every element of the array, creting a new array populated\nwith the results of these calls.",
+            "itemtype": "method",
+            "name": "map",
+            "params": [
+                {
+                    "name": "f",
+                    "description": "The function to map on the array;",
+                    "type": "Function"
+                },
+                {
+                    "name": "contest",
+                    "description": "The new this pointer for the function to map, if needed;",
+                    "type": "Object",
+                    "optional": true,
+                    "optdefault": "window"
+                }
+            ],
+            "return": {
+                "description": "The array of the results of mapping f over the elements this array.",
+                "type": "Array"
+            },
+            "throws": [
+                "TypeError if f isn't a function."
+            ],
+            "class": "Array",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 193,
+            "description": "Sums the elements of an array.",
+            "itemtype": "method",
+            "name": "sum",
+            "return": {
+                "description": "The sum of the elements in the array;<br>\n<br>\n<b>WARNING</b>: \n    <ul>\n        <li>If all the elements in the array are numbers, then returs their arithmetic sum</li>\n        <li>If any element of the array isn't a number, returns a string obtained by concatenating\n            the partial arithmetic sum until that element, and the concatenation\n            of the string conversion of every other element in the array.</li>\n    </ul>",
+                "type": "Number|String"
+            },
+            "class": "Array",
+            "module": "ChartUtils"
         },
         {
             "file": "chart_utils.js",
             "line": 222,
-            "description": "Takes a value and a positive integer and returns an Array of n copies of that value",
+            "description": "Creates a new array (shallow) copying the elements of the current one",
+            "itemtype": "method",
+            "name": "shallowCopy",
             "params": [
                 {
-                    "name": "value:",
-                    "description": "[Mandatory]\n                The value to assign to each element of the newly created array.\n                If value is a function, it is called  n times, with no parameters"
-                },
-                {
-                    "name": "n:",
-                    "description": "[Mandatory]\n            The size of the final array;\n                WARNING:   since shallow copy is used, only works for\n                                                primitive (immutable) values"
-                }
-            ],
-            "class": "DynamicChart"
-        },
-        {
-            "file": "chart_utils.js",
-            "line": 251,
-            "description": "Format a hours, minutes couple into a proper time string\nINVARIANT: HH and MM are valid, positive integers\n           If the overcome their range, proper formatting is enforced:\n           F.i. 23,60 -> \"00:00\"",
-            "params": [
-                {
-                    "name": "HH:",
-                    "description": "[Mandatory]\n            An int value (between 0 and 23), representing the hours"
-                },
-                {
-                    "name": "MM:",
-                    "description": "[Mandatory]\n            An int value (between 0 and 59), representing the minutes"
+                    "name": "n",
+                    "description": "If defined, the max number of elements to copy from the current array",
+                    "optional": true
                 }
             ],
             "return": {
-                "description": ":    - An array with two integers, the values for hours and minutes\n                <=> The string validates successfully\n            - null <-> Otherwise"
+                "description": "A new array, with a shallow copy of all the elements in the original one.",
+                "type": "Array"
             },
-            "class": "DynamicChart"
+            "class": "Array",
+            "module": "ChartUtils"
         },
         {
             "file": "chart_utils.js",
-            "line": 271,
-            "description": "Takes a string as input and checks if it is a valid\ntime representation, according to the format HH:MM",
+            "line": 253,
+            "description": "Return the maximum element of an array.",
+            "itemtype": "method",
+            "name": "max",
             "params": [
                 {
-                    "name": "timeString:",
-                    "description": "[Mandatory]\n                    The string to be evaluated"
+                    "name": "extract_element_key",
+                    "description": "A function that, given any element of the array, will produce\n                             a numeric value used for ranking the element itself (its sorting key)",
+                    "optional": true
                 }
             ],
             "return": {
-                "description": ":    - An array with two integers, the values for hours and minutes\n                <=> The string validates successfully\n            - null <-> Otherwise"
+                "description": "The maximum value in the array, if all elements (or their keys)\n                     are Number;<br>\n                     NaN otherwise",
+                "type": "Number|NaN"
             },
-            "class": "DynamicChart"
+            "class": "Array",
+            "module": "ChartUtils"
         },
         {
             "file": "chart_utils.js",
-            "line": 292,
-            "description": "Takes two strings as input and checks if they are valid\ntime representations, according to the format HH:MM\nIf it is so, sums them and returns a new string representing\nthe resulting time;",
+            "line": 274,
+            "description": "Return the minimum element of an array.",
+            "itemtype": "method",
+            "name": "min",
             "params": [
                 {
-                    "name": "timeString_1:",
-                    "description": "[Mandatory]\n                        The first time string to be added"
+                    "name": "extract_element_key",
+                    "description": "A function that, given any element of the array, will produce\n                              a numeric value used for ranking the element itself (its sorting key)",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The minimum value in the array, if all elements (or their keys)\n                     are Number;<br>\n                     NaN otherwise",
+                "type": "Number|NaN"
+            },
+            "class": "Array",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 295,
+            "description": "Checks if its argument is an array.",
+            "itemtype": "method",
+            "name": "isArray",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The argument to be checked.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True <=> the object is an Array.",
+                "type": "Boolean"
+            },
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 309,
+            "description": "Checks if its argument is a string.",
+            "itemtype": "method",
+            "name": "isString",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The argument to be checked.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True <=> the object is a String.",
+                "type": "Boolean"
+            },
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 323,
+            "description": "Checks if its argument is a Function.",
+            "itemtype": "method",
+            "name": "isFunction",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The argument to be checked.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True <=> the object is a Function.",
+                "type": "Boolean"
+            },
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 337,
+            "description": "Checks if its argument is a Number.",
+            "itemtype": "method",
+            "name": "isNumber",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The argument to be checked.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True <=> the object is a Number.",
+                "type": "Boolean"
+            },
+            "class": "Object",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 353,
+            "description": "Format a hours, minutes couple into a proper time string<br>\n<br>\n<b>INVARIANT</b>: HH and MM must be valid, positive integers \n                  (since it's a private method, defensive programming is avoided<br>\n           If the overcome their range, proper formatting is enforced:\n           F.i. HH=23, MM=60 -> \"00:00\"",
+            "itemtype": "method",
+            "name": "formatTimeString",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "HH",
+                    "description": "An int value (between 0 and 23), representing the hours",
+                    "type": "Number"
                 },
                 {
-                    "name": "timeString_2:",
-                    "description": "[Mandatory]\n                        The second time string to be added"
+                    "name": "MM",
+                    "description": "An int value (between 0 and 59), representing the minutes",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    - A string representation of the sum of the two timeStamps, in the format HH:MM (modulo 24 hours)\n                <=> Both strings validates successfully"
+                "description": "The properly formatted time string.",
+                "type": "String"
+            },
+            "class": "ChartUtils",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 377,
+            "description": "Takes a value and a positive integer n and returns an Array of n copies of that value.<br>\n<br>\n<b>WARNING</b>:   since shallow copy is used, only works for\n                  primitive (immutable) values",
+            "itemtype": "method",
+            "name": "fillArray",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to assign to each element of the newly created array.\n                             If value is a function, it is called  n times, with no parameters",
+                    "type": "String|Number"
+                },
+                {
+                    "name": "n",
+                    "description": "The size of the final array;<br>\n                  Must be a positive integer.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The newly created array.",
+                "type": "Array"
             },
             "throws": [
-                ":     \n            - Invalid Argument Exception",
-                "if either input fails to validate"
+                "{Invalid Argument Exception} if n isn't passed",
+                "it's not a number",
+                "or it's not positive."
             ],
-            "class": "DynamicChart"
+            "class": "ChartUtils",
+            "module": "ChartUtils"
         },
         {
             "file": "chart_utils.js",
-            "line": 324,
-            "description": "Takes a string and an int value and checks if it is a valid\ntime representation, according to the format HH:MM",
+            "line": 411,
+            "description": "Takes a string as input and checks if it is a valid\n                time representation, according to the format HH:MM",
+            "itemtype": "method",
+            "name": "validateTimeString",
             "params": [
                 {
-                    "name": "timeString:",
-                    "description": "[Mandatory]\n                      The time string taken as initial time"
-                },
-                {
-                    "name": "minutes:",
-                    "description": "[Mandatory]\n                    Minutes to be added to the time string"
+                    "name": "timeString",
+                    "description": "The string to be evaluated",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": ":    - A string representation of the sum of the two time values, in the format HH:MM (modulo 24 hours)\n                <=> Both inputs validates successfully"
+                "description": "<ul>\n                                        <li>An array with two integers, the values for hours and minutes\n                                            <=> The input string validates successfully</li>\n                                        <li>null <-> Otherwise</li>\n                                    </ul>",
+                "type": "Array|null"
+            },
+            "class": "ChartUtils",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 437,
+            "description": "Takes two strings as input and checks if they are valid\ntime representations, according to the format HH:MM<br>\nIf it is so, sums them and returns a new string representing\nthe resulting time;",
+            "itemtype": "method",
+            "name": "addTimeStrings",
+            "params": [
+                {
+                    "name": "timeString_1",
+                    "description": "The first time string to be added",
+                    "type": "String"
+                },
+                {
+                    "name": "timeString_2",
+                    "description": "The second time string to be added",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A string representation of the sum of the two timeStamps, in the format HH:MM (modulo 24 hours)\n                <=> Both strings validates successfully",
+                "type": "String"
             },
             "throws": [
-                ":     \n            - Invalid Argument Exception",
-                "if either input fails to validate"
+                "{Invalid Argument Exception} if either input fails to validate."
             ],
-            "class": "DynamicChart"
+            "class": "ChartUtils",
+            "module": "ChartUtils"
+        },
+        {
+            "file": "chart_utils.js",
+            "line": 470,
+            "description": "Takes a string and an int value and checks if it is a valid\n                time representation, according to the format HH:MM",
+            "itemtype": "method",
+            "name": "addIntToTimeString",
+            "params": [
+                {
+                    "name": "timeString",
+                    "description": "The time string taken as initial time",
+                    "type": "String"
+                },
+                {
+                    "name": "minutes",
+                    "description": "How many minutes needs to be added to the time string;",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "A string representation of the sum of the two time values, in the format HH:MM (modulo 24 hours)\n                                <=> Both inputs validates successfully",
+                "type": "String"
+            },
+            "throws": [
+                "{Invalid Argument Exception} if either input fails to validate"
+            ],
+            "class": "ChartUtils",
+            "module": "ChartUtils"
         },
         {
             "file": "dynamic_chart.js",
@@ -3326,38 +3657,6 @@
         {
             "message": "unknown tag: override",
             "line": " dynamic_chart.js:3566"
-        },
-        {
-            "message": "Missing item type\nmodule ChartUtils",
-            "line": " chart_utils.js:2"
-        },
-        {
-            "message": "Missing item type\nCreates and returns a safe proxy for the object passed\n                                                    that will wrap around it and expose only those methods\n                                                    that are declared as enumerable.",
-            "line": " chart_utils.js:46"
-        },
-        {
-            "message": "Missing item type\nCreates a new array (shallow) copying the elements of the current one",
-            "line": " chart_utils.js:147"
-        },
-        {
-            "message": "Missing item type\nTakes a value and a positive integer and returns an Array of n copies of that value",
-            "line": " chart_utils.js:222"
-        },
-        {
-            "message": "Missing item type\nFormat a hours, minutes couple into a proper time string\nINVARIANT: HH and MM are valid, positive integers\n           If the overcome their range, proper formatting is enforced:\n           F.i. 23,60 -> \"00:00\"",
-            "line": " chart_utils.js:251"
-        },
-        {
-            "message": "Missing item type\nTakes a string as input and checks if it is a valid\ntime representation, according to the format HH:MM",
-            "line": " chart_utils.js:271"
-        },
-        {
-            "message": "Missing item type\nTakes two strings as input and checks if they are valid\ntime representations, according to the format HH:MM\nIf it is so, sums them and returns a new string representing\nthe resulting time;",
-            "line": " chart_utils.js:292"
-        },
-        {
-            "message": "Missing item type\nTakes a string and an int value and checks if it is a valid\ntime representation, according to the format HH:MM",
-            "line": " chart_utils.js:324"
         },
         {
             "message": "Missing item type",

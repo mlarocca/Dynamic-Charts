@@ -4,7 +4,7 @@
 if (!window.DynamicChart){
 	/**
 		Module DynamicChart
-
+        
         This module requires:
         
         {{#crossLinkModule "chart_utils.js"}}{{/crossLinkModule}}
