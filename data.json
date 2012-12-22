@@ -52,7 +52,7 @@
             "tag": "module",
             "file": "chart_utils.js",
             "line": 2,
-            "description": "Module ChartUtils\n        \nExtends Object class with several useful methods to allow better encapsulation mechanisms.\nExposes a few utility functions"
+            "description": "Module ChartUtils\n        \nExtends Object class with several useful methods to allow better encapsulation mechanisms.<br>\nExposes a few utility functions"
         },
         "DynamicChart": {
             "name": "DynamicChart",
@@ -74,7 +74,7 @@
             "tag": "module",
             "file": "dynamic_chart.js",
             "line": 3018,
-            "description": "Module DynamicChart\n        \nThis module requires:\n<ol>\n    <li>{{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}</li>\n    <li>{{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}}</li>\n</ol>\n\nExposes methods for creating different types of dynamic charts:\n<ol>\n    <li>BasicBarChart</li>\n    <li>FixedWidthBarChart</li>\n    <li>SlidingBarChart</li>\n    <li>TimeWheelChart</li>"
+            "description": "Module DynamicChart\n        \nThis module requires:\n<ol>\n    <li>{{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}</li>\n    <li>{{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}}</li>\n</ol>\n<br>\nExposes methods for creating different types of dynamic charts:\n<ul>\n    <li>BasicBarChart</li>\n    <li>FixedWidthBarChart</li>\n    <li>SlidingBarChart</li>\n    <li>TimeWheelChart</li>\n</ul>"
         }
     },
     "classes": {
@@ -257,6 +257,7 @@
             "description": "Creates and returns a safe proxy for the object passed, \n                                                    that will wrap around it and expose only those methods\n                                                    marked as public (i.e. those that are declared as enumerable).",
             "itemtype": "method",
             "name": "createSafeProxy",
+            "chainable": 1,
             "params": [
                 {
                     "name": "canDestroy",
@@ -278,7 +279,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 135,
+            "line": 136,
             "description": "Clears an Array, removing all its elements;",
             "itemtype": "method",
             "name": "clear",
@@ -300,7 +301,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 162,
+            "line": 163,
             "description": "Maps a function on every element of the array, creting a new array populated\nwith the results of these calls.",
             "itemtype": "method",
             "name": "map",
@@ -330,7 +331,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 192,
+            "line": 193,
             "description": "Sums the elements of an array.",
             "itemtype": "method",
             "name": "sum",
@@ -343,7 +344,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 221,
+            "line": 222,
             "description": "Creates a new array (shallow) copying the elements of the current one",
             "itemtype": "method",
             "name": "shallowCopy",
@@ -363,7 +364,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 252,
+            "line": 253,
             "description": "Return the maximum element of an array.",
             "itemtype": "method",
             "name": "max",
@@ -383,7 +384,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 273,
+            "line": 274,
             "description": "Return the minimum element of an array.",
             "itemtype": "method",
             "name": "min",
@@ -403,7 +404,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 294,
+            "line": 295,
             "description": "Checks if its argument is an array.",
             "itemtype": "method",
             "name": "isArray",
@@ -415,7 +416,7 @@
                 }
             ],
             "return": {
-                "description": "True <=> the object is an Array.",
+                "description": "true <=> the object is an Array.",
                 "type": "Boolean"
             },
             "class": "Object",
@@ -423,7 +424,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 308,
+            "line": 309,
             "description": "Checks if its argument is a string.",
             "itemtype": "method",
             "name": "isString",
@@ -435,7 +436,7 @@
                 }
             ],
             "return": {
-                "description": "True <=> the object is a String.",
+                "description": "true <=> the object is a String.",
                 "type": "Boolean"
             },
             "class": "Object",
@@ -443,7 +444,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 322,
+            "line": 323,
             "description": "Checks if its argument is a Function.",
             "itemtype": "method",
             "name": "isFunction",
@@ -455,7 +456,7 @@
                 }
             ],
             "return": {
-                "description": "True <=> the object is a Function.",
+                "description": "true <=> the object is a Function.",
                 "type": "Boolean"
             },
             "class": "Object",
@@ -463,7 +464,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 336,
+            "line": 337,
             "description": "Checks if its argument is a Number.",
             "itemtype": "method",
             "name": "isNumber",
@@ -475,7 +476,7 @@
                 }
             ],
             "return": {
-                "description": "True <=> the object is a Number.",
+                "description": "true <=> the object is a Number.",
                 "type": "Boolean"
             },
             "class": "Object",
@@ -483,7 +484,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 352,
+            "line": 353,
             "description": "Format a hours, minutes couple into a proper time string<br>\n<br>\n<b>INVARIANT</b>: HH and MM must be valid, positive integers \n                  (since it's a private method, defensive programming is avoided<br>\n           If the overcome their range, proper formatting is enforced:\n           F.i. HH=23, MM=60 -> \"00:00\"",
             "itemtype": "method",
             "name": "formatTimeString",
@@ -510,7 +511,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 376,
+            "line": 377,
             "description": "Takes a value and a positive integer n and returns an Array of n copies of that value.<br>\n<br>\n<b>WARNING</b>:   since shallow copy is used, only works for\n                  primitive (immutable) values",
             "itemtype": "method",
             "name": "fillArray",
@@ -540,7 +541,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 410,
+            "line": 411,
             "description": "Takes a string as input and checks if it is a valid\n                time representation, according to the format HH:MM",
             "itemtype": "method",
             "name": "validateTimeString",
@@ -560,7 +561,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 436,
+            "line": 437,
             "description": "Takes two strings as input and checks if they are valid\ntime representations, according to the format HH:MM<br>\nIf it is so, sums them and returns a new string representing\nthe resulting time;",
             "itemtype": "method",
             "name": "addTimeStrings",
@@ -588,7 +589,7 @@
         },
         {
             "file": "chart_utils.js",
-            "line": 469,
+            "line": 470,
             "description": "Takes a string and an int value and checks if it is a valid\n                time representation, according to the format HH:MM",
             "itemtype": "method",
             "name": "addIntToTimeString",
@@ -2963,7 +2964,7 @@
                     "type": "Number"
                 },
                 {
-                    "name": "height!~YUIDOC_LINE~!",
+                    "name": "height",
                     "description": "[Mandatory]\n                            The desired height for the chart (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
@@ -3001,7 +3002,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3078,
+            "line": 3077,
             "description": "Label stating the time corresponding to the first tick;",
             "itemtype": "property",
             "name": "__startTime__",
@@ -3013,7 +3014,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3091,
+            "line": 3090,
             "description": "Size in points of the static labels showing time references on the wheel;",
             "itemtype": "property",
             "name": "__startTime__",
@@ -3026,7 +3027,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3106,
+            "line": 3105,
             "description": "Sets the size of the labels used for the wheel.",
             "itemtype": "method",
             "name": "setTimeWheelLabelsSize",
@@ -3051,7 +3052,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3140,
+            "line": 3139,
             "description": "Color used for the static part of the wheel",
             "itemtype": "property",
             "name": "__startTime__",
@@ -3064,7 +3065,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3155,
+            "line": 3154,
             "description": "Sets the color used for the static part of the wheel's drawing, \n                                                i.e. for labels and lines representing time ticks \n                                                of the time wheel.",
             "itemtype": "method",
             "name": "setTimeWheelForeColor",
@@ -3089,7 +3090,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3192,
+            "line": 3191,
             "description": "Checks whether or not the labels showing time references on the wheel\n                                                should be drawn",
             "itemtype": "method",
             "name": "__timeLabelsVisible__",
@@ -3104,7 +3105,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3211,
+            "line": 3210,
             "description": "Sets the width of this chart's bars.",
             "itemtype": "method",
             "name": "setBarWidth",
@@ -3130,7 +3131,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3238,
+            "line": 3237,
             "description": "Sets the position of the center of the wheel.\n                                If it is valid and it is different from the current position,\n                                the drawing is moved to the new position",
             "itemtype": "method",
             "name": "setWheelCenter",
@@ -3160,7 +3161,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3275,
+            "line": 3274,
             "description": "When the center of the time wheel is moved,\n                                it takes care of all the updates needed for the chart",
             "itemtype": "method",
             "name": "__moveWheelCenter__",
@@ -3187,7 +3188,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3333,
+            "line": 3332,
             "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                   this method and __updateDrawing__ in order to obtain a custom chart.<br>\n                                See base class for method signature and details.",
             "itemtype": "method",
             "name": "__drawNewData__",
@@ -3199,7 +3200,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3396,
+            "line": 3395,
             "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                   this method and __drawNewData__ in order to obtain a custom chart.<br>\n                                See base class for method signature and details.",
             "itemtype": "method",
             "name": "__updateDrawing__",
@@ -3211,7 +3212,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3441,
+            "line": 3440,
             "description": "[Protected method, not supposed to be used by consumers]\n<b>WARNING</b>:    Inherited objects MIGHT NEED to override this function<br>\n                                                   See base class for method signature and details.",
             "itemtype": "method",
             "name": "__onClearData__",
@@ -3223,7 +3224,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3461,
+            "line": 3460,
             "description": "Updates the drawing of the static elements of the wheel<br>\n                                <br>\n                                <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function",
             "itemtype": "method",
             "name": "__updateWheelDrawing__",
@@ -3238,7 +3239,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3520,
+            "line": 3519,
             "description": "Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.<br>\n                                <br>\n                                <b>WARNING</b>: calling destroy on an object will force any further reference \n                                                to its attributes / methods to throw exceptions.<br>\n                                <br>\n                                <b>NOTE</b>:   This function should be override by any class inheriting from this chart.<br>\n                                               In order to properly work, any overriding destroyer should:\n                                                <ol>\n                                                    <li> Free any array specific to the object on which is called;</li>\n                                                    <li> Remove any event listener on chart objects;</li>\n                                                    <li> Call super object's destroy method.</li>\n                                                </ol>",
             "itemtype": "method",
             "name": "destroy",
@@ -3252,7 +3253,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3559,
+            "line": 3558,
             "description": "Inits the chart;",
             "itemtype": "method",
             "name": "__init__",
@@ -3289,7 +3290,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3578,
+            "line": 3577,
             "description": "Chart's bars' width, in pixel <br>\nCan be changed at runtime",
             "itemtype": "property",
             "name": "__barWidth__",
@@ -3303,7 +3304,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3593,
+            "line": 3592,
             "description": "X coordinate of the center of the wheel\nCan be changed at runtime",
             "itemtype": "property",
             "name": "__cx__",
@@ -3316,7 +3317,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3609,
+            "line": 3608,
             "description": "Y coordinate of the center of the wheel<br>\nCan be changed at runtime",
             "itemtype": "property",
             "name": "__cy__",
@@ -3329,7 +3330,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3635,
+            "line": 3634,
             "description": "Radius of the wheel<br>\n<b>CAN NOT</b> be changed at runtime",
             "itemtype": "property",
             "name": "__r__",
@@ -3342,7 +3343,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3649,
+            "line": 3648,
             "description": "Maximum height for each bar<br>\n<b>CAN NOT</b> be changed at runtime",
             "itemtype": "property",
             "name": "__barHeight__",
@@ -3355,7 +3356,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3670,
+            "line": 3669,
             "description": "The angle between two consecutive ticks<br>\n<b>CAN NOT</b> be changed at runtime",
             "itemtype": "property",
             "name": "__tickStep__",
@@ -3368,7 +3369,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3689,
+            "line": 3688,
             "description": "The actual svg object for the static part of the wheel",
             "itemtype": "property",
             "name": "__wheel__",
@@ -3381,7 +3382,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3787,
+            "line": 3786,
             "description": "List of labels for wheel's time references",
             "itemtype": "property",
             "name": "__timeLabels__",
@@ -3394,7 +3395,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3813,
+            "line": 3812,
             "itemtype": "method",
             "name": "BasicBarChart",
             "chainable": 1,
@@ -3442,7 +3443,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3841,
+            "line": 3840,
             "itemtype": "method",
             "name": "FixedWidthBarChart",
             "chainable": 1,
@@ -3501,7 +3502,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3876,
+            "line": 3875,
             "itemtype": "method",
             "name": "SlidingBarChart",
             "chainable": 1,
@@ -3556,7 +3557,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3909,
+            "line": 3908,
             "itemtype": "method",
             "name": "TimeWheelChart",
             "chainable": 1,
@@ -3653,27 +3654,27 @@
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3211"
+            "line": " dynamic_chart.js:3210"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3333"
+            "line": " dynamic_chart.js:3332"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3396"
+            "line": " dynamic_chart.js:3395"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3441"
+            "line": " dynamic_chart.js:3440"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3520"
+            "line": " dynamic_chart.js:3519"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3578"
+            "line": " dynamic_chart.js:3577"
         }
     ]
 }
