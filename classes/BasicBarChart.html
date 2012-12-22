@@ -110,7 +110,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l491"><code>dynamic_chart.js:491</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l493"><code>dynamic_chart.js:493</code></a>
         </div>
     
 
@@ -196,6 +196,13 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
                         
                             <li class="index-item method protected">
                                 <a href="#method___getDatasetLength__">__getDatasetLength__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method___initChart__">__initChart__</a>
 
                                 
                                 
@@ -581,7 +588,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1244"><code>dynamic_chart.js:1244</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1246"><code>dynamic_chart.js:1246</code></a>
         
         </p>
 
@@ -698,7 +705,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1543"><code>dynamic_chart.js:1543</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1545"><code>dynamic_chart.js:1545</code></a>
         
         </p>
 
@@ -844,7 +851,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1384"><code>dynamic_chart.js:1384</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1386"><code>dynamic_chart.js:1386</code></a>
         
         </p>
 
@@ -1022,7 +1029,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1272"><code>dynamic_chart.js:1272</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1274"><code>dynamic_chart.js:1274</code></a>
         
         </p>
 
@@ -1135,7 +1142,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1569"><code>dynamic_chart.js:1569</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1571"><code>dynamic_chart.js:1571</code></a>
         
         </p>
 
@@ -1236,7 +1243,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1226"><code>dynamic_chart.js:1226</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1228"><code>dynamic_chart.js:1228</code></a>
         
         </p>
 
@@ -1262,6 +1269,159 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
                         <span class="type">Number</span>:
                     
                     How many points are stored in the dataset right now.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method___initChart__" class="method item private">
+    <h3 class="name"><code>__initChart__</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>chart:</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width:</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height:</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1623"><code>dynamic_chart.js:1623</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Inits the chart DIV and SVG container, setting width and height, if they are passed as arguments;</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">chart:</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                                The chart object that needs initialization;</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width:</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                                The desired width for the chart;
+                                If passed, MUST be a positive integer, or a value that
+                                can be converted to a positive integer</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height:</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                                The desired height for the chart;
+                                If passed, MUST be a positive integer, or a value that
+                                can be converted to a positive intege</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    :    Nothing;
                 
             </div>
         </div>
@@ -1325,7 +1485,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1656"><code>dynamic_chart.js:1656</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1660"><code>dynamic_chart.js:1660</code></a>
         
         </p>
 
@@ -1451,7 +1611,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1518"><code>dynamic_chart.js:1518</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1520"><code>dynamic_chart.js:1520</code></a>
         
         </p>
 
@@ -1575,7 +1735,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1314"><code>dynamic_chart.js:1314</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1316"><code>dynamic_chart.js:1316</code></a>
         
         </p>
 
@@ -1733,7 +1893,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1348"><code>dynamic_chart.js:1348</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1350"><code>dynamic_chart.js:1350</code></a>
         
         </p>
 
@@ -1903,7 +2063,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1455"><code>dynamic_chart.js:1455</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1457"><code>dynamic_chart.js:1457</code></a>
         
         </p>
 
@@ -2084,7 +2244,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l634"><code>dynamic_chart.js:634</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l636"><code>dynamic_chart.js:636</code></a>
         
         </p>
 
@@ -2193,7 +2353,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l682"><code>dynamic_chart.js:682</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l684"><code>dynamic_chart.js:684</code></a>
         
         </p>
 
@@ -2302,7 +2462,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l855"><code>dynamic_chart.js:855</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l857"><code>dynamic_chart.js:857</code></a>
         
         </p>
 
@@ -2429,7 +2589,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1593"><code>dynamic_chart.js:1593</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1595"><code>dynamic_chart.js:1595</code></a>
         
         </p>
 
@@ -2589,7 +2749,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l784"><code>dynamic_chart.js:784</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l786"><code>dynamic_chart.js:786</code></a>
         
         </p>
 
@@ -2686,7 +2846,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1178"><code>dynamic_chart.js:1178</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1180"><code>dynamic_chart.js:1180</code></a>
         
         </p>
 
@@ -2778,7 +2938,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1151"><code>dynamic_chart.js:1151</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1153"><code>dynamic_chart.js:1153</code></a>
         
         </p>
 
@@ -2890,7 +3050,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l925"><code>dynamic_chart.js:925</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l927"><code>dynamic_chart.js:927</code></a>
         
         </p>
 
@@ -2997,7 +3157,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l970"><code>dynamic_chart.js:970</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l972"><code>dynamic_chart.js:972</code></a>
         
         </p>
 
@@ -3104,7 +3264,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l991"><code>dynamic_chart.js:991</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l993"><code>dynamic_chart.js:993</code></a>
         
         </p>
 
@@ -3211,7 +3371,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l948"><code>dynamic_chart.js:948</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l950"><code>dynamic_chart.js:950</code></a>
         
         </p>
 
@@ -3304,7 +3464,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1137"><code>dynamic_chart.js:1137</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1139"><code>dynamic_chart.js:1139</code></a>
         
         </p>
 
@@ -3384,7 +3544,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1013"><code>dynamic_chart.js:1013</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1015"><code>dynamic_chart.js:1015</code></a>
         
         </p>
 
@@ -3509,7 +3669,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l758"><code>dynamic_chart.js:758</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l760"><code>dynamic_chart.js:760</code></a>
         
         </p>
 
@@ -3607,7 +3767,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l877"><code>dynamic_chart.js:877</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l879"><code>dynamic_chart.js:879</code></a>
         
         </p>
 
@@ -3694,7 +3854,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l549"><code>dynamic_chart.js:549</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l551"><code>dynamic_chart.js:551</code></a>
         
         </p>
 
@@ -3809,7 +3969,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1071"><code>dynamic_chart.js:1071</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1073"><code>dynamic_chart.js:1073</code></a>
         
         </p>
 
@@ -3940,7 +4100,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1103"><code>dynamic_chart.js:1103</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1105"><code>dynamic_chart.js:1105</code></a>
         
         </p>
 
@@ -4057,7 +4217,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l901"><code>dynamic_chart.js:901</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l903"><code>dynamic_chart.js:903</code></a>
         
         </p>
 
@@ -4150,7 +4310,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l505"><code>dynamic_chart.js:505</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l507"><code>dynamic_chart.js:507</code></a>
         
         </p>
 
@@ -4279,7 +4439,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1044"><code>dynamic_chart.js:1044</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1046"><code>dynamic_chart.js:1046</code></a>
         
         </p>
 
@@ -4428,7 +4588,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l573"><code>dynamic_chart.js:573</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l575"><code>dynamic_chart.js:575</code></a>
         
         </p>
 
@@ -4609,7 +4769,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l526"><code>dynamic_chart.js:526</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l528"><code>dynamic_chart.js:528</code></a>
         
         </p>
 
@@ -4724,7 +4884,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l824"><code>dynamic_chart.js:824</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l826"><code>dynamic_chart.js:826</code></a>
         
         </p>
 
@@ -4836,7 +4996,7 @@ any non-nregative real number (i.e., each point can be in R_+^i, for 1 &lt;= i &
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1702"><code>dynamic_chart.js:1702</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1706"><code>dynamic_chart.js:1706</code></a>
         
         </p>
 
@@ -4883,7 +5043,7 @@ Initially every component's array is set to []</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1687"><code>dynamic_chart.js:1687</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1691"><code>dynamic_chart.js:1691</code></a>
         
         </p>
 
@@ -4930,7 +5090,7 @@ i.e. number of subcomponents of each data "point"</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1770"><code>dynamic_chart.js:1770</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1774"><code>dynamic_chart.js:1774</code></a>
         
         </p>
 
@@ -4976,7 +5136,7 @@ i.e. number of subcomponents of each data "point"</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1904"><code>dynamic_chart.js:1904</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1908"><code>dynamic_chart.js:1908</code></a>
         
         </p>
 
@@ -5025,7 +5185,7 @@ to draw its labels</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1843"><code>dynamic_chart.js:1843</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1847"><code>dynamic_chart.js:1847</code></a>
         
         </p>
 
@@ -5074,7 +5234,7 @@ for its label</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1874"><code>dynamic_chart.js:1874</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1878"><code>dynamic_chart.js:1878</code></a>
         
         </p>
 
@@ -5121,7 +5281,7 @@ to fill its drawing component</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1858"><code>dynamic_chart.js:1858</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1862"><code>dynamic_chart.js:1862</code></a>
         
         </p>
 
@@ -5170,7 +5330,7 @@ its label is visible</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1920"><code>dynamic_chart.js:1920</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1924"><code>dynamic_chart.js:1924</code></a>
         
         </p>
 
@@ -5219,7 +5379,7 @@ decides to add a legend to the chart;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1716"><code>dynamic_chart.js:1716</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1720"><code>dynamic_chart.js:1720</code></a>
         
         </p>
 
@@ -5268,7 +5428,7 @@ decides to add a legend to the chart;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1756"><code>dynamic_chart.js:1756</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1760"><code>dynamic_chart.js:1760</code></a>
         
         </p>
 
@@ -5314,7 +5474,7 @@ decides to add a legend to the chart;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1828"><code>dynamic_chart.js:1828</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1832"><code>dynamic_chart.js:1832</code></a>
         
         </p>
 
@@ -5363,7 +5523,7 @@ if the different components should scale locally or globally</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1889"><code>dynamic_chart.js:1889</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1893"><code>dynamic_chart.js:1893</code></a>
         
         </p>
 
@@ -5412,7 +5572,7 @@ for the stroke of its drawing component</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1784"><code>dynamic_chart.js:1784</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1788"><code>dynamic_chart.js:1788</code></a>
         
         </p>
 
@@ -5458,7 +5618,7 @@ for the stroke of its drawing component</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1798"><code>dynamic_chart.js:1798</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1802"><code>dynamic_chart.js:1802</code></a>
         
         </p>
 
@@ -5505,7 +5665,7 @@ for the stroke of its drawing component</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1813"><code>dynamic_chart.js:1813</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1817"><code>dynamic_chart.js:1817</code></a>
         
         </p>
 
