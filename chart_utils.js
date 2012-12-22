@@ -2,7 +2,7 @@ if (!window.ChartUtils){
 	/**
 		Module ChartUtils
         
-Extends Object class with several useful methods to allow better encapsulation mechanisms.
+Extends Object class with several useful methods to allow better encapsulation mechanisms.<br>
 Exposes a few utility functions
         
         @module ChartUtils       
@@ -77,6 +77,7 @@ Exposes a few utility functions
                                                     
                                                     @method createSafeProxy
                                                     @for Object
+                                                    @chainable
                                                     @param {Boolean} [canDestroy=false] States if the proxy consumer has the authority 
                                                                      to call destroy on the original object;<br>
                                                                      We assume the convention that object's uses destroy method
@@ -297,7 +298,7 @@ Exposes a few utility functions
                 @method isArray
                 @for Object
                 @param {Object} obj The argument to be checked.
-                @return {Boolean} True <=> the object is an Array.
+                @return {Boolean} true <=> the object is an Array.
             */         
         	Object.prototype.isArray = function(obj) {
 				return obj && (obj.constructor === Array);
@@ -311,7 +312,7 @@ Exposes a few utility functions
                 @method isString
                 @for Object
                 @param {Object} obj The argument to be checked.
-                @return {Boolean} True <=> the object is a String.
+                @return {Boolean} true <=> the object is a String.
             */          
         	Object.prototype.isString = function(arg) {
 				return typeof(arg)==='string';
@@ -325,7 +326,7 @@ Exposes a few utility functions
                 @method isFunction
                 @for Object
                 @param {Object} obj The argument to be checked.
-                @return {Boolean} True <=> the object is a Function.
+                @return {Boolean} true <=> the object is a Function.
             */              
         	Object.prototype.isFunction = function(arg) {
 				return typeof(arg) === 'function';
@@ -339,7 +340,7 @@ Exposes a few utility functions
                 @method isNumber
                 @for Object
                 @param {Object} obj The argument to be checked.
-                @return {Boolean} True <=> the object is a Number.
+                @return {Boolean} true <=> the object is a Number.
             */              
             Object.prototype.isNumber = function(n){
               return !isNaN(parseFloat(n)) && isFinite(n);

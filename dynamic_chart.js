@@ -10,14 +10,14 @@ This module requires:
     <li>{{#crossLinkModule "chart_utils.js"}}{{/crossLinkModule}}</li>
     <li>{{#crossLink "http://d3js.org/d3.v2.js"}}{{/crossLink}}</li>
 </ol>
-
+<br>
 Exposes methods for creating different types of dynamic charts:
-<ol>
+<ul>
     <li>BasicBarChart</li>
     <li>FixedWidthBarChart</li>
     <li>SlidingBarChart</li>
     <li>TimeWheelChart</li>
-        
+</ul>        
         @module DynamicChart
 	*/
 	var DynamicChart = (function (){
@@ -3044,8 +3044,7 @@ Exposes methods for creating different types of dynamic charts:
             @param {Number} width  [Mandatory]
                             The desired width for the chart (<b>can't be changed later</b>)<br>
                             Can be any value that is or can be converted to a positive integer.
-            @param {Number} height
-                            [Mandatory]
+            @param {Number} height [Mandatory]
                             The desired height for the chart (<b>can't be changed later</b>)<br>
                             Can be any value that is or can be converted to a positive integer.
             @param {Number} [dataDim=1] [Optional]
