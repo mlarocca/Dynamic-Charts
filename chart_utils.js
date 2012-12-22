@@ -2,8 +2,8 @@ if (!window.ChartUtils){
 	/**
 		Module ChartUtils
         
-        Extends Object class with several useful methods to allow better encapsulation mechanisms.
-        Exposes a few utility functions
+Extends Object class with several useful methods to allow better encapsulation mechanisms.
+Exposes a few utility functions
         
         @module ChartUtils       
         
@@ -77,9 +77,8 @@ if (!window.ChartUtils){
                                                     
                                                     @method createSafeProxy
                                                     @for Object
-                                                    @param {Boolean} [canDestroy=false]
-                                                                     States if the proxy consumer has the authority to call destroy 
-                                                                     on the original object;<br>
+                                                    @param {Boolean} [canDestroy=false] States if the proxy consumer has the authority 
+                                                                     to call destroy on the original object;<br>
                                                                      We assume the convention that object's uses destroy method
                                                                      as their destructor.
                                                     @return {Object} A proxy wrapping this object.

@@ -113,16 +113,18 @@ if (!window.DynamicChart){
 	&#x2F;**
 		Module DynamicChart
         
-        This module requires:
-        
-        {{#crossLinkModule &quot;chart_utils.js&quot;}}{{&#x2F;crossLinkModule}}
-        {{#crossLink &quot;http:&#x2F;&#x2F;d3js.org&#x2F;d3.v2.js&quot;}}{{&#x2F;crossLink}} 
+This module requires:
+&lt;ol&gt;
+    &lt;li&gt;{{#crossLinkModule &quot;chart_utils.js&quot;}}{{&#x2F;crossLinkModule}}&lt;&#x2F;li&gt;
+    &lt;li&gt;{{#crossLink &quot;http:&#x2F;&#x2F;d3js.org&#x2F;d3.v2.js&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
 
-        Exposes methods for creating different types of dynamic charts:
-        * BasicBarChart
-        * FixedWidthBarChart
-        * SlidingBarChart
-        * TimeWheelChart
+Exposes methods for creating different types of dynamic charts:
+&lt;ol&gt;
+    &lt;li&gt;BasicBarChart&lt;&#x2F;li&gt;
+    &lt;li&gt;FixedWidthBarChart&lt;&#x2F;li&gt;
+    &lt;li&gt;SlidingBarChart&lt;&#x2F;li&gt;
+    &lt;li&gt;TimeWheelChart&lt;&#x2F;li&gt;
         
         @module DynamicChart
 	*&#x2F;
@@ -1727,10 +1729,12 @@ if (!window.DynamicChart){
                    
 
             &#x2F;** __initChart__(width, height)
-                @private
-                [Private method]
                 
                 Inits the chart DIV and SVG container, setting width and height, if they are passed as arguments;
+                
+                @method __initChart__
+                @private
+                
                 @param chart:   [Mandatory]
                                 The chart object that needs initialization;
                 @param width:   [Optional]
@@ -2248,7 +2252,7 @@ if (!window.DynamicChart){
                                                 doesn&#x27;t need it because barWidth is fixed for this chart.
                                                 @method getBarWidth
                                                 @return {Number} the value set for __barWidth__.
-                                                @override  basicBarChartSharedPrototype.getBarWidth
+                                                @override  BasicBarChart.getBarWidth
                                               *&#x2F;
                                     value: 	function(){
                                                 return this.__barWidth__;   &#x2F;&#x2F;Stroke tickness is 1 point per side
@@ -2267,7 +2271,7 @@ if (!window.DynamicChart){
                                              
                                             @method __canAppendData__ 
                                             @protected   
-                                            @override  basicBarChartSharedPrototype.__canAppendData__
+                                            @override  BasicBarChart.__canAppendData__
                                         *&#x2F;
                                 value: 	function(newDataArray){
                                     if (!Object.isArray(newDataArray)){
@@ -2313,7 +2317,7 @@ if (!window.DynamicChart){
 
                                             @method __drawNewData__
                                             @protected
-                                            @override:   basicBarChartSharedPrototype.__drawNewData__
+                                            @override   BasicBarChart.__drawNewData__
                                           *&#x2F;
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2359,7 +2363,7 @@ if (!window.DynamicChart){
                                              
                                             @method  __updateDrawing__
                                             @protected
-                                            @override  basicBarChartSharedPrototype.__updateDrawing__
+                                            @override  BasicBarChart.__updateDrawing__
                                           *&#x2F;					
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2407,8 +2411,15 @@ if (!window.DynamicChart){
                 if (barWidth &lt;= 0){
                     throw &quot;Illegal Arguments combination: width too small to draw &#x27;ticks&#x27; values&quot;;
                 }
-                                            &#x2F;** The width of each bar
-                                              *&#x2F;                                        
+                                            &#x2F;** 
+                                                Chart&#x27;s bars&#x27; width, in pixel &lt;br&gt;
+                                                Can be changed at runtime
+                                                @property __barWidth__
+                                                @type {Number}
+                                                @protected
+                                                @default 8
+                                                @override  FixedWidthBarChart.__barWidth__  
+                                              *&#x2F;                                     
                 Object.defineProperty(chart, &quot;__barWidth__&quot;, {
                                             value: barWidth,
                                             writable: false,
@@ -2747,7 +2758,7 @@ if (!window.DynamicChart){
                                              
                                             @method __canAppendData__ 
                                             @protected
-                                            @override  fixedWidthBarChart.__canAppendData__
+                                            @override  FixedWidthBarChart.__canAppendData__
                                         *&#x2F;
                                 value: 	function(newDataArray){
                                     if (!Object.isArray(newDataArray)){
@@ -2907,7 +2918,7 @@ if (!window.DynamicChart){
 
                                             @method __drawNewData__
                                             @protected
-                                            @override   fixedWidthBarChart.__drawNewData__
+                                            @override   FixedWidthBarChart.__drawNewData__
                                           *&#x2F;
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2961,7 +2972,7 @@ if (!window.DynamicChart){
                                              
                                             @method  __updateDrawing__
                                             @protected
-                                            @override  fixedWidthBarChart.__updateDrawing__
+                                            @override  FixedWidthBarChart.__updateDrawing__
                                           *&#x2F;					
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -3131,6 +3142,7 @@ if (!window.DynamicChart){
             
             TimeWheelChart (pseudo)Constructor.
             
+            @method TimeWheelChart
             @param {Number} ticks [Mandatory]
                             The number of values that can be drawn at the same time (&lt;b&gt;can&#x27;t be changed later&lt;&#x2F;b&gt;)&lt;br&gt;
                             Can be any value that is or can be converted to a positive integer.
@@ -3434,7 +3446,7 @@ if (!window.DynamicChart){
 
                                 @method __drawNewData__
                                 @protected
-                                @override   fixedWidthBarChart.__drawNewData__
+                                @override   FixedWidthBarChart.__drawNewData__
                               *&#x2F;                
                     value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                 
@@ -3497,7 +3509,7 @@ if (!window.DynamicChart){
                                  
                                 @method  __updateDrawing__
                                 @protected
-                                @override  fixedWidthBarChart.__updateDrawing__
+                                @override  FixedWidthBarChart.__updateDrawing__
                               *&#x2F;					
                     value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){           
                     
@@ -3678,7 +3690,7 @@ if (!window.DynamicChart){
                                                 @type {Number}
                                                 @protected
                                                 @default 8
-                                                @override:  FixedWidthBarChart.__barWidth__  
+                                                @override  FixedWidthBarChart.__barWidth__  
                                               *&#x2F;
                 Object.defineProperty(chart, &quot;__barWidth__&quot;, {
                                             value: 8,

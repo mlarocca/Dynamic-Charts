@@ -16,7 +16,7 @@ function full_simulation(startTime, r, w, h){
                          .addLegend(["Males", "Females"], 130, 45, 20, 20);                         
                          //.setLocalScaling();
     var sb = DynamicChart.SlidingBarChart(50, w, 150, 2)
-                         .setPosition(w + MARGIN , 0)
+                         .setPosition(w + MARGIN , 170)
                          .setFillColor("cornflowerblue")
                          .setFillColor("hotpink", 1)
                          .setBackgroundHighlightColor("gold")
