@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>FixedWidthBarChart</title>
+    <title>SlidingBarChart</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -94,19 +94,19 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>FixedWidthBarChart Class</h1>
+                        <h1>SlidingBarChart Class</h1>
 <div class="box meta">
     
 
     
         <div class="extends">
-            Extends <a href="..\classes\BasicBarChart.html" class="crosslink">BasicBarChart</a>
+            Extends <a href="..\classes\FixedWidthBarChart.html" class="crosslink">FixedWidthBarChart</a>
         </div>
     
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l1942"><code>dynamic_chart.js:1942</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2319"><code>dynamic_chart.js:2319</code></a>
         </div>
     
 
@@ -122,16 +122,20 @@
 
 
 <div class="box intro">
-    <p>Advanced Chart: <b>FixedWidthBarChart</b><br>
-Inherits from BasicBarChart redefining the drawing methods.<br>
-As for its super class values are represented using vertical bars, and each point 
-can have up to 10 subcomponents, where each component can be any non-negative 
-real number (i.e., each point can be in R_+^i, for 1 &lt;= i &lt;= 10).<br>
-<br>
-For this chart the bar width is fixed (although can be set at run time)
-It is possible to choose between having only a fixed number of values accepted,
-or if a certain number of the oldest values should be removed when the
-chart is full.</p>
+    <p>Advanced Chart: <b>SlidingBarChart</b><br>
+            Inherits from FixedWidthBarChart redefining the drawing methods.<br>
+            As for its super class values are represented using vertical bars, and each point 
+            can have up to 10 subcomponents, where each component can be any non-negative 
+            real number (i.e., each point can be in R_+^i, for 1 &lt;= i &lt;= 10).<br>
+            <br>
+            For this chart the bar width is fixed (although can be set at run time)
+            It is possible to choose between having only a fixed number of values accepted,
+            or if a certain number of the oldest values should be removed when the
+            chart is full.<br>
+            <br>
+            Every <strong>ticksBetweenHighlights</strong> values inserted (where <strong>ticksBetweenHighlights</strong> can 
+            be set at runtime, although it defaults to 10) the background of those values is highlighted, 
+            to stress out time progression.</p>
 </div>
 
 
@@ -202,7 +206,7 @@ chart is full.</p>
                                 
                             </li>
                         
-                            <li class="index-item method private">
+                            <li class="index-item method private inherited">
                                 <a href="#method___init__">__init__</a>
 
                                 
@@ -223,6 +227,13 @@ chart is full.</p>
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method___selectBackgroundBars__">__selectBackgroundBars__</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method protected inherited">
                                 <a href="#method___selectData__">__selectData__</a>
 
@@ -232,6 +243,20 @@ chart is full.</p>
                         
                             <li class="index-item method protected inherited">
                                 <a href="#method___selectLabels__">__selectLabels__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method___updateAxes__">__updateAxes__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method___updateBackground__">__updateBackground__</a>
 
                                 
                                 
@@ -286,14 +311,28 @@ chart is full.</p>
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_FixedWidthBarChart">FixedWidthBarChart</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
+                                <a href="#method_getBackgroundColor">getBackgroundColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getBackgroundHighlightColor">getBackgroundHighlightColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited inherited">
                                 <a href="#method_getBarWidth">getBarWidth</a>
 
                                 
@@ -328,6 +367,27 @@ chart is full.</p>
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_getTicksBetweenHighlights">getTicksBetweenHighlights</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setBackgroundColor">setBackgroundColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setBackgroundHighlightColor">setBackgroundHighlightColor</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method inherited">
                                 <a href="#method_setBarWidth">setBarWidth</a>
 
@@ -342,7 +402,7 @@ chart is full.</p>
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_setFixedDataLengthMode">setFixedDataLengthMode</a>
 
                                 
@@ -398,7 +458,7 @@ chart is full.</p>
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_setShifitingDataMode">setShifitingDataMode</a>
 
                                 
@@ -407,6 +467,13 @@ chart is full.</p>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_setStrokeColor">setStrokeColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setTicksBetweenHighlights">setTicksBetweenHighlights</a>
 
                                 
                                 
@@ -421,6 +488,13 @@ chart is full.</p>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_setWidth">setWidth</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_SlidingBarChart">SlidingBarChart</a>
 
                                 
                                 
@@ -443,8 +517,50 @@ chart is full.</p>
 
                     <ul class="index-list properties extends">
                         
+                            <li class="index-item property protected">
+                                <a href="#property___axeArea__">__axeArea__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property___axeLeft__">__axeLeft__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property___backgroundColor__">__backgroundColor__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property___backgroundHighlightColor__">__backgroundHighlightColor__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property___barWidth__">__barWidth__</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item property protected inherited">
                                 <a href="#property___data__">__data__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property___dataCounter__">__dataCounter__</a>
 
                                 
                                 
@@ -527,14 +643,14 @@ chart is full.</p>
                                 
                             </li>
                         
-                            <li class="index-item property protected">
+                            <li class="index-item property protected inherited">
                                 <a href="#property___tickLength__">__tickLength__</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item property protected">
+                            <li class="index-item property protected inherited">
                                 <a href="#property___ticks__">__ticks__</a>
 
                                 
@@ -542,6 +658,13 @@ chart is full.</p>
                             </li>
                         
                             <li class="index-item property protected">
+                                <a href="#property___ticksBetweenHighlights__">__ticksBetweenHighlights__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
                                 <a href="#property___ticksToRemoveOnFullQueue__">__ticksToRemoveOnFullQueue__</a>
 
                                 
@@ -557,6 +680,41 @@ chart is full.</p>
                         
                             <li class="index-item property protected inherited">
                                 <a href="#property___yScale__">__yScale__</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_AXES_LABEL_MARGIN">AXES_LABEL_MARGIN</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_AXES_LABEL_SIZE">AXES_LABEL_SIZE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_AXES_LABEL_WIDTH">AXES_LABEL_WIDTH</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_BACKGROUND">DEFAULT_BACKGROUND</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_BACKGROUND_HIGHLIGHT">DEFAULT_BACKGROUND_HIGHLIGHT</a>
 
                                 
                                 
@@ -610,7 +768,7 @@ chart is full.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2154"><code>dynamic_chart.js:2154</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2634"><code>dynamic_chart.js:2634</code></a>
         
         </p>
 
@@ -793,7 +951,7 @@ chart is full.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2199"><code>dynamic_chart.js:2199</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2793"><code>dynamic_chart.js:2793</code></a>
         
         </p>
 
@@ -1156,16 +1314,16 @@ chart is full.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="..\classes\FixedWidthBarChart.html#method___init__">
+                FixedWidthBarChart
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2282"><code>dynamic_chart.js:2282</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2893"><code>dynamic_chart.js:2893</code></a>
         
         </p>
 
@@ -1176,7 +1334,7 @@ chart is full.</p>
     </div>
 
     <div class="description">
-        <p>Inits the chart by computing the allowed barWidth;</p>
+        <p>Inits the chart;</p>
     </div>
 
     
@@ -1484,6 +1642,115 @@ chart is full.</p>
                     
                         <span class="type">Undefined</span>:
                     
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method___selectBackgroundBars__" class="method item protected">
+    <h3 class="name"><code>__selectBackgroundBars__</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>filter</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2681"><code>dynamic_chart.js:2681</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the list of the svg elements used to draw background; <br>
+                                                Elements can be filtered using a custom filter passad as an optional
+                                                parameter;</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">filter</code>
+                        <span class="type">String | Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                                                                                A filter to be applied to the selection;</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    The proper set of d3 elements.
                 
             </div>
         </div>
@@ -1803,6 +2070,196 @@ chart is full.</p>
 </div>
 
                 
+                    <div id="method___updateAxes__" class="method item protected">
+    <h3 class="name"><code>__updateAxes__</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>yScale</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2743"><code>dynamic_chart.js:2743</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Called by <strong>updateDrawing</strong>() to update the labels of the vertical axe
+                                            when vertical scale changes;<br>
+                                            <br>
+                                            <b>WARNING</b>:     if you inherit from this class you might want to override
+                                                                this method as well as <strong>drawNewData</strong> and <strong>updateDrawing</strong> 
+                                                                in order to obtain a custom chart.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">yScale</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                                                                    D3 scale object for Y axis;</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    The current chart object, to allow for method chaining.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method___updateBackground__" class="method item protected">
+    <h3 class="name"><code>__updateBackground__</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Undefined</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2706"><code>dynamic_chart.js:2706</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Called by <strong>drawNewData</strong>() to redraw the background properly;<br>
+                                            <br>
+                                            <b>WARNING</b>:    if you inherit from this class you might want to override
+                                                               this method as well as <strong>drawNewData</strong> and <strong>updateDrawing</strong> 
+                                                               in order to obtain a custom chart.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Undefined</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method___updateDrawing__" class="method item protected">
     <h3 class="name"><code>__updateDrawing__</code></h3>
 
@@ -1837,7 +2294,7 @@ chart is full.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2246"><code>dynamic_chart.js:2246</code></a>
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2848"><code>dynamic_chart.js:2848</code></a>
         
         </p>
 
@@ -2539,7 +2996,7 @@ chart is full.</p>
 </div>
 
                 
-                    <div id="method_FixedWidthBarChart" class="method item">
+                    <div id="method_FixedWidthBarChart" class="method item inherited">
     <h3 class="name"><code>FixedWidthBarChart</code></h3>
 
     
@@ -2607,11 +3064,8 @@ chart is full.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#method_FixedWidthBarChart">FixedWidthBarChart</a>:
             
         
         
@@ -2759,7 +3213,149 @@ chart is full.</p>
 </div>
 
                 
-                    <div id="method_getBarWidth" class="method item">
+                    <div id="method_getBackgroundColor" class="method item">
+    <h3 class="name"><code>getBackgroundColor</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String | Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2571"><code>dynamic_chart.js:2571</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns current background bars' color</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Object</span>:
+                    
+                    the value set for <strong>backgroundColor</strong>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getBackgroundHighlightColor" class="method item">
+    <h3 class="name"><code>getBackgroundHighlightColor</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String | Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2617"><code>dynamic_chart.js:2617</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns current color for background highlighted bars</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Object</span>:
+                    
+                    The value set for <strong>backgroundHighlightColor</strong>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getBarWidth" class="method item inherited">
     <h3 class="name"><code>getBarWidth</code></h3>
 
     
@@ -3250,6 +3846,291 @@ chart is full.</p>
 </div>
 
                 
+                    <div id="method_getTicksBetweenHighlights" class="method item">
+    <h3 class="name"><code>getTicksBetweenHighlights</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2465"><code>dynamic_chart.js:2465</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the number of ticks between two consecutive highlights (one extreme inclusive)</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Number</span>:
+                    
+                    The number of ticks between two consecutive highlights;
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setBackgroundColor" class="method item">
+    <h3 class="name"><code>setBackgroundColor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>bgColor</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2541"><code>dynamic_chart.js:2541</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Changes the background color (not highlighted points)</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">bgColor</code>
+                        <span class="type">String | Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                                                                               The new color for background bars;</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    This object, to allow for method chaining.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setBackgroundHighlightColor" class="method item">
+    <h3 class="name"><code>setBackgroundHighlightColor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>bgHColor</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2587"><code>dynamic_chart.js:2587</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Changes the background color for "highlighted" values</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">bgHColor</code>
+                        <span class="type">String | Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                                                                                The new color for highlighted background bars;</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    This object, to allow for method chaining.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_setBarWidth" class="method item inherited">
     <h3 class="name"><code>setBarWidth</code></h3>
 
@@ -3433,7 +4314,7 @@ chart is full.</p>
 </div>
 
                 
-                    <div id="method_setFixedDataLengthMode" class="method item">
+                    <div id="method_setFixedDataLengthMode" class="method item inherited">
     <h3 class="name"><code>setFixedDataLengthMode</code></h3>
 
     
@@ -3463,11 +4344,8 @@ chart is full.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#method_setFixedDataLengthMode">FixedWidthBarChart</a>:
             
         
         
@@ -4260,7 +5138,7 @@ chart is full.</p>
 </div>
 
                 
-                    <div id="method_setShifitingDataMode" class="method item">
+                    <div id="method_setShifitingDataMode" class="method item inherited">
     <h3 class="name"><code>setShifitingDataMode</code></h3>
 
     
@@ -4300,11 +5178,8 @@ chart is full.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#method_setShifitingDataMode">FixedWidthBarChart</a>:
             
         
         
@@ -4497,6 +5372,113 @@ chart is full.</p>
                         <span class="type">Object</span>:
                     
                     This chart object, to allow for method chaining.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setTicksBetweenHighlights" class="method item">
+    <h3 class="name"><code>setTicksBetweenHighlights</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ticks</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2481"><code>dynamic_chart.js:2481</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the number of ticks between two consecutive highlights (one extreme inclusive)</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ticks</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                                                                        The number of ticks between two consecutive highlights;</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    This object, to allow for method chaining;
                 
             </div>
         </div>
@@ -4814,6 +5796,205 @@ chart is full.</p>
 </div>
 
                 
+                    <div id="method_SlidingBarChart" class="method item">
+    <h3 class="name"><code>SlidingBarChart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ticks</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[dataDim=1]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=body]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2340"><code>dynamic_chart.js:2340</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>SlidingBarChart (pseudo)Constructor.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ticks</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                            The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>
+                            Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                            The desired width for the chart (<b>can't be changed later</b>)<br>
+                            Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                            The desired height for the chart (<b>can't be changed later</b>)<br>
+                            Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[dataDim=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                            The dimension of the data space, i.e. the number of subvalues for each data entry<br>
+                            Can be any value that is or can be converted to an integer between 1 and MAX<em>SPACE</em>DIMENSION.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=body]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                            The DOM element to which the diagram should be appended as a child</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    A new SlidingBarChart object.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_toggleLabels" class="method item inherited">
     <h3 class="name"><code>toggleLabels</code></h3>
 
@@ -4952,6 +6133,240 @@ chart is full.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
+                    <div id="property___axeArea__" class="property item protected">
+    <h3 class="name"><code>__axeArea__</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2965"><code>dynamic_chart.js:2965</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The svg Object grouping all the vertical axe related drawings;</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___axeLeft__" class="property item protected">
+    <h3 class="name"><code>__axeLeft__</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2935"><code>dynamic_chart.js:2935</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The horizontal position of chart's vertical axe;</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___backgroundColor__" class="property item protected">
+    <h3 class="name"><code>__backgroundColor__</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2509"><code>dynamic_chart.js:2509</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Color of the background bars</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> DEFAULT_BACKGROUND</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___backgroundHighlightColor__" class="property item protected">
+    <h3 class="name"><code>__backgroundHighlightColor__</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2525"><code>dynamic_chart.js:2525</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Color of the background bars when highlighted</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> DEFAULT_BACKGROUND_HIGHLIGHT</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___barWidth__" class="property item protected">
+    <h3 class="name"><code>__barWidth__</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2920"><code>dynamic_chart.js:2920</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The width of each bar;</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property___data__" class="property item protected inherited">
     <h3 class="name"><code>__data__</code></h3>
     <span class="type">Array</span>
@@ -4988,6 +6403,55 @@ chart is full.</p>
 Initially every component's array is set to []</p>
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___dataCounter__" class="property item protected">
+    <h3 class="name"><code>__dataCounter__</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2432"><code>dynamic_chart.js:2432</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Takes track of how much data has been actually inserted into
+the chart from its creation (to synch the highlighted ticks).</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 0</p>
     
 
     
@@ -5494,7 +6958,7 @@ for the stroke of its drawing component</p>
 </div>
 
                 
-                    <div id="property___tickLength__" class="property item protected">
+                    <div id="property___tickLength__" class="property item protected inherited">
     <h3 class="name"><code>__tickLength__</code></h3>
     <span class="type">Number</span>
 
@@ -5511,11 +6975,8 @@ for the stroke of its drawing component</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#property___tickLength__">FixedWidthBarChart</a>:
             
         
         
@@ -5542,7 +7003,7 @@ for the stroke of its drawing component</p>
 </div>
 
                 
-                    <div id="property___ticks__" class="property item protected">
+                    <div id="property___ticks__" class="property item protected inherited">
     <h3 class="name"><code>__ticks__</code></h3>
     <span class="type">Number</span>
 
@@ -5559,11 +7020,8 @@ for the stroke of its drawing component</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#property___ticks__">FixedWidthBarChart</a>:
             
         
         
@@ -5589,8 +7047,8 @@ drawn at the same time in this chart</p>
 </div>
 
                 
-                    <div id="property___ticksToRemoveOnFullQueue__" class="property item protected">
-    <h3 class="name"><code>__ticksToRemoveOnFullQueue__</code></h3>
+                    <div id="property___ticksBetweenHighlights__" class="property item protected">
+    <h3 class="name"><code>__ticksBetweenHighlights__</code></h3>
     <span class="type">Number</span>
 
     
@@ -5611,6 +7069,52 @@ drawn at the same time in this chart</p>
                 
                 Defined in
                 
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2448"><code>dynamic_chart.js:2448</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Every <strong>ticksBetweenHighlights</strong> ticks, the data is "higlighted"
+by applying the selected highlight style to the background.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 10</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property___ticksToRemoveOnFullQueue__" class="property item protected inherited">
+    <h3 class="name"><code>__ticksToRemoveOnFullQueue__</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\FixedWidthBarChart.html#property___ticksToRemoveOnFullQueue__">FixedWidthBarChart</a>:
             
         
         
@@ -5723,6 +7227,256 @@ Two solutions are made available:
  so that each component can be scaled independently)</p>
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_AXES_LABEL_MARGIN" class="property item private">
+    <h3 class="name"><code>AXES_LABEL_MARGIN</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2418"><code>dynamic_chart.js:2418</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default margin for chart's axes</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 5</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_AXES_LABEL_SIZE" class="property item private">
+    <h3 class="name"><code>AXES_LABEL_SIZE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2398"><code>dynamic_chart.js:2398</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size of axes' labels lext</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 14</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_AXES_LABEL_WIDTH" class="property item private">
+    <h3 class="name"><code>AXES_LABEL_WIDTH</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2408"><code>dynamic_chart.js:2408</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default width of axes' labels</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 50</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_BACKGROUND" class="property item private">
+    <h3 class="name"><code>DEFAULT_BACKGROUND</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2378"><code>dynamic_chart.js:2378</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default background color (not highlighted)</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = &quot;lightgrey&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_BACKGROUND_HIGHLIGHT" class="property item private">
+    <h3 class="name"><code>DEFAULT_BACKGROUND_HIGHLIGHT</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l2388"><code>dynamic_chart.js:2388</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default highlight color for background</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = &quot;lightpink&quot;</p>
     
 
     

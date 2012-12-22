@@ -323,13 +323,14 @@ if (!window.DynamicChart){
         };
         
         /**
+            Legend for a chart;<br>
+            Adds a div and an SVG element to the page to represent a chart's legend.
             @class Legend
             @private
           */
           //@for BasicBarChart 
         
         /** LegendFactory(width, height [, left, top, parent])
-            [Private Object, only accessible to DynamicChart classes]
             
             Creates, upon request, a new Legend object and returns it;
 
@@ -488,7 +489,14 @@ if (!window.DynamicChart){
         //      -----       DYNAMIC CHARTS       --------
         
         /** 
+            Base Chart Class: <b>BasicBarChart</b><br>
+            Basic bar histogram chart.<br>
+            Values are represented using vertical bars;<br>
+            Each point or value can have up to 10 subcomponents, where each component can be 
+            any non-nregative real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).
+            
             @class BasicBarChart
+            @private
           */    
           //uses Legend
 
@@ -1583,12 +1591,7 @@ if (!window.DynamicChart){
 		Object.freeze(basicBarChartSharedPrototype);
 
         /** BasicBarChart(width, height [, dataDim, parent])
-            
-            Basic bar histogram chart.
-            Values are represented using vertical bars;
-            Each point or value can have up to 10 subcomponents, where each component can be 
-            any non-nregative real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).
-              
+ 
             @method BasicBarChart
             @chainable
             
@@ -1774,7 +1777,7 @@ if (!window.DynamicChart){
             Object.defineProperty(basicBarChart, "__divElement__", {
                                     value: div,
                                     writable: false,
-                                    enumerable: true,
+                                    enumerable: false,
                                     configurable: false
                                 });
                                 
@@ -1788,7 +1791,7 @@ if (!window.DynamicChart){
             Object.defineProperty(basicBarChart, "__svgElement__", {
                                     value: svg,
                                     writable: false,
-                                    enumerable: true,
+                                    enumerable: false,
                                     configurable: false
                                 });
 
@@ -1827,7 +1830,6 @@ if (!window.DynamicChart){
                                                     if the different components should scale locally or globally
                                                     @property __scaleGlobally__
                                                     @type {Boolean}
-                                                    @readOnly
                                                     @protected
                                                     @default true
                                                    */
@@ -1920,7 +1922,6 @@ if (!window.DynamicChart){
                                                     decides to add a legend to the chart;
                                                     @property __legend__
                                                     @type {Object}
-                                                    @readOnly
                                                     @protected
                                                     @default null
                                                   */                                       
@@ -1939,21 +1940,24 @@ if (!window.DynamicChart){
         }
         
         /** 
-            @class FixedWidthBarChart
-            @extends BasicBarChart
-          */
-        /** FixedWidthBarChart(ticks, startingPoint, width, height [, dataDim, parent])
-            
-            Advanced Chart: FixedWidthBarChart
-            Inherits from BasicBarChart redefining the drawing methods.
+            Advanced Chart: <b>FixedWidthBarChart</b><br>
+            Inherits from BasicBarChart redefining the drawing methods.<br>
             As for its super class values are represented using vertical bars, and each point 
             can have up to 10 subcomponents, where each component can be any non-negative 
-            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).
-            
+            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).<br>
+            <br>
             For this chart the bar width is fixed (although can be set at run time)
             It is possible to choose between having only a fixed number of values accepted,
             or if a certain number of the oldest values should be removed when the
             chart is full.
+            
+            @class FixedWidthBarChart
+            @private
+            @extends BasicBarChart
+          */
+        /** FixedWidthBarChart(ticks, startingPoint, width, height [, dataDim, parent])
+            
+            FixedWidthBarChart (pseudo)Constructor
             
             @method FixedWidthBarChart
             @param {Number} ticks [Mandatory]
@@ -1996,31 +2000,46 @@ if (!window.DynamicChart){
             var fixedWidthBarChart = Object.create(proto);   
               
 
-                                                  /** Number of different values that can be 
-                                                      drawn at the same time in this chart
-                                                    */
+                                                /** 
+                                                    Number of different values that can be 
+                                                    drawn at the same time in this chart
+                                                    @property __ticks__
+                                                    @type {Number}
+                                                    @readOnly
+                                                    @protected                                                  
+                                                  */
             Object.defineProperty(fixedWidthBarChart, "__ticks__", {
                                     value: ticks,
                                     writable: false,
                                     enumerable: false,
                                     configurable: false
                                 });
-                                                    /** Tick length, in minutes
-                                                        [Defaults to 1]
+                                                    /** 
+                                                        Tick length, in minutes
+                                                        @property __tickLength__
+                                                        @type {Number}
+                                                        @protected
+                                                        @default 1                                                          
                                                       */
             Object.defineProperty(fixedWidthBarChart, "__tickLength__", {
                                     value: 1,
-                                    writable: false,
+                                    writable: true,
                                     enumerable: false,
                                     configurable: false
                                 });	
                                                 
-                                                    /** When __ticks__ data points have already been plotted,
+                                                    /** 
+                                                        When __ticks__ data points have already been plotted,
                                                         new plots would override previous ones.
                                                         Two solutions are made available:
                                                         1)  By default, new data is rejected, generating a full stack exception;
                                                         2)  A certain number of the oldest data points can be purged off the chart,
-                                                            counter-clockwise rotating the data
+                                                            counter-clockwise rotating the data.
+                                                            
+                                                        @property __ticksToRemoveOnFullQueue__
+                                                        @type {Number}
+                                                        @protected
+                                                        @default 0  
                                                       */
             Object.defineProperty(fixedWidthBarChart, "__ticksToRemoveOnFullQueue__", {
                                     value: 0,           //By default, no previous data is cleared: new data is simply rejected
@@ -2033,19 +2052,22 @@ if (!window.DynamicChart){
             Object.defineProperty(fixedWidthBarChart, "setFixedDataLengthMode", {
                                             /** setFixedDataLengthMode()
                                             
-                                                Sets fixed data length mode.
-                                                
+                                                Sets fixed data length mode.<br>
+                                                <br>
                                                 When __ticks__ data points have already been plotted,
-                                                new plots would override previous ones.
+                                                new plots would override previous ones.<br>
                                                 Two solutions are made available:
-                                                1)  By default, new data is rejected, generating a full stack exception;
-                                                2)  A certain number of the oldest data points can be purged off the chart,
-                                                    counter-clockwise rotating the data
-                                                    
+                                                <ol>
+                                                    <li>  By default, new data is rejected, generating a full stack exception;</li>
+                                                    <li>  A certain number of the oldest data points can be purged off the chart,
+                                                        counter-clockwise rotating the data;</li>
+                                                </ol>
+                                                <br>    
                                                 This function sets the first option.
                                                 
+                                                @method setFixedDataLengthMode
                                                 @chainable
-                                                @return:    This chart object, to allow for methd chaining.
+                                                @return {Object}    This chart object, to allow for methd chaining.
                                               */                
                                     value:  function(){                                        
                                                 if (this.hasOwnProperty("__ticksToRemoveOnFullQueue__")){
@@ -2068,20 +2090,24 @@ if (!window.DynamicChart){
             Object.defineProperty(fixedWidthBarChart, "setShifitingDataMode", {
                                             /** setShifitingDataMode(ticksToRemove)
                                             
-                                                Sets data shift mode.
-                                                
+                                                Sets data shift mode.<br>
+                                                <br>
                                                 When __ticks__ data points have already been plotted,
-                                                new plots would override previous ones.
+                                                new plots would override previous ones.<br>
                                                 Two solutions are made available:
-                                                1)  By default, new data is rejected, generating a full stack exception;
-                                                2)  A certain number of the oldest data points can be purged off the chart,
-                                                    shifting back (left) the remaining data.
-                                                    
+                                                <ol>
+                                                    <li>  By default, new data is rejected, generating a full stack exception;</li>
+                                                    <li>  A certain number of the oldest data points can be purged off the chart,
+                                                        counter-clockwise rotating the data;</li>
+                                                </ol>
+                                                <br>
                                                 This function sets the second option.
+                                                
+                                                @method setShifitingDataMode
                                                 @chainable
-                                                @param ticksToRemove: [Mandatory]
-                                                                      How much data to remove on full chart;
-                                                @return:    This object, to allow for method chaining;
+                                                @param {Number} ticksToRemove [Mandatory]
+                                                                              How much data to remove on full chart;
+                                                @return {Object}    This object, to allow for method chaining;
                                                 @throws     Illegal Argument Exception, if the argument isn't valid (see above).
                                               */
                                     value:  function(ticksToRemove){
@@ -2112,8 +2138,9 @@ if (!window.DynamicChart){
                                                 Returns current bars' width.
                                                 The overridden version takes a parameter, but this method
                                                 doesn't need it because barWidth is fixed for this chart.
-                                                @return: the value set for __barWidth__;
-                                                @override:  basicBarChartSharedPrototype.getBarWidth
+                                                @method getBarWidth
+                                                @return {Number} the value set for __barWidth__.
+                                                @override  basicBarChartSharedPrototype.getBarWidth
                                               */
                                     value: 	function(){
                                                 return this.__barWidth__;   //Stroke tickness is 1 point per side
@@ -2125,13 +2152,14 @@ if (!window.DynamicChart){
 
             Object.defineProperty(fixedWidthBarChart, "__canAppendData__", {
                                         /** __canAppendData__(newDataArray)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
                                             
                                             <b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class
-                                                     in order to handle differents needs
-                                                     
-                                            @override:  basicBarChartSharedPrototype.__canAppendData__
+                                                            in order to handle differents needs.<br>
+                                            See base class for method signature and details.
+                                             
+                                            @method __canAppendData__ 
+                                            @protected   
+                                            @override  basicBarChartSharedPrototype.__canAppendData__
                                         */
                                 value: 	function(newDataArray){
                                     if (!Object.isArray(newDataArray)){
@@ -2169,12 +2197,14 @@ if (!window.DynamicChart){
 
                     Object.defineProperty(fixedWidthBarChart, "__drawNewData__", {
                                         /** __drawNewData__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
+                                            
                                                                                            
                                             <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method and __updateDrawing__ in order to obtain a custom chart.
+                                                               this method and __updateDrawing__ in order to obtain a custom chart.<br>
+                                            See base class for method signature and details.
 
+                                            @method __drawNewData__
+                                            @protected
                                             @override:   basicBarChartSharedPrototype.__drawNewData__
                                           */
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
@@ -2214,13 +2244,14 @@ if (!window.DynamicChart){
                 
                 Object.defineProperty(fixedWidthBarChart, "__updateDrawing__", {
                                         /** __updateDrawing__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
                                             
                                             <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method and __drawNewData__ in order to obtain a custom chart.
-                                                        
-                                            @override:  basicBarChartSharedPrototype.__updateDrawing__
+                                                               this method and __drawNewData__ in order to obtain a custom chart.<br>
+                                            See base class for method signature and details.
+                                             
+                                            @method  __updateDrawing__
+                                            @protected
+                                            @override  basicBarChartSharedPrototype.__updateDrawing__
                                           */					
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2249,19 +2280,19 @@ if (!window.DynamicChart){
                             });	      
                                 
             /** __init__()
-                @private
-                [Private method, not visible to consumers]
-                
+
                 Inits the chart by computing the allowed barWidth;
+                            
+                @method __init__
+                @private
+                @param {Object} chart   [Mandatory]
+                                        The chart object that needs initialization;                   
+                @param {Number} width   [Mandatory]
+                                        Chart's width;
+                @param {Number} height  [Mandatory]
+                                        Chart's height;                                                            
                 
-                @param chart:   [Mandatory]
-                                The chart object that needs initialization;                   
-                @param width:   [Mandatory]
-                                Chart's width;
-                @param height:  [Mandatory]
-                                Chart's height;                                                            
-                
-                @return: Nothing
+                @return {undefined}
               */                                    
             function __init__(chart, width, height){
                 var barWidth = width / (chart.__dataDim__ * chart.__ticks__);
@@ -2285,24 +2316,32 @@ if (!window.DynamicChart){
             return fixedWidthBarChart;
         }
 
-        /** SlidingBarChart(ticks, width, height [, dataDim, parent])
-            @extends {FixedWidthBarChart}
+        /** 
             
-            Advanced Chart: SlidingBarChart
-            Inherits from FixedWidthBarChart redefining the drawing methods.
+            Advanced Chart: <b>SlidingBarChart</b><br>
+            Inherits from FixedWidthBarChart redefining the drawing methods.<br>
             As for its super class values are represented using vertical bars, and each point 
             can have up to 10 subcomponents, where each component can be any non-negative 
-            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).
-            
+            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).<br>
+            <br>
             For this chart the bar width is fixed (although can be set at run time)
             It is possible to choose between having only a fixed number of values accepted,
             or if a certain number of the oldest values should be removed when the
-            chart is full.
-            
+            chart is full.<br>
+            <br>
             Every __ticksBetweenHighlights__ values inserted (where __ticksBetweenHighlights__ can 
             be set at runtime, although it defaults to 10) the background of those values is highlighted, 
-            to stress out time progression.
+            to stress out time progression.       
             
+            @class SlidingBarChart
+            @private
+            @extends FixedWidthBarChart
+        */
+        /** SlidingBarChart(ticks, width, height [, dataDim, parent])
+
+            SlidingBarChart (pseudo)Constructor.
+            
+            @method SlidingBarChart
             @param {Number} ticks [Mandatory]
                             The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>
                             Can be any value that is or can be converted to a positive integer.
@@ -2317,7 +2356,7 @@ if (!window.DynamicChart){
                             Can be any value that is or can be converted to an integer between 1 and MAX_SPACE_DIMENSION.
             @param {Object} [parent=body] [Optional]
                             The DOM element to which the diagram should be appended as a child
-            @return {Object}    A new SlidingBarChart object
+            @return {Object}    A new SlidingBarChart object.
             @throws
                                 -   Illegal Argument Exception, if ticks isn't a positive integer
                                 -   Wrong number of arguments Exception, if width or height are not passed as arguments (directly)
@@ -2335,18 +2374,69 @@ if (!window.DynamicChart){
             if (isNaN(ticks) || ticks <= 0){
                 throw "Illegal Argument: ticks";
             }
-            
+  
+                /** 
+                    Default background color (not highlighted)
+                    @property DEFAULT_BACKGROUND
+                    @for SlidingBarChart
+                    @type {String|Object}
+                    @default = "lightgrey"
+                    @final
+                    @private     
+                  */   
             var DEFAULT_BACKGROUND = "lightgrey";
+                /** 
+                    Default highlight color for background
+                    @property DEFAULT_BACKGROUND_HIGHLIGHT
+                    @for SlidingBarChart
+                    @type {String|Object}
+                    @default = "lightpink"
+                    @final
+                    @private     
+                  */             
             var DEFAULT_BACKGROUND_HIGHLIGHT = "lightpink";
+                /** 
+                    Default size of axes' labels lext
+                    @property AXES_LABEL_SIZE
+                    @for SlidingBarChart
+                    @type {Number}
+                    @default = 14
+                    @final
+                    @private     
+                  */             
             var AXES_LABEL_SIZE = 14;
+                /** 
+                    Default width of axes' labels
+                    @property AXES_LABEL_WIDTH
+                    @for SlidingBarChart
+                    @type {Number}
+                    @default = 50
+                    @final
+                    @private     
+                  */            
             var AXES_LABEL_WIDTH = 50;
+                /** 
+                    Default margin for chart's axes
+                    @property AXES_LABEL_MARGIN
+                    @for SlidingBarChart
+                    @type {Number}
+                    @default = 5
+                    @final
+                    @private     
+                  */             
             var AXES_LABEL_MARGIN = 5;
             
             var proto = FixedWidthBarChart(ticks, 0, width, height, dataDim, parent);	
             var slidingBarChart = Object.create(proto);   
                                              
-                                                    /** Takes track of how much data has been actually inserted into
-                                                        the chart from its creation (to synch the highlighted ticks)
+                                                    /** 
+                                                        Takes track of how much data has been actually inserted into
+                                                        the chart from its creation (to synch the highlighted ticks).
+                                                        
+                                                        @property __dataCounter__
+                                                        @type {Number}
+                                                        @protected
+                                                        @default 0                                                          
                                                       */
             Object.defineProperty(slidingBarChart, "__dataCounter__", {
                                 value: 	0,
@@ -2357,8 +2447,12 @@ if (!window.DynamicChart){
                             
                                                     /** 
                                                         Every __ticksBetweenHighlights__ ticks, the data is "higlighted"
-                                                        by applying the selected highlight style to the background
-                                                        [Defaults to 10]
+                                                        by applying the selected highlight style to the background.
+                                                        
+                                                        @property __ticksBetweenHighlights__
+                                                        @type {Number}
+                                                        @protected
+                                                        @default 10 
                                                       */
             Object.defineProperty(slidingBarChart, "__ticksBetweenHighlights__", {
                                 value: 	10,
@@ -2366,11 +2460,14 @@ if (!window.DynamicChart){
                                 enumerable: false,
                                 configurable:false
                             });  
+                            
             Object.defineProperty(slidingBarChart, "getTicksBetweenHighlights", {
                                             /** getTicksBetweenHighlights()
                                             
                                                 Returns the number of ticks between two consecutive highlights (one extreme inclusive)
-                                                @return:    The number of ticks between two consecutive highlights;
+                                                
+                                                @method getTicksBetweenHighlights
+                                                @return {Number}    The number of ticks between two consecutive highlights;
                                               */
                                     value:  function(){
                                                 return this.__ticksBetweenHighlights__;                                                    
@@ -2385,10 +2482,11 @@ if (!window.DynamicChart){
                                                 
                                                 Sets the number of ticks between two consecutive highlights (one extreme inclusive)
                                                 
+                                                @method setTicksBetweenHighlights
                                                 @chainable
-                                                @param ticks:   [Mandatory]
-                                                                The number of ticks between two consecutive highlights;
-                                                @return:    This object, to allow for method chaining;
+                                                @param {Number} ticks   [Mandatory]
+                                                                        The number of ticks between two consecutive highlights;
+                                                @return {Object}    This object, to allow for method chaining;
                                               */
                                     value:  function(ticks){
                                                 
@@ -2408,8 +2506,13 @@ if (!window.DynamicChart){
                                     configurable: false
                                 });                                    
 
-                                                    /** Color of the background bars
-                                                        Defaults to DEFAULT_BACKGROUND ("lightgrey")
+                                                    /** 
+                                                        Color of the background bars
+                                                        
+                                                        @property __backgroundColor__
+                                                        @type {String|Object}
+                                                        @protected
+                                                        @default DEFAULT_BACKGROUND                                                         
                                                       */
             Object.defineProperty(slidingBarChart, "__backgroundColor__", {
                                 value: 	DEFAULT_BACKGROUND,
@@ -2419,8 +2522,13 @@ if (!window.DynamicChart){
                             });
 
                             
-                                                    /** Color of the background bars when highlighted
-                                                        Defaults to DEFAULT_BACKGROUND_HIGHLIGHT ("lightpink")
+                                                    /**
+                                                        Color of the background bars when highlighted
+
+                                                        @property __backgroundHighlightColor__
+                                                        @type {String|Object}
+                                                        @protected
+                                                        @default DEFAULT_BACKGROUND_HIGHLIGHT    
                                                       */
             Object.defineProperty(slidingBarChart, "__backgroundHighlightColor__", {
                                 value: 	DEFAULT_BACKGROUND_HIGHLIGHT,
@@ -2434,10 +2542,11 @@ if (!window.DynamicChart){
                                             
                                                 Changes the background color (not highlighted points)
                                                 
+                                                @method setBackgroundColor
                                                 @chainable
-                                                @param bgColor: [Mandatory]
-                                                                The new color for background bars;
-                                                @return:    This object, to allow for method chaining;
+                                                @param {String|Object} bgColor [Mandatory]
+                                                                               The new color for background bars;
+                                                @return {Object}    This object, to allow for method chaining.
                                               */
                                     value:  function(bgColor){
                                                 
@@ -2463,7 +2572,8 @@ if (!window.DynamicChart){
                                             
                                                 Returns current background bars' color
                                                 
-                                                @return: the value set for __backgroundColor__;
+                                                @method getBackgroundColor
+                                                @return {String|Object} the value set for __backgroundColor__
                                               */
                                     value: 	function(){
                                                 return this.__backgroundColor__;
@@ -2474,12 +2584,15 @@ if (!window.DynamicChart){
                                 });	    
 
             Object.defineProperty(slidingBarChart, "setBackgroundHighlightColor", {
-                                            /** Changes the background color for highlighted points
+                                            /** setBackgroundHighlightColor(bgHColor)
+                                            
+                                                Changes the background color for "highlighted" values
                                                 
+                                                @method setBackgroundHighlightColor
                                                 @chainable
-                                                @param bgHColor: [Mandatory]
-                                                                The new color for highlighted background bars;
-                                                @return:    This object, to allow for method chaining;
+                                                @param {String|Object} bgHColor [Mandatory]
+                                                                                The new color for highlighted background bars;
+                                                @return {Object}    This object, to allow for method chaining.
                                               */
                                     value:  function(bgHColor){
                                                 
@@ -2501,8 +2614,12 @@ if (!window.DynamicChart){
 
                                     
             Object.defineProperty(slidingBarChart, "getBackgroundHighlightColor", {
-                                            /** Returns current color for background highlighted bars 
-                                                @return: the value set for __backgroundHighlightColor__;
+                                            /** getBackgroundHighlightColor()
+                                                
+                                                Returns current color for background highlighted bars
+                                                
+                                                @method getBackgroundHighlightColor
+                                                @return {String|Object} The value set for __backgroundHighlightColor__
                                               */
                                     value: 	function(){
                                                 return this.__backgroundHighlightColor__;
@@ -2515,13 +2632,14 @@ if (!window.DynamicChart){
                                 
             Object.defineProperty(slidingBarChart, "__canAppendData__", {
                                         /** __canAppendData__(newDataArray)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
                                             
                                             <b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class
-                                                     in order to handle differents needs
-                                                     
-                                            @override:  fixedWidthBarChart.__canAppendData__
+                                                            in order to handle differents needs.<br>
+                                            See base class for method signature and details.
+                                             
+                                            @method __canAppendData__ 
+                                            @protected
+                                            @override  fixedWidthBarChart.__canAppendData__
                                         */
                                 value: 	function(newDataArray){
                                     if (!Object.isArray(newDataArray)){
@@ -2561,16 +2679,16 @@ if (!window.DynamicChart){
                             
                     Object.defineProperty(slidingBarChart, "__selectBackgroundBars__", {
                                             /** __selectBackgroundBars__([filter])
-                                                @protected
-                                                [Protected method, not supposed to be used by consumers]
-                                                
-                                                Returns the list of the svg elements used to draw background; 
+
+                                                Returns the list of the svg elements used to draw background; <br>
                                                 Elements can be filtered using a custom filter passad as an optional
                                                 parameter;
-
-                                                @param filter:  [Optional]
-                                                                A filter to be applied to the selection;
-                                                @return:    The proper set of d3 elements.                    
+                                        
+                                                @method __selectBackgroundBars__
+                                                @protected
+                                                @param {String|Object} filter  [Optional]
+                                                                                A filter to be applied to the selection;
+                                                @return {Object}    The proper set of d3 elements.                    
                                               */
                                     value: 	function(filter){
                                                 if (filter === undefined){
@@ -2586,16 +2704,17 @@ if (!window.DynamicChart){
                                 
                     Object.defineProperty(slidingBarChart, "__updateBackground__", {
                                         /** __updateBackground__()
+                                            
+                                            
+                                            Called by __drawNewData__() to redraw the background properly;<br>
+                                            <br>
+                                            <b>WARNING</b>:    if you inherit from this class you might want to override
+                                                               this method as well as __drawNewData__ and __updateDrawing__ 
+                                                               in order to obtain a custom chart.
+                                            
+                                            @method __updateBackground__
                                             @protected
-                                            [Protected method, not supposed to be used by consumers]
-                                            
-                                            Called by __drawNewData__() to redraw the background properly
-                                            
-                                            <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method as well as __drawNewData__ and __updateDrawing__ 
-                                                        in order to obtain a custom chart.
-                                            
-                                            @return:    Nothing.
+                                            @return {undefined}
                                           */
                                 value: 	function(){
                                             var counter = this.__dataCounter__,
@@ -2622,20 +2741,20 @@ if (!window.DynamicChart){
                             
                     Object.defineProperty(slidingBarChart, "__updateAxes__", {
                                         /** __updateAxes__(yScale)
+                                       
+                                            Called by __updateDrawing__() to update the labels of the vertical axe
+                                            when vertical scale changes;<br>
+                                            <br>
+                                            <b>WARNING</b>:     if you inherit from this class you might want to override
+                                                                this method as well as __drawNewData__ and __updateDrawing__ 
+                                                                in order to obtain a custom chart.
+                                                      
+                                            @method __updateAxes__
                                             @protected
                                             @chainable
-                                            
-                                            [Protected method, not supposed to be used by consumers]
-                                            
-                                            Called by __updateDrawing__() to update the labels of the vertical axe
-                                            
-                                            <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method as well as __drawNewData__ and __updateDrawing__ 
-                                                        in order to obtain a custom chart.
-                                                        
-                                            @param yScale:  [Mandatory]
-                                                            D3 scale object for Y axis;
-                                            @return:    The current chart object, to allow for method chaining.
+                                            @param {Object} yScale  [Mandatory]
+                                                                    D3 scale object for Y axis;
+                                            @return {Object}    The current chart object, to allow for method chaining.
                                           */
                                 value: 	function(yScale){
                                             var axeLabels, m;
@@ -2672,13 +2791,15 @@ if (!window.DynamicChart){
                             
                     Object.defineProperty(slidingBarChart, "__drawNewData__", {
                                         /** __drawNewData__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
                                             
+                                                                                           
                                             <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method and __updateDrawing__ in order to obtain a custom chart.
-                                                        
-                                            @override:   fixedWidthBarChart.__drawNewData__
+                                                               this method and __updateDrawing__ in order to obtain a custom chart.<br>
+                                            See base class for method signature and details.
+
+                                            @method __drawNewData__
+                                            @protected
+                                            @override   fixedWidthBarChart.__drawNewData__
                                           */
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2725,13 +2846,14 @@ if (!window.DynamicChart){
                 
                 Object.defineProperty(slidingBarChart, "__updateDrawing__", {
                                         /** __updateDrawing__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                            @protected
-                                            [Protected method, not supposed to be used by consumers]
                                             
                                             <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                                        this method and __drawNewData__ in order to obtain a custom chart.
-                                                        
-                                            @override:  fixedWidthBarChart.__updateDrawing__
+                                                               this method and __drawNewData__ in order to obtain a custom chart.<br>
+                                            See base class for method signature and details.
+                                             
+                                            @method  __updateDrawing__
+                                            @protected
+                                            @override  fixedWidthBarChart.__updateDrawing__
                                           */					
                                 value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                             var that = this;
@@ -2769,20 +2891,18 @@ if (!window.DynamicChart){
                                 
             
             /** __init__()
-                @private
-                [Private method, not visible to consumers]
                 
                 Inits the chart;
                 
-                @param chart:   [Mandatory]
-                                The chart object that needs initialization;
-                @param width:   [Mandatory]
-                                Chart's width;
-                @param height:  [Mandatory]
-                                Chart's height;
-
-                @return: This chart object (see how it's called)
-                @override:  fixedWidthBarChart.__init__
+                @method __init__
+                @private
+                @param {Object} chart   [Mandatory]
+                                        The chart object that needs initialization;
+                @param {Number} width   [Mandatory]
+                                        Chart's width;
+                @param {Number} height  [Mandatory]
+                                        Chart's height;
+                @return {undefined}
               */                
             function __init__(chart, width, height){
 
@@ -2797,15 +2917,29 @@ if (!window.DynamicChart){
                 if (barWidth <= 0){
                     throw "Illegal Arguments combination: width too small to draw 'ticks' values";
                 }
-                                        /** Width of each bar
-                                            @override:  fixedWidthBarChart.__barWidth__
+                                        /** 
+                                            The width of each bar;
+                                            
+                                            @property __barWidth__
+                                            @type {Number}
+                                            @readOnly
+                                            @protected                                              
+                                            @override  FixedWidthBarChart.__barWidth__
                                           */
                 Object.defineProperty(chart, "__barWidth__", {
                                             value: barWidth,
                                             writable: false,
                                             enumerable: false,
                                             configurable: false
-                                        });	  
+                                        });	 
+                                        /** 
+                                            The horizontal position of chart's vertical axe;
+                                            
+                                            @property __axeLeft__
+                                            @type {Number}
+                                            @readOnly
+                                            @protected
+                                          */
                 Object.defineProperty(chart, "__axeLeft__", {
                                             value: width - AXES_LABEL_WIDTH,
                                             writable: false,
@@ -2828,6 +2962,14 @@ if (!window.DynamicChart){
                         .attr("y2", height)
                         .style("stroke", "black");  
                         
+                                        /** 
+                                            The svg Object grouping all the vertical axe related drawings;
+                                            
+                                            @property __axeArea__
+                                            @type {Object}
+                                            @readOnly
+                                            @protected
+                                          */                        
                 Object.defineProperty(chart, "__axeArea__", {
                                             value: axeArea,
                                             writable: false,
@@ -2861,17 +3003,25 @@ if (!window.DynamicChart){
             return slidingBarChart;
         }
         
-        /** TimeWheelChart(ticks, startTime, wheelRadius, width, height [, dataDim, parent])
-            @extends FixedWidthBarChart
+        
+        /** 
             
-            Advanced Chart: TimeWheelChart
-            Inherits from BasicBarChart redefining the drawing methods.
-            
-            Data is represented as bars drawn around a time wheel.
-            
+            Advanced Chart: <b>TimeWheelChart</b><br>
+            Inherits from BasicBarChart redefining the drawing methods.<br>
+            <br>
+            Data is represented as bars drawn around a time wheel.<br>
+            <br>
             It is possible to choose between having only a fixed number of values accepted,
             or if a certain number of the oldest values should be removed when the
             chart is full.
+            
+            @class TimeWheelChart
+            @private
+            @extends FixedWidthBarChart
+          */
+        /** TimeWheelChart(ticks, startTime, wheelRadius, width, height [, dataDim, parent])
+            
+            TimeWheelChart (pseudo)Constructor.
             
             @param {Number} ticks [Mandatory]
                             The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>
@@ -2913,7 +3063,11 @@ if (!window.DynamicChart){
             
                                                             
             if (ChartUtils.validateTimeString(startTime)){
-                                                      /** Label stating the time corresponding to the first tick
+                                                      /** 
+                                                            Label stating the time corresponding to the first tick;
+                                                            @property __startTime__
+                                                            @type {String}
+                                                            @protected                                                                                                         
                                                         */
                 Object.defineProperty(timeWheelChart, "__startTime__", {
                                         value: 	startTime,
@@ -2922,7 +3076,12 @@ if (!window.DynamicChart){
                                         configurable: false
                                     });
             }
-                                                  /** Size in points of the static labels showing time references on the wheel
+                                                  /** 
+                                                        Size in points of the static labels showing time references on the wheel;
+                                                        @property __startTime__
+                                                        @type {String}
+                                                        @protected
+                                                        @default data labels' size
                                                     */
             Object.defineProperty(timeWheelChart, "__timeWheelLabelsSize__", {
                                     value: 	timeWheelChart.getLabelsSize(0),  //Use the default value for value labels
@@ -2934,12 +3093,13 @@ if (!window.DynamicChart){
             Object.defineProperty(timeWheelChart, "setTimeWheelLabelsSize", {
                                             /** setTimeWheelLabelsSize(size)
                                             
-                                                Sets the size of the labels used for the wheel
+                                                Sets the size of the labels used for the wheel.
                                                 
+                                                @method setTimeWheelLabelsSize
                                                 @chainable
-                                                @param size:    [Mandatory]
-                                                                The new size for the labels (must be an integer gt zero);
-                                                @return:    This chart object, to allow for method chaining;
+                                                @param {Number} size    [Mandatory]
+                                                                        The new size for the labels (must be an integer gt zero);
+                                                @return {Object}        This chart object, to allow for method chaining;
                                                 @throws    
                                                             - Illegal Argument Exception, if the argument is not valid (see above).
                                               */
@@ -2965,7 +3125,12 @@ if (!window.DynamicChart){
                                     enumerable: false,
                                     configurable: false
                                 });                                     
-                                                    /** Color used for the static part of the wheel
+                                                    /** 
+                                                        Color used for the static part of the wheel
+                                                        @property __startTime__
+                                                        @type {String|Object}
+                                                        @protected
+                                                        @default "lightgrey"                                                        
                                                       */
             Object.defineProperty(timeWheelChart, "__timeWheelForeColor__", {
                                     value: 	"lightgrey",  //Defaults to lightgrey
@@ -2979,12 +3144,13 @@ if (!window.DynamicChart){
                                             
                                                 Sets the color used for the static part of the wheel's drawing, 
                                                 i.e. for labels and lines representing time ticks 
-                                                of the time wheel
+                                                of the time wheel.
                                                 
+                                                @method setTimeWheelForeColor
                                                 @chainable
-                                                @param color:   [Mandatory]
-                                                                The new forecolor for the wheel;
-                                                @return:    This chart object, to allow for method chaining;
+                                                @param {String|Object} color   [Mandatory]
+                                                                                The new forecolor for the wheel;
+                                                @return {Object}    This chart object, to allow for method chaining;
                                                 @throws    
                                                             - Illegal Argument Exception, if color isn't passed or is null.
                                               */
@@ -3012,10 +3178,13 @@ if (!window.DynamicChart){
                                 
             Object.defineProperty(timeWheelChart, "__timeLabelsVisible__", {
                                             /** __timeLabelsVisible__()
-                                                @protected
-                                                [Protected method, not supposed to be used by consumers]
+                                                
                                                 Checks whether or not the labels showing time references on the wheel
                                                 should be drawn
+                                                
+                                                @method __timeLabelsVisible__
+                                                @protected
+                                                @return {Boolean} True <=> the time reference labels are visible.
                                                 
                                               */
                                     value: 	function(){
@@ -3029,15 +3198,16 @@ if (!window.DynamicChart){
             Object.defineProperty(timeWheelChart, "setBarWidth", {
                                             /** setBarWidth(barWidth)
                                             
-                                                Sets the width of this chart's bars
+                                                Sets the width of this chart's bars.
                                                 
+                                                @method setBarWidth
                                                 @chainable
-                                                @param barWidth: [Mandatory]
-                                                                 The new bar width to be set;
-                                                                 Can be a positive number or its base 10 string representation.
-                                                @return:    This object, to allow for method chaining;
-                                                @throws     Illegal Argument Exception, if the argument isn't valid (see above).
-                                                @override:  basicBarChartSharedPrototype.setBarWidth
+                                                @param {Number}  barWidth [Mandatory]
+                                                                 The new bar width to be set;<br>
+                                                                 MUST be a positive number or its base 10 string representation.
+                                                @return {Object}    This object, to allow for method chaining;
+                                                @throws    Illegal Argument Exception, if the argument isn't valid (see above).
+                                                @override  BasicBarChart.setBarWidth
                                               */
                                     value: 	function(barWidth){
                                                 barWidth = parseInt(barWidth, 10);
@@ -3059,10 +3229,17 @@ if (!window.DynamicChart){
                                 If it is valid and it is different from the current position,
                                 the drawing is moved to the new position
                                 
+                                @method setWheelCenter
                                 @chainable
-                                @param cx, cy:  [Mandatory]
-                                                x and y coordinates of the new center;
-                                @return:    This chart object, to allow for method chaining;
+                                @param {Number} cx [Mandatory]
+                                                   x coordinate of the new center;<br>
+                                                   Only non negative integers or values that can be converted 
+                                                   to non negative integers are accepted;
+                                @param {Number} cy [Mandatory]
+                                                   y coordinate of the new center;<br>
+                                                   Only non negative integers or values that can be converted 
+                                                   to non negative integers are accepted;
+                                @return {Object}    This chart object, to allow for method chaining;
                                 @throws     
                                             - Illegal Argument Exception, if cx or cy aren't valid. 
                              */
@@ -3084,15 +3261,17 @@ if (!window.DynamicChart){
 
             Object.defineProperty(timeWheelChart, "__moveWheelCenter__", {
                             /** __moveWheelCenter__(cx, cy)
-                                @protected
-                                [Protected method, not supposed to be used by consumers]
-                                
+
                                 When the center of the time wheel is moved,
-                                then takes care of all the updates needed for the chart
+                                it takes care of all the updates needed for the chart
                                 
-                                @param cx, cy:  [Mandatory]
-                                                The new center coordinates;
-                                @return:    Nothing.
+                                @method __moveWheelCenter__
+                                @protected
+                                @param {Number} cx [Mandatory]
+                                                   x coordinate of the new center;
+                                @param {Number} cy [Mandatory]
+                                                   y coordinate of the new center;
+                                @return {undefined}
                               */                                
                     value: 	function(cx, cy){
                                 if (!Object.isNumber(cx) || !Object.isNumber(cy) ||    //Extra precaution, since it's not really a "private" method
@@ -3140,13 +3319,14 @@ if (!window.DynamicChart){
 
             Object.defineProperty(timeWheelChart, "__drawNewData__", {
                             /** __drawNewData__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                @protected
-                                [Protected method, not supposed to be used by consumers]
-                                                                               
+                                                                           
                                 <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                            this method and __updateDrawing__ in order to obtain a custom chart.
-                                            
-                                @override:   fixedWidthBarChart.__drawNewData__
+                                                   this method and __updateDrawing__ in order to obtain a custom chart.<br>
+                                See base class for method signature and details.
+
+                                @method __drawNewData__
+                                @protected
+                                @override   fixedWidthBarChart.__drawNewData__
                               */                
                     value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){
                                 
@@ -3202,13 +3382,14 @@ if (!window.DynamicChart){
                     
             Object.defineProperty(timeWheelChart, "__updateDrawing__", {
                             /** __updateDrawing__(dataSet, labelsSet, dataIndex, xScale, yScale)
-                                @protected
-                                [Protected method, not supposed to be used by consumers]
                                 
                                 <b>WARNING</b>:    if you inherit from this class you might want to override both
-                                            this method and __drawNewData__ in order to obtain a custom chart.
-                                            
-                                @override:  fixedWidthBarChart.__updateDrawing__
+                                                   this method and __drawNewData__ in order to obtain a custom chart.<br>
+                                See base class for method signature and details.
+                                 
+                                @method  __updateDrawing__
+                                @protected
+                                @override  fixedWidthBarChart.__updateDrawing__
                               */					
                     value: 	function(dataSet, labelsSet, dataIndex, xScale, yScale){           
                     
@@ -3246,12 +3427,14 @@ if (!window.DynamicChart){
                 
         Object.defineProperty(timeWheelChart, "__onClearData__", {            
                             /** __onClearData__(n)
-                                @protected
+                                
                                 [Protected method, not supposed to be used by consumers]
                                 
-                                <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function
-                                
-                                @override: basicBarChartSharedPrototype.__onClearData__
+                                <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function<br>
+                                                   See base class for method signature and details.
+                                @method __onClearData__
+                                @protected
+                                @override BasicBarChart.__onClearData__
                               */
                     value:	function(n){
                                 this.__timeLabels__.map(function(label){label.text(ChartUtils.addIntToTimeString(label.text(), n));});
@@ -3264,14 +3447,14 @@ if (!window.DynamicChart){
                 
         Object.defineProperty(timeWheelChart, "__updateWheelDrawing__", {            
                             /** __updateWheelDrawing__()
-                                @protected
-                                [Protected method, not supposed to be used by consumers]
                                 
-                                Updates the drawing of the static elements of the wheel
-                                
+                                Updates the drawing of the static elements of the wheel<br>
+                                <br>
                                 <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function
-
-                                @return:    Nothing.
+                                
+                                @method __updateWheelDrawing__
+                                @protected
+                                @return {undefined}
                               */
                     value:	function(){
                                 var that = this;
@@ -3324,18 +3507,22 @@ if (!window.DynamicChart){
             Object.defineProperty(timeWheelChart, "destroy", {
                             /** destroy()
                                 
-                                Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.
-                                
+                                Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.<br>
+                                <br>
                                 <b>WARNING</b>: calling destroy on an object will force any further reference 
-                                         to its attributes / methods to throw exceptions.
-                                
-                                NOTE:   This function should be override by any class inheriting from this chart.
-                                        In order to properly work, any overriding destroyer should:
-                                        - Free any array specific to the object on which is called;
-                                        - Remove any event listener on chart objects;
-                                        - Call super object's destroy method.
-                                @return:    null, to state that the object has been destroyed.
-                              */                        
+                                                to its attributes / methods to throw exceptions.<br>
+                                <br>
+                                <b>NOTE</b>:   This function should be override by any class inheriting from this chart.<br>
+                                               In order to properly work, any overriding destroyer should:
+                                                <ol>
+                                                    <li> Free any array specific to the object on which is called;</li>
+                                                    <li> Remove any event listener on chart objects;</li>
+                                                    <li> Call super object's destroy method.</li>
+                                                </ol>
+                                @method destroy
+                                @return {null} to state that the object has been destroyed.
+                                @override BasicBarChart.destroy()
+                              */                         
                     value: 	function(){
                                         //Deletes all the elements from object's arrays
                                         if (this.__timeLabels__){
@@ -3358,38 +3545,47 @@ if (!window.DynamicChart){
             
             
             /** __init__()
-                @private
-                [Private method, not visible to consumers]
                 
                 Inits the chart;
                 
-                @param chart:   [Mandatory]
-                                The chart that need initialization;
-                @param width:   [Mandatory]
-                                Chart's width;
-                @param height:  [Mandatory]
-                                Chart's height;
-                @param wheelRadius:  [Mandatory]   
-                                     Wheel inner radius;
-                @return: This chart object (see how it's called)
-                @override:  fixedWidthBarChart.3
+                @method __init__
+                @private
+                @param {Object} chart   [Mandatory]
+                                        The chart that need initialization;
+                @param {Number} width   [Mandatory]
+                                        Chart's width;
+                @param {Number} height  [Mandatory]
+                                        Chart's height;
+                @param {Number} wheelRadius  [Mandatory]   
+                                            Wheel inner radius;
+                @return {undefined}
               */      
             function __init__(chart, width, height, wheelRadius){
+                var __r__, __barHeight__;
                 //Computes drawing related object contants
-                                            /** Chart's bars' width, in pixel
-                                                Defaults to 8, can be changed at runtime
-
-                                                @override:  fixedWidthBarChart.__barWidth__  
+                                            /** 
+                                                Chart's bars' width, in pixel <br>
+                                                Can be changed at runtime
+                                                @property __barWidth__
+                                                @type {Number}
+                                                @protected
+                                                @default 8
+                                                @override:  FixedWidthBarChart.__barWidth__  
                                               */
                 Object.defineProperty(chart, "__barWidth__", {
                                             value: 8,
-                                            writable: false,
+                                            writable: true,
                                             enumerable: false,
                                             configurable: false
                                         });	
-                                            /** X coordinate of the center of the wheel
-                                                Defaults to the horizontal center of the chart
+                                            /** 
+                                                X coordinate of the center of the wheel
                                                 Can be changed at runtime
+                                                
+                                                @property __cx__
+                                                @type {Number}
+                                                @protected
+                                                @default the horizontal center of the chart                                                
                                               */
                 Object.defineProperty(chart, "__cx__", {
                                             value: width / 2, //Aligns left by default
@@ -3398,9 +3594,13 @@ if (!window.DynamicChart){
                                             configurable:false
                                         });
                                         
-                                            /** Y coordinate of the center of the wheel
-                                                Defaults to the vertical center of the chart
+                                            /** 
+                                                Y coordinate of the center of the wheel<br>
                                                 Can be changed at runtime
+                                                @property __cy__
+                                                @type {Number}
+                                                @protected
+                                                @default the vertical center of the chart                                                  
                                               */
                 Object.defineProperty(chart, "__cy__", {
                                             value: height / 2,
@@ -3411,47 +3611,43 @@ if (!window.DynamicChart){
                 wheelRadius = parseInt(wheelRadius, 10);
                 
                 if (!isNaN(wheelRadius) && wheelRadius > 0){
-                    //If a value for the wheel radius is set, then computes the height accordingly...
-                                                /** Radius of the wheel
-                                                    CAN NOT be changed at runtime
-                                                  */
-                    Object.defineProperty(chart, "__r__", {
-                                                value: wheelRadius,
-                                                writable: false,
-                                                enumerable: false,
-                                                configurable:false
-                                            }); 
-                                                /** Maximum height for each bar
-                                                    CAN NOT be changed at runtime
-                                                  */                                                                    
-                    Object.defineProperty(chart, "__barHeight__", {
-                                                value: ((Math.min(width, height) - 2 * wheelRadius) / 2) * 0.75,
-                                                writable: false,
-                                                enumerable: false,
-                                                configurable:false
-                                            });                                                                     
-                    
+                    //If a value for the wheel radius is set, then computes the height accordingly...                                                                    
+                    __r__ = wheelRadius;
+                    __barHeight__ = Math.min(width, height) / 4;
                 }else{
                     //...Otherwise makes the radius 3/4 of the available height;
-                                                /** Maximum height for each bar
-                                                    CAN NOT be changed at runtime
-                                                  */                                            
-                    Object.defineProperty(chart, "__barHeight__", {
-                                                value: Math.min(width, height) / 4,
-                                                writable: false,
-                                                enumerable: false,
-                                                configurable:false
-                                            });     
-                                                /** Radius of the wheel
-                                                    CAN NOT be changed at runtime
-                                                  */                                                                    
-                    Object.defineProperty(chart, "__r__", {
-                                                value: this.__barHeight__ * 0.75,
-                                                writable: false,
-                                                enumerable: false,
-                                                configurable:false
-                                            });  
+                    __barHeight__ = ((Math.min(width, height) - 2 * wheelRadius) / 2) * 0.75;                    
+                    __r__ = __barHeight__ * 0.75; 
                 }
+                
+                                            /** 
+                                                Radius of the wheel<br>
+                                                <b>CAN NOT</b> be changed at runtime
+                                                @property __r__
+                                                @type {Number}
+                                                @protected    
+                                                @readOnly
+                                              */
+                Object.defineProperty(chart, "__r__", {
+                                            value: __r__,
+                                            writable: false,
+                                            enumerable: false,
+                                            configurable:false
+                                        }); 
+                                            /** 
+                                                Maximum height for each bar<br>
+                                                <b>CAN NOT</b> be changed at runtime
+                                                @property __barHeight__
+                                                @type {Number}
+                                                @protected    
+                                                @readOnly
+                                              */                                                                    
+                Object.defineProperty(chart, "__barHeight__", {
+                                            value: __barHeight__,
+                                            writable: false,
+                                            enumerable: false,
+                                            configurable:false
+                                        });                 
                 
                 //Modify the range for each of the data components
                 for (var i=0; i < chart.__dataDim__; i++){
@@ -3459,6 +3655,15 @@ if (!window.DynamicChart){
                 }
                 
                 //Computes the angle between two consecutive ticks
+                                            /** 
+                                                The angle between two consecutive ticks<br>
+                                                <b>CAN NOT</b> be changed at runtime
+                                                
+                                                @property __tickStep__
+                                                @type {Number}
+                                                @protected    
+                                                @readOnly
+                                              */  
                 Object.defineProperty(chart, "__tickStep__", {
                                             value: Math.PI / (chart.__ticks__), // == 2 * Math.PI / (chart.__ticks__ * 2)
                                             writable: false,
@@ -3468,7 +3673,14 @@ if (!window.DynamicChart){
                 
                 var     initial_x = chart.__cx__ - chart.__r__, 
                         initial_y = chart.__cy__ - chart.__r__;
-                                            /** The actual wheel graphic object
+                                           
+                                           /** 
+                                                The actual svg object for the static part of the wheel
+                                                
+                                                @property __wheel__
+                                                @type {Object}
+                                                @protected    
+                                                @readOnly                                                
                                               */
                 Object.defineProperty(chart, "__wheel__", {
                                             value: chart.__svgElement__.append("svg")
@@ -3560,7 +3772,13 @@ if (!window.DynamicChart){
                                 .attr("y", chart.__r__ + chart.__timeWheelLabelsSize__ / 2)                                                       
                             ); 
 
-                                                /** Set of labels for wheel's time references
+                                                /** 
+                                                    List of labels for wheel's time references
+                                                    
+                                                    @property __timeLabels__
+                                                    @type {Array}
+                                                    @protected    
+                                                    @readOnly                                                           
                                                   */
                     Object.defineProperty(chart, "__timeLabels__", {
                                             value: timeLabels,

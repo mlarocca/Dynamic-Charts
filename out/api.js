@@ -4,7 +4,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "BasicBarChart",
         "DynamicChart",
         "FixedWidthBarChart",
-        "Legend"
+        "Legend",
+        "SlidingBarChart",
+        "TimeWheelChart"
     ],
     "modules": [
         "DynamicChart"

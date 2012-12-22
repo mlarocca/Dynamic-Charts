@@ -16,11 +16,14 @@
             "classes": {
                 "Legend": 1,
                 "BasicBarChart": 1,
-                "FixedWidthBarChart": 1
+                "FixedWidthBarChart": 1,
+                "SlidingBarChart": 1,
+                "TimeWheelChart": 1
             },
             "fors": {
                 "DynamicChart": 1,
-                "Legend": 1
+                "Legend": 1,
+                "SlidingBarChart": 1
             },
             "namespaces": {}
         }
@@ -33,16 +36,19 @@
                 "DynamicChart": 1,
                 "Legend": 1,
                 "BasicBarChart": 1,
-                "FixedWidthBarChart": 1
+                "FixedWidthBarChart": 1,
+                "SlidingBarChart": 1,
+                "TimeWheelChart": 1
             },
             "fors": {
                 "DynamicChart": 1,
-                "Legend": 1
+                "Legend": 1,
+                "SlidingBarChart": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "dynamic_chart.js",
-            "line": 1941,
+            "line": 3007,
             "description": "Module DynamicChart\n\n        This module requires:\n        \n        {{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}\n        {{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}} \n\n        Exposes methods for creating different types of dynamic charts:\n        * BasicBarChart\n        * FixedWidthBarChart\n        * SlidingBarChart\n        * TimeWheelChart"
         }
     },
@@ -70,6 +76,7 @@
             "namespace": "",
             "file": "dynamic_chart.js",
             "line": 325,
+            "description": "Legend for a chart;<br>\nAdds a div and an SVG element to the page to represent a chart's legend.",
             "access": "private",
             "tagname": ""
         },
@@ -84,7 +91,10 @@
             "module": "DynamicChart",
             "namespace": "",
             "file": "dynamic_chart.js",
-            "line": 490
+            "line": 491,
+            "description": "Base Chart Class: <b>BasicBarChart</b><br>\nBasic bar histogram chart.<br>\nValues are represented using vertical bars;<br>\nEach point or value can have up to 10 subcomponents, where each component can be \nany non-nregative real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).",
+            "access": "private",
+            "tagname": ""
         },
         "FixedWidthBarChart": {
             "name": "FixedWidthBarChart",
@@ -97,8 +107,45 @@
             "module": "DynamicChart",
             "namespace": "",
             "file": "dynamic_chart.js",
-            "line": 1941,
+            "line": 1942,
+            "description": "Advanced Chart: <b>FixedWidthBarChart</b><br>\nInherits from BasicBarChart redefining the drawing methods.<br>\nAs for its super class values are represented using vertical bars, and each point \ncan have up to 10 subcomponents, where each component can be any non-negative \nreal number (i.e., each point can be in R_+^i, for 1 <= i <= 10).<br>\n<br>\nFor this chart the bar width is fixed (although can be set at run time)\nIt is possible to choose between having only a fixed number of values accepted,\nor if a certain number of the oldest values should be removed when the\nchart is full.",
+            "access": "private",
+            "tagname": "",
             "extends": "BasicBarChart"
+        },
+        "SlidingBarChart": {
+            "name": "SlidingBarChart",
+            "shortname": "SlidingBarChart",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "DynamicChart",
+            "namespace": "",
+            "file": "dynamic_chart.js",
+            "line": 2319,
+            "description": "Advanced Chart: <b>SlidingBarChart</b><br>\n            Inherits from FixedWidthBarChart redefining the drawing methods.<br>\n            As for its super class values are represented using vertical bars, and each point \n            can have up to 10 subcomponents, where each component can be any non-negative \n            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).<br>\n            <br>\n            For this chart the bar width is fixed (although can be set at run time)\n            It is possible to choose between having only a fixed number of values accepted,\n            or if a certain number of the oldest values should be removed when the\n            chart is full.<br>\n            <br>\n            Every __ticksBetweenHighlights__ values inserted (where __ticksBetweenHighlights__ can \n            be set at runtime, although it defaults to 10) the background of those values is highlighted, \n            to stress out time progression.",
+            "access": "private",
+            "tagname": "",
+            "extends": "FixedWidthBarChart"
+        },
+        "TimeWheelChart": {
+            "name": "TimeWheelChart",
+            "shortname": "TimeWheelChart",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "DynamicChart",
+            "namespace": "",
+            "file": "dynamic_chart.js",
+            "line": 3007,
+            "description": "Advanced Chart: <b>TimeWheelChart</b><br>\n            Inherits from BasicBarChart redefining the drawing methods.<br>\n            <br>\n            Data is represented as bars drawn around a time wheel.<br>\n            <br>\n            It is possible to choose between having only a fixed number of values accepted,\n            or if a certain number of the oldest values should be removed when the\n            chart is full.",
+            "access": "private",
+            "tagname": "",
+            "extends": "FixedWidthBarChart"
         }
     },
     "classitems": [
@@ -549,38 +596,38 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 331,
-            "description": "[Private Object, only accessible to DynamicChart classes]\n\nCreates, upon request, a new Legend object and returns it;",
+            "line": 333,
+            "description": "Creates, upon request, a new Legend object and returns it;",
             "itemtype": "method",
             "name": "LegendFactory",
             "params": [
                 {
                     "name": "width",
-                    "description": "[Mandatory]\n                        The desired width for the chart (<b>can't be changed later</b>)\n                        Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                                    The desired width for the chart (<b>can't be changed later</b>)\n                                    Can be any value that is or can be converted to a positive integer.",
                     "type": "Number",
                     "optional": true
                 },
                 {
                     "name": "height",
-                    "description": "[Mandatory]\n                        The desired height for the chart (<b>can't be changed later</b>)\n                        Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                                    The desired height for the chart (<b>can't be changed later</b>)\n                                    Can be any value that is or can be converted to a positive integer.",
                     "type": "Number",
                     "optional": true
                 },
                 {
                     "name": "left",
-                    "description": "[Optional]\n                        The horizontal position of the legend bounding box;",
+                    "description": "[Optional]\n                                    The horizontal position of the legend bounding box;",
                     "type": "Number",
                     "optional": true
                 },
                 {
                     "name": "top",
-                    "description": "[Optional]\n                        The vertical position of the legend bounding box;",
+                    "description": "[Optional]\n                                    The vertical position of the legend bounding box;",
                     "type": "Number",
                     "optional": true
                 },
                 {
                     "name": "[parent=",
-                    "description": "page's body element]   [Optional]\n                        The DOM element to which the diagram should be appended as a child",
+                    "description": "page's body element]   [Optional]\n                                    The DOM element to which the diagram should be appended as a child",
                     "type": "Object"
                 }
             ],
@@ -590,11 +637,11 @@
             },
             "throws": [
                 "-   Wrong number of arguments Exception",
-                "if width or height are not passed as arguments (directly)\n        -   Illegal Argument exception",
+                "if width or height are not passed as arguments (directly)\n                    -   Illegal Argument exception",
                 "if width or height aren't valid (numeric",
-                "positive) values \n            (through setWidth or setHeight)\n        -   Illegal Argument exception",
-                "if dataDim is passed but it's invalid (not numeric or not positive)\n        -   Exception",
-                "if dataDim exceeds the maximum data dimension\n        -   Exception",
+                "positive) values \n                        (through setWidth or setHeight)\n                    -   Illegal Argument exception",
+                "if dataDim is passed but it's invalid (not numeric or not positive)\n                    -   Exception",
+                "if dataDim exceeds the maximum data dimension\n                    -   Exception",
                 "if parent is passed but it is not a valid DOM element"
             ],
             "class": "Legend",
@@ -602,7 +649,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 361,
+            "line": 362,
             "description": "[Private method, not visible from consumers]",
             "itemtype": "method",
             "name": "__init__",
@@ -639,7 +686,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 391,
+            "line": 392,
             "description": "[Protected method, not visible outside this library]\n\nUpdate the drawings of this legend object;",
             "itemtype": "method",
             "name": "__redrawLegend__",
@@ -659,7 +706,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 440,
+            "line": 441,
             "description": "The div element that will be a container to the legend's svg element",
             "itemtype": "property",
             "name": "__divElement__",
@@ -672,7 +719,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 453,
+            "line": 454,
             "description": "The svg element for this Legend",
             "itemtype": "property",
             "name": "__svgElement__",
@@ -685,7 +732,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 467,
+            "line": 468,
             "description": "Array of the items contained in the legend",
             "itemtype": "property",
             "name": "__items__",
@@ -698,7 +745,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 497,
+            "line": 505,
             "description": "Sets the position of the chart in the page. Position is assumed to be absolute.",
             "itemtype": "method",
             "name": "setPosition",
@@ -728,7 +775,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 518,
+            "line": 526,
             "description": "Sets the width of the chart bounding box.",
             "itemtype": "method",
             "name": "setWidth",
@@ -752,7 +799,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 541,
+            "line": 549,
             "description": "Sets the height of the chart bounding box.",
             "itemtype": "method",
             "name": "setHeight",
@@ -777,7 +824,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 565,
+            "line": 573,
             "description": "Sets the title for the chart, including all its attributes.",
             "itemtype": "method",
             "name": "setTitle",
@@ -828,7 +875,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 626,
+            "line": 634,
             "description": "Insert new data into the chart, at runtime;",
             "itemtype": "method",
             "name": "addLegend",
@@ -852,7 +899,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 674,
+            "line": 682,
             "description": "Insert new data into the chart, at runtime;",
             "itemtype": "method",
             "name": "appendData",
@@ -876,7 +923,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 750,
+            "line": 758,
             "description": "Change the data formatting function, allowing to pass a custom handler\n                            to cope with JSON or other data formats.",
             "itemtype": "method",
             "name": "setFormatValueFunction",
@@ -901,7 +948,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 776,
+            "line": 784,
             "description": "Remove all the data, or part of it, from the chart;",
             "itemtype": "method",
             "name": "clearData",
@@ -928,7 +975,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 816,
+            "line": 824,
             "description": "Toggles the visibility of labels in the chart",
             "itemtype": "method",
             "name": "toggleLabels",
@@ -960,7 +1007,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 847,
+            "line": 855,
             "description": "Checks if labels for the index-th dimension are visible",
             "itemtype": "method",
             "name": "areLabelsVisible",
@@ -985,7 +1032,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 869,
+            "line": 877,
             "description": "Sets scaling to global<br>\n                                    <br>\n                                    When data space has a dimension greater than 1 (i.e. when each data value has more than 1 component)\n                                    these charts support either global scaling (relative to the whole dataset)\n                                    or local scaling (relative to value of the same component) of each subcomponent.",
             "itemtype": "method",
             "name": "setGlobalScaling",
@@ -999,7 +1046,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 893,
+            "line": 901,
             "description": "Sets scaling to local<br>\n                                    <br>\n                                    When data space has a dimension greater than 1 (i.e. when each data value has more than 1 component)\n                                    these charts support either global scaling (relative to the whole dataset)\n                                    or local scaling (relative to value of the same component) of each subcomponent.",
             "itemtype": "method",
             "name": "setLocalScaling",
@@ -1013,7 +1060,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 917,
+            "line": 925,
             "description": "Gets the fill color used to draw the index-th component of the data space.",
             "itemtype": "method",
             "name": "getFillColor",
@@ -1039,7 +1086,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 940,
+            "line": 948,
             "description": "Gets the stroke color used to draw the index-th component of the data space.",
             "itemtype": "method",
             "name": "getStrokeColor",
@@ -1064,7 +1111,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 962,
+            "line": 970,
             "description": "Gets the fill color used for the labels attached to the index-th component of the data space.",
             "itemtype": "method",
             "name": "getLabelColor",
@@ -1089,7 +1136,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 983,
+            "line": 991,
             "description": "Gets the size used for the labels attached to the index-th component of the data space.",
             "itemtype": "method",
             "name": "getLabelsSize",
@@ -1114,7 +1161,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1005,
+            "line": 1013,
             "description": "Sets the fill color used to draw the index-th component of the data space.",
             "itemtype": "method",
             "name": "setFillColor",
@@ -1144,7 +1191,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1036,
+            "line": 1044,
             "description": "Sets the stroke color used to draw the index-th component of the data space.",
             "itemtype": "method",
             "name": "setStrokeColor",
@@ -1175,7 +1222,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1063,
+            "line": 1071,
             "description": "Sets the fill color used for the labels attached to the index-th component of the data space.",
             "itemtype": "method",
             "name": "setLabelColor",
@@ -1206,7 +1253,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1095,
+            "line": 1103,
             "description": "Sets the size used for the labels attached to the index-th component of the data space.",
             "itemtype": "method",
             "name": "setLabelSize",
@@ -1237,7 +1284,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1129,
+            "line": 1137,
             "description": "Sets the bars width property;\n                                For this chart, bar width is computed at runtime according to the number of bars plotted,\n                                so this property can't be set.<br>\n                                <b>Unless overridden, any call to this method will cause an exception to be thrown</b><br>\n                                This method is declared to improve the consistency of the interface.",
             "itemtype": "method",
             "name": "setBarWidth",
@@ -1249,7 +1296,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1143,
+            "line": 1151,
             "description": "Gets the current bar width for this chart;\n                                For this chart, bar width is computed at runtime according to the number of bars plotted;",
             "itemtype": "method",
             "name": "getBarWidth",
@@ -1274,7 +1321,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1170,
+            "line": 1178,
             "description": "Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.<br>\n                            <br>\n                            <b>WARNING</b>: calling destroy on an object will force any further reference \n                                            to its attributes / methods to throw exceptions.<br>\n                            <br>\n                            <b>NOTE</b>:   This function should be override by any class inheriting from this chart.<br>\n                                           In order to properly work, any overriding destroyer should:\n                                            <ol>\n                                                <li> Free any array specific to the object on which is called;</li>\n                                                <li> Remove any event listener on chart objects;</li>\n                                                <li> Call super object's destroy method.</li>\n                                            </ol>",
             "itemtype": "method",
             "name": "destroy",
@@ -1287,7 +1334,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1218,
+            "line": 1226,
             "description": "Utility function to take account of the number of points currently added to the chart",
             "itemtype": "method",
             "name": "__getDatasetLength__",
@@ -1302,7 +1349,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1236,
+            "line": 1244,
             "description": "Checks that new data can be added to the chart (if the chart can represent only a limited number of points);<br>\n                                    <br>\n                                    <b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class\n                                    in order to handle differents needs",
             "itemtype": "method",
             "name": "__canAppendData__",
@@ -1324,7 +1371,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1264,
+            "line": 1272,
             "description": "Checks that the value passed corresponds to the data format allowed for the current chart;\n                                    This function can be overriden in any class inheriting from the base class\n                                    in order to handle differents data formats (i.e. Objects or JSON).",
             "itemtype": "method",
             "name": "__formatValue__",
@@ -1346,7 +1393,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1306,
+            "line": 1314,
             "description": "Returns the list of the svg elements used to represent data subcomponents\n                                    with the required index.<br>\n                                    I.e.:   if data space is 3-dimensional (i.e. every point has 3 components)\n                                            __selectData__(data, 2) would select the svg elements representing\n                                            the 2nd component of every point in data",
             "itemtype": "method",
             "name": "__selectData__",
@@ -1379,7 +1426,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1340,
+            "line": 1348,
             "description": "Returns the list of the svg elements used to draw the labels of\n                                    subcomponents of data with the required index.<br>\n                                    I.e.:   if data space is 3-dimensional (i.e. every point has 3 components)\n                                            __selectLabels__(data, 3) would select the svg elements representing\n                                            the labels of the 3nd component of every point in data",
             "itemtype": "method",
             "name": "__selectLabels__",
@@ -1412,7 +1459,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1376,
+            "line": 1384,
             "description": "Called by appendData() to draw the newly added points in dataSet, once for\n                                    every data subcomponent.<br>\n                                    <br>\n                                    <b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                this method and __updateDrawing__ in order to obtain a custom chart.",
             "itemtype": "method",
             "name": "__drawNewData__",
@@ -1454,7 +1501,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1447,
+            "line": 1455,
             "description": "Called by appendData() to update drawing of the points in dataSet, once for\n                                    every data subcomponent.<br>\n                                    After new data is inserted by __drawNewData__, appendData performs adjustments\n                                    to accomodate for scale change or shift in the drawing due to time, and this\n                                    function takes care of updating and fixing the chart representation.<br>\n                                    <br>\n                                    <b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                        this method and __drawNewData__ in order to obtain a custom chart.",
             "itemtype": "method",
             "name": "__updateDrawing__",
@@ -1496,7 +1543,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1510,
+            "line": 1518,
             "description": "Takes care of the remaining details related to the removal of part of the values from the chart,\n                                    based on to the particular chart needs.<br>\n                                    <br>\n                                    <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function.",
             "itemtype": "method",
             "name": "__onClearData__",
@@ -1519,7 +1566,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1535,
+            "line": 1543,
             "description": "Removes the svg objects related to the data cleared by the caller (clearData).",
             "itemtype": "method",
             "name": "__clearDrawing__",
@@ -1546,7 +1593,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1561,
+            "line": 1569,
             "description": "Computes and return the suggested value for the opacity of the bar\n                                drawn to represent a certain value.",
             "itemtype": "method",
             "name": "__getBarOpacity__",
@@ -1568,8 +1615,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1585,
-            "description": "Basic bar histogram chart.\n            Values are represented using vertical bars;\n            Each point or value can have up to 10 subcomponents, where each component can be \n            any non-nregative real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).",
+            "line": 1593,
             "itemtype": "method",
             "name": "BasicBarChart",
             "chainable": 1,
@@ -1617,7 +1663,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1618,
+            "line": 1621,
             "access": "private",
             "tagname": "[Private method]\n\nInits the chart DIV and SVG container, setting width and height, if they are passed as arguments;",
             "params": [
@@ -1648,7 +1694,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1653,
+            "line": 1656,
             "description": "Performs all the settings related to the data handling area of the chart;",
             "itemtype": "method",
             "name": "__initData__",
@@ -1682,7 +1728,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1684,
+            "line": 1687,
             "description": "Dimension of the data space, \ni.e. number of subcomponents of each data \"point\"",
             "itemtype": "property",
             "name": "__dataDim__",
@@ -1695,7 +1741,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1699,
+            "line": 1702,
             "description": "The array that will hold data, separately for each component\nInitially every component's array is set to []",
             "itemtype": "property",
             "name": "__data__",
@@ -1708,7 +1754,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1713,
+            "line": 1716,
             "description": "Array of maximum values for each component\n(used to compute the vertical scale)<br>",
             "itemtype": "property",
             "name": "__maxVals__",
@@ -1722,7 +1768,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1753,
+            "line": 1756,
             "description": "The parent object to whom the chart is added",
             "itemtype": "property",
             "name": "__parent__",
@@ -1735,7 +1781,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1767,
+            "line": 1770,
             "description": "The div element that will be a container to the chart's svg element",
             "itemtype": "property",
             "name": "__divElement__",
@@ -1748,7 +1794,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1781,
+            "line": 1784,
             "description": "The chart's svg element",
             "itemtype": "property",
             "name": "__svgElement__",
@@ -1761,7 +1807,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1795,
+            "line": 1798,
             "description": "Scale object for the horizontal axis of the chart \n(common to all data subcomponents)",
             "itemtype": "property",
             "name": "__xScale__",
@@ -1774,7 +1820,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1810,
+            "line": 1813,
             "description": "Scale objects for the vertical axis of the chart \n(array with one obj for each data subcomponents,\n so that each component can be scaled independently)",
             "itemtype": "property",
             "name": "__yScale__",
@@ -1787,12 +1833,11 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1825,
+            "line": 1828,
             "description": "For data space with dimension gt 1, states\nif the different components should scale locally or globally",
             "itemtype": "property",
             "name": "__scaleGlobally__",
             "type": "{Boolean}",
-            "readonly": "",
             "access": "protected",
             "tagname": "",
             "default": "true",
@@ -1801,7 +1846,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1841,
+            "line": 1843,
             "description": "For each data subcomponent, stores the size to be used\nfor its label",
             "itemtype": "property",
             "name": "__labelsSize__",
@@ -1815,7 +1860,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1856,
+            "line": 1858,
             "description": "For each data subcomponent, states whether or not\nits label is visible",
             "itemtype": "property",
             "name": "__labelsVisible__",
@@ -1829,7 +1874,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1872,
+            "line": 1874,
             "description": "For each data subcomponent, stores the color to be used\nto fill its drawing component",
             "itemtype": "property",
             "name": "__labelsVisible__",
@@ -1842,7 +1887,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1887,
+            "line": 1889,
             "description": "For each data subcomponent, stores the color to be used\nfor the stroke of its drawing component",
             "itemtype": "property",
             "name": "__strokeColors__",
@@ -1856,7 +1901,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1902,
+            "line": 1904,
             "description": "For each data subcomponent, stores the color to be used\nto draw its labels",
             "itemtype": "property",
             "name": "__labelColors__",
@@ -1870,12 +1915,11 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1918,
+            "line": 1920,
             "description": "Placeholder for a possible legend object, if the consumer\ndecides to add a legend to the chart;",
             "itemtype": "property",
             "name": "__legend__",
             "type": "{Object}",
-            "readonly": "",
             "access": "protected",
             "tagname": "",
             "default": "null",
@@ -1884,8 +1928,8 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1945,
-            "description": "Advanced Chart: FixedWidthBarChart\n            Inherits from BasicBarChart redefining the drawing methods.\n            As for its super class values are represented using vertical bars, and each point \n            can have up to 10 subcomponents, where each component can be any non-negative \n            real number (i.e., each point can be in R_+^i, for 1 <= i <= 10).\nFor this chart the bar width is fixed (although can be set at run time)\n            It is possible to choose between having only a fixed number of values accepted,\n            or if a certain number of the oldest values should be removed when the\n            chart is full.",
+            "line": 1958,
+            "description": "FixedWidthBarChart (pseudo)Constructor",
             "itemtype": "method",
             "name": "FixedWidthBarChart",
             "params": [
@@ -1943,49 +1987,74 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 1999,
-            "description": "drawn at the same time in this chart",
+            "line": 2003,
+            "description": "Number of different values that can be \ndrawn at the same time in this chart",
+            "itemtype": "property",
+            "name": "__ticks__",
+            "type": "{Number}",
+            "readonly": "",
+            "access": "protected",
+            "tagname": "",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2008,
-            "description": "[Defaults to 1]",
+            "line": 2017,
+            "description": "Tick length, in minutes",
+            "itemtype": "property",
+            "name": "__tickLength__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "default": "1",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2018,
-            "description": "new plots would override previous ones.\nTwo solutions are made available:\n1)  By default, new data is rejected, generating a full stack exception;\n2)  A certain number of the oldest data points can be purged off the chart,\n    counter-clockwise rotating the data",
+            "line": 2031,
+            "description": "When __ticks__ data points have already been plotted,\nnew plots would override previous ones.\nTwo solutions are made available:\n1)  By default, new data is rejected, generating a full stack exception;\n2)  A certain number of the oldest data points can be purged off the chart,\n    counter-clockwise rotating the data.",
+            "itemtype": "property",
+            "name": "__ticksToRemoveOnFullQueue__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "default": "0",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2034,
-            "description": "Sets fixed data length mode.\n                                                \n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.\n                                                Two solutions are made available:\n                                                1)  By default, new data is rejected, generating a full stack exception;\n                                                2)  A certain number of the oldest data points can be purged off the chart,\n                                                    counter-clockwise rotating the data\n                                                    \n                                                This function sets the first option.",
+            "line": 2053,
+            "description": "Sets fixed data length mode.<br>\n                                                <br>\n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.<br>\n                                                Two solutions are made available:\n                                                <ol>\n                                                    <li>  By default, new data is rejected, generating a full stack exception;</li>\n                                                    <li>  A certain number of the oldest data points can be purged off the chart,\n                                                        counter-clockwise rotating the data;</li>\n                                                </ol>\n                                                <br>    \n                                                This function sets the first option.",
+            "itemtype": "method",
+            "name": "setFixedDataLengthMode",
             "chainable": 1,
             "return": {
-                "description": ":    This chart object, to allow for methd chaining."
+                "description": "This chart object, to allow for methd chaining.",
+                "type": "Object"
             },
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2069,
-            "description": "Sets data shift mode.\n                                                \n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.\n                                                Two solutions are made available:\n                                                1)  By default, new data is rejected, generating a full stack exception;\n                                                2)  A certain number of the oldest data points can be purged off the chart,\n                                                    shifting back (left) the remaining data.\n                                                    \n                                                This function sets the second option.",
+            "line": 2091,
+            "description": "Sets data shift mode.<br>\n                                                <br>\n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.<br>\n                                                Two solutions are made available:\n                                                <ol>\n                                                    <li>  By default, new data is rejected, generating a full stack exception;</li>\n                                                    <li>  A certain number of the oldest data points can be purged off the chart,\n                                                        counter-clockwise rotating the data;</li>\n                                                </ol>\n                                                <br>\n                                                This function sets the second option.",
+            "itemtype": "method",
+            "name": "setShifitingDataMode",
             "chainable": 1,
             "params": [
                 {
-                    "name": "ticksToRemove:",
-                    "description": "[Mandatory]\n                                                                      How much data to remove on full chart;"
+                    "name": "ticksToRemove",
+                    "description": "[Mandatory]\n                                                                              How much data to remove on full chart;",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    This object, to allow for method chaining;"
+                "description": "This object, to allow for method chaining;",
+                "type": "Object"
             },
             "throws": [
                 "Illegal Argument Exception",
@@ -1996,374 +2065,574 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2110,
+            "line": 2136,
             "description": "Returns current bars' width.\n                                                The overridden version takes a parameter, but this method\n                                                doesn't need it because barWidth is fixed for this chart.",
+            "itemtype": "method",
+            "name": "getBarWidth",
             "return": {
-                "description": ": the value set for __barWidth__;"
+                "description": "the value set for __barWidth__.",
+                "type": "Number"
             },
-            "override": ":  basicBarChartSharedPrototype.getBarWidth",
+            "override": "basicBarChartSharedPrototype.getBarWidth",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2127,
+            "line": 2154,
+            "description": "<b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class\n                                                            in order to handle differents needs.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__canAppendData__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class\n         in order to handle differents needs",
-            "override": ":  basicBarChartSharedPrototype.__canAppendData__",
+            "tagname": "",
+            "override": "basicBarChartSharedPrototype.__canAppendData__",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2171,
+            "line": 2199,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                               this method and __updateDrawing__ in order to obtain a custom chart.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__drawNewData__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n                                               \n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __updateDrawing__ in order to obtain a custom chart.",
+            "tagname": "",
             "override": ":   basicBarChartSharedPrototype.__drawNewData__",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2216,
+            "line": 2246,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                               this method and __drawNewData__ in order to obtain a custom chart.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__updateDrawing__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __drawNewData__ in order to obtain a custom chart.",
-            "override": ":  basicBarChartSharedPrototype.__updateDrawing__",
+            "tagname": "",
+            "override": "basicBarChartSharedPrototype.__updateDrawing__",
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2251,
+            "line": 2282,
+            "description": "Inits the chart by computing the allowed barWidth;",
+            "itemtype": "method",
+            "name": "__init__",
             "access": "private",
-            "tagname": "[Private method, not visible to consumers]\n\nInits the chart by computing the allowed barWidth;",
+            "tagname": "",
             "params": [
                 {
-                    "name": "chart:",
-                    "description": "[Mandatory]\n                The chart object that needs initialization;"
+                    "name": "chart",
+                    "description": "[Mandatory]\n                                        The chart object that needs initialization;",
+                    "type": "Object"
                 },
                 {
-                    "name": "width:",
-                    "description": "[Mandatory]\n                Chart's width;"
+                    "name": "width",
+                    "description": "[Mandatory]\n                                        Chart's width;",
+                    "type": "Number"
                 },
                 {
-                    "name": "height:",
-                    "description": "[Mandatory]\n                Chart's height;"
+                    "name": "height",
+                    "description": "[Mandatory]\n                                        Chart's height;",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ": Nothing"
+                "description": "",
+                "type": "Undefined"
             },
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2271,
+            "line": 2302,
             "class": "FixedWidthBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2288,
-            "extends": "{FixedWidthBarChart}\n\nAdvanced Chart: SlidingBarChart\nInherits from FixedWidthBarChart redefining the drawing methods.\nAs for its super class values are represented using vertical bars, and each point \ncan have up to 10 subcomponents, where each component can be any non-negative \nreal number (i.e., each point can be in R_+^i, for 1 <= i <= 10).\n\nFor this chart the bar width is fixed (although can be set at run time)\nIt is possible to choose between having only a fixed number of values accepted,\nor if a certain number of the oldest values should be removed when the\nchart is full.\n\nEvery __ticksBetweenHighlights__ values inserted (where __ticksBetweenHighlights__ can \nbe set at runtime, although it defaults to 10) the background of those values is highlighted, \nto stress out time progression.",
+            "line": 2340,
+            "description": "SlidingBarChart (pseudo)Constructor.",
+            "itemtype": "method",
+            "name": "SlidingBarChart",
             "params": [
                 {
                     "name": "ticks",
-                    "description": "[Mandatory]\n                The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                            The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "width",
-                    "description": "[Mandatory]\n                The desired width for the chart (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                            The desired width for the chart (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "height",
-                    "description": "[Mandatory]\n                The desired height for the chart (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                            The desired height for the chart (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "dataDim",
-                    "description": "[Optional]\n                The dimension of the data space, i.e. the number of subvalues for each data entry<br>\n                Can be any value that is or can be converted to an integer between 1 and MAX_SPACE_DIMENSION.",
+                    "description": "[Optional]\n                            The dimension of the data space, i.e. the number of subvalues for each data entry<br>\n                            Can be any value that is or can be converted to an integer between 1 and MAX_SPACE_DIMENSION.",
                     "type": "Number",
                     "optional": true,
                     "optdefault": "1"
                 },
                 {
                     "name": "parent",
-                    "description": "[Optional]\n                The DOM element to which the diagram should be appended as a child",
+                    "description": "[Optional]\n                            The DOM element to which the diagram should be appended as a child",
                     "type": "Object",
                     "optional": true,
                     "optdefault": "body"
                 }
             ],
             "return": {
-                "description": "A new SlidingBarChart object",
+                "description": "A new SlidingBarChart object.",
                 "type": "Object"
             },
             "throws": [
                 "-   Illegal Argument Exception",
-                "if ticks isn't a positive integer\n                    -   Wrong number of arguments Exception",
-                "if width or height are not passed as arguments (directly)\n                    -   Illegal Argument Exception",
+                "if ticks isn't a positive integer\n                                -   Wrong number of arguments Exception",
+                "if width or height are not passed as arguments (directly)\n                                -   Illegal Argument Exception",
                 "if width or height aren't valid (numeric",
-                "positive) values \n                        (through setWidth or setHeight)\n                    -   Illegal Argument Exception",
-                "if dataDim is passed but it's invalid (not numeric or not positive)\n                    -   Exception",
-                "if dataDim exceeds the maximum data dimension\n                    -   Exception",
-                "if the ratio between chart's width and number of ticks is such\n                        that the computed bar height is smaller than 1 pixel\n                    -   Exception",
+                "positive) values \n                                    (through setWidth or setHeight)\n                                -   Illegal Argument Exception",
+                "if dataDim is passed but it's invalid (not numeric or not positive)\n                                -   Exception",
+                "if dataDim exceeds the maximum data dimension\n                                -   Exception",
+                "if the ratio between chart's width and number of ticks is such\n                                    that the computed bar height is smaller than 1 pixel\n                                -   Exception",
                 "if parent is passed but it is not a valid DOM element"
             ],
-            "class": "FixedWidthBarChart",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2348,
-            "description": "the chart from its creation (to synch the highlighted ticks)",
-            "class": "FixedWidthBarChart",
+            "line": 2378,
+            "description": "Default background color (not highlighted)",
+            "itemtype": "property",
+            "name": "DEFAULT_BACKGROUND",
+            "type": "{String|Object}",
+            "default": "= \"lightgrey\"",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2358,
-            "description": "Every __ticksBetweenHighlights__ ticks, the data is \"higlighted\"\nby applying the selected highlight style to the background\n[Defaults to 10]",
-            "class": "FixedWidthBarChart",
+            "line": 2388,
+            "description": "Default highlight color for background",
+            "itemtype": "property",
+            "name": "DEFAULT_BACKGROUND_HIGHLIGHT",
+            "type": "{String|Object}",
+            "default": "= \"lightpink\"",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2370,
-            "description": "Returns the number of ticks between two consecutive highlights (one extreme inclusive)",
-            "return": {
-                "description": ":    The number of ticks between two consecutive highlights;"
-            },
-            "class": "FixedWidthBarChart",
+            "line": 2398,
+            "description": "Default size of axes' labels lext",
+            "itemtype": "property",
+            "name": "AXES_LABEL_SIZE",
+            "type": "{Number}",
+            "default": "= 14",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2384,
-            "description": "Sets the number of ticks between two consecutive highlights (one extreme inclusive)",
-            "chainable": 1,
-            "params": [
-                {
-                    "name": "ticks:",
-                    "description": "[Mandatory]\n                                                                The number of ticks between two consecutive highlights;"
-                }
-            ],
-            "return": {
-                "description": ":    This object, to allow for method chaining;"
-            },
-            "class": "FixedWidthBarChart",
+            "line": 2408,
+            "description": "Default width of axes' labels",
+            "itemtype": "property",
+            "name": "AXES_LABEL_WIDTH",
+            "type": "{Number}",
+            "default": "= 50",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2411,
-            "description": "Defaults to DEFAULT_BACKGROUND (\"lightgrey\")",
-            "class": "FixedWidthBarChart",
+            "line": 2418,
+            "description": "Default margin for chart's axes",
+            "itemtype": "property",
+            "name": "AXES_LABEL_MARGIN",
+            "type": "{Number}",
+            "default": "= 5",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2422,
-            "description": "Defaults to DEFAULT_BACKGROUND_HIGHLIGHT (\"lightpink\")",
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2433,
-            "description": "Changes the background color (not highlighted points)",
-            "chainable": 1,
-            "params": [
-                {
-                    "name": "bgColor:",
-                    "description": "[Mandatory]\n                                                                The new color for background bars;"
-                }
-            ],
-            "return": {
-                "description": ":    This object, to allow for method chaining;"
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2462,
-            "description": "Returns current background bars' color",
-            "return": {
-                "description": ": the value set for __backgroundColor__;"
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2477,
-            "chainable": 1,
-            "params": [
-                {
-                    "name": "bgHColor:",
-                    "description": "[Mandatory]\n                                                                The new color for highlighted background bars;"
-                }
-            ],
-            "return": {
-                "description": ":    This object, to allow for method chaining;"
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2504,
-            "return": {
-                "description": ": the value set for __backgroundHighlightColor__;"
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2517,
-            "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class\n         in order to handle differents needs",
-            "override": ":  fixedWidthBarChart.__canAppendData__",
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2563,
-            "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\nReturns the list of the svg elements used to draw background; \nElements can be filtered using a custom filter passad as an optional\nparameter;",
-            "params": [
-                {
-                    "name": "filter:",
-                    "description": "[Optional]\n                A filter to be applied to the selection;"
-                }
-            ],
-            "return": {
-                "description": ":    The proper set of d3 elements."
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2588,
-            "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\nCalled by __drawNewData__() to redraw the background properly\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method as well as __drawNewData__ and __updateDrawing__ \n            in order to obtain a custom chart.",
-            "return": {
-                "description": ":    Nothing."
-            },
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2624,
+            "line": 2432,
+            "description": "Takes track of how much data has been actually inserted into\nthe chart from its creation (to synch the highlighted ticks).",
+            "itemtype": "property",
+            "name": "__dataCounter__",
+            "type": "{Number}",
             "access": "protected",
             "tagname": "",
-            "chainable": "[Protected method, not supposed to be used by consumers]\n\nCalled by __updateDrawing__() to update the labels of the vertical axe\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method as well as __drawNewData__ and __updateDrawing__ \n            in order to obtain a custom chart.",
-            "params": [
-                {
-                    "name": "yScale:",
-                    "description": "[Mandatory]\n                D3 scale object for Y axis;"
-                }
-            ],
-            "return": {
-                "description": ":    The current chart object, to allow for method chaining."
-            },
-            "class": "FixedWidthBarChart",
+            "default": "0",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2674,
+            "line": 2448,
+            "description": "Every __ticksBetweenHighlights__ ticks, the data is \"higlighted\"\nby applying the selected highlight style to the background.",
+            "itemtype": "property",
+            "name": "__ticksBetweenHighlights__",
+            "type": "{Number}",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __updateDrawing__ in order to obtain a custom chart.",
-            "override": ":   fixedWidthBarChart.__drawNewData__",
-            "class": "FixedWidthBarChart",
+            "tagname": "",
+            "default": "10",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2727,
-            "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __drawNewData__ in order to obtain a custom chart.",
-            "override": ":  fixedWidthBarChart.__updateDrawing__",
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2771,
-            "access": "private",
-            "tagname": "[Private method, not visible to consumers]\n\nInits the chart;",
-            "params": [
-                {
-                    "name": "chart:",
-                    "description": "[Mandatory]\n                The chart object that needs initialization;"
-                },
-                {
-                    "name": "width:",
-                    "description": "[Mandatory]\n                Chart's width;"
-                },
-                {
-                    "name": "height:",
-                    "description": "[Mandatory]\n                Chart's height;"
-                }
-            ],
+            "line": 2465,
+            "description": "Returns the number of ticks between two consecutive highlights (one extreme inclusive)",
+            "itemtype": "method",
+            "name": "getTicksBetweenHighlights",
             "return": {
-                "description": ": This chart object (see how it's called)"
+                "description": "The number of ticks between two consecutive highlights;",
+                "type": "Number"
             },
-            "override": ":  fixedWidthBarChart.__init__",
-            "class": "FixedWidthBarChart",
+            "class": "SlidingBarChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2800,
-            "override": ":  fixedWidthBarChart.__barWidth__",
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 2864,
-            "extends": "FixedWidthBarChart\n\nAdvanced Chart: TimeWheelChart\nInherits from BasicBarChart redefining the drawing methods.\n\nData is represented as bars drawn around a time wheel.\n\nIt is possible to choose between having only a fixed number of values accepted,\nor if a certain number of the oldest values should be removed when the\nchart is full.",
+            "line": 2481,
+            "description": "Sets the number of ticks between two consecutive highlights (one extreme inclusive)",
+            "itemtype": "method",
+            "name": "setTicksBetweenHighlights",
+            "chainable": 1,
             "params": [
                 {
                     "name": "ticks",
-                    "description": "[Mandatory]\n                The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                                                                        The number of ticks between two consecutive highlights;",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "This object, to allow for method chaining;",
+                "type": "Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2509,
+            "description": "Color of the background bars",
+            "itemtype": "property",
+            "name": "__backgroundColor__",
+            "type": "{String|Object}",
+            "access": "protected",
+            "tagname": "",
+            "default": "DEFAULT_BACKGROUND",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2525,
+            "description": "Color of the background bars when highlighted",
+            "itemtype": "property",
+            "name": "__backgroundHighlightColor__",
+            "type": "{String|Object}",
+            "access": "protected",
+            "tagname": "",
+            "default": "DEFAULT_BACKGROUND_HIGHLIGHT",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2541,
+            "description": "Changes the background color (not highlighted points)",
+            "itemtype": "method",
+            "name": "setBackgroundColor",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "bgColor",
+                    "description": "[Mandatory]\n                                                                               The new color for background bars;",
+                    "type": "String|Object"
+                }
+            ],
+            "return": {
+                "description": "This object, to allow for method chaining.",
+                "type": "Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2571,
+            "description": "Returns current background bars' color",
+            "itemtype": "method",
+            "name": "getBackgroundColor",
+            "return": {
+                "description": "the value set for __backgroundColor__",
+                "type": "String|Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2587,
+            "description": "Changes the background color for \"highlighted\" values",
+            "itemtype": "method",
+            "name": "setBackgroundHighlightColor",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "bgHColor",
+                    "description": "[Mandatory]\n                                                                                The new color for highlighted background bars;",
+                    "type": "String|Object"
+                }
+            ],
+            "return": {
+                "description": "This object, to allow for method chaining.",
+                "type": "Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2617,
+            "description": "Returns current color for background highlighted bars",
+            "itemtype": "method",
+            "name": "getBackgroundHighlightColor",
+            "return": {
+                "description": "The value set for __backgroundHighlightColor__",
+                "type": "String|Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2634,
+            "description": "<b>WARNING</b>: This function SHOULD be overriden in any class inheriting from the base class\n                                                            in order to handle differents needs.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__canAppendData__",
+            "access": "protected",
+            "tagname": "",
+            "override": "fixedWidthBarChart.__canAppendData__",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2681,
+            "description": "Returns the list of the svg elements used to draw background; <br>\n                                                Elements can be filtered using a custom filter passad as an optional\n                                                parameter;",
+            "itemtype": "method",
+            "name": "__selectBackgroundBars__",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "filter",
+                    "description": "[Optional]\n                                                                                A filter to be applied to the selection;",
+                    "type": "String|Object"
+                }
+            ],
+            "return": {
+                "description": "The proper set of d3 elements.",
+                "type": "Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2706,
+            "description": "Called by __drawNewData__() to redraw the background properly;<br>\n                                            <br>\n                                            <b>WARNING</b>:    if you inherit from this class you might want to override\n                                                               this method as well as __drawNewData__ and __updateDrawing__ \n                                                               in order to obtain a custom chart.",
+            "itemtype": "method",
+            "name": "__updateBackground__",
+            "access": "protected",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2743,
+            "description": "Called by __updateDrawing__() to update the labels of the vertical axe\n                                            when vertical scale changes;<br>\n                                            <br>\n                                            <b>WARNING</b>:     if you inherit from this class you might want to override\n                                                                this method as well as __drawNewData__ and __updateDrawing__ \n                                                                in order to obtain a custom chart.",
+            "itemtype": "method",
+            "name": "__updateAxes__",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "yScale",
+                    "description": "[Mandatory]\n                                                                    D3 scale object for Y axis;",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The current chart object, to allow for method chaining.",
+                "type": "Object"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2793,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                               this method and __updateDrawing__ in order to obtain a custom chart.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__drawNewData__",
+            "access": "protected",
+            "tagname": "",
+            "override": "fixedWidthBarChart.__drawNewData__",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2848,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                               this method and __drawNewData__ in order to obtain a custom chart.<br>\n                                            See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__updateDrawing__",
+            "access": "protected",
+            "tagname": "",
+            "override": "fixedWidthBarChart.__updateDrawing__",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2893,
+            "description": "Inits the chart;",
+            "itemtype": "method",
+            "name": "__init__",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "chart",
+                    "description": "[Mandatory]\n                                        The chart object that needs initialization;",
+                    "type": "Object"
+                },
+                {
+                    "name": "width",
+                    "description": "[Mandatory]\n                                        Chart's width;",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "[Mandatory]\n                                        Chart's height;",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2920,
+            "description": "The width of each bar;",
+            "itemtype": "property",
+            "name": "__barWidth__",
+            "type": "{Number}",
+            "readonly": "",
+            "access": "protected",
+            "tagname": "",
+            "override": "FixedWidthBarChart.__barWidth__",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2935,
+            "description": "The horizontal position of chart's vertical axe;",
+            "itemtype": "property",
+            "name": "__axeLeft__",
+            "type": "{Number}",
+            "readonly": "",
+            "access": "protected",
+            "tagname": "",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 2965,
+            "description": "The svg Object grouping all the vertical axe related drawings;",
+            "itemtype": "property",
+            "name": "__axeArea__",
+            "type": "{Object}",
+            "readonly": "",
+            "access": "protected",
+            "tagname": "",
+            "class": "SlidingBarChart",
+            "module": "DynamicChart"
+        },
+        {
+            "file": "dynamic_chart.js",
+            "line": 3022,
+            "description": "TimeWheelChart (pseudo)Constructor.",
+            "params": [
+                {
+                    "name": "ticks",
+                    "description": "[Mandatory]\n                            The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "startTime",
-                    "description": "[Mandatory]\n                The reference for the label of the first point.<br>\n                Should be an incrementable value.",
+                    "description": "[Mandatory]\n                            The reference for the label of the first point.<br>\n                            Should be an incrementable value.",
                     "type": "String"
                 },
                 {
                     "name": "width",
-                    "description": "[Mandatory]\n                The desired width for the chart (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                            The desired width for the chart (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "height!~YUIDOC_LINE~!",
-                    "description": "[Mandatory]\n                The desired height for the chart (<b>can't be changed later</b>)<br>\n                Can be any value that is or can be converted to a positive integer.",
+                    "description": "[Mandatory]\n                            The desired height for the chart (<b>can't be changed later</b>)<br>\n                            Can be any value that is or can be converted to a positive integer.",
                     "type": "Number"
                 },
                 {
                     "name": "dataDim",
-                    "description": "[Optional]\n                The dimension of the data space, i.e. the number of subvalues for each data entry;<br>\n                Can be any value that is or can be converted to an integer between 1 and MAX_SPACE_DIMENSION.",
+                    "description": "[Optional]\n                            The dimension of the data space, i.e. the number of subvalues for each data entry;<br>\n                            Can be any value that is or can be converted to an integer between 1 and MAX_SPACE_DIMENSION.",
                     "type": "Number",
                     "optional": true,
                     "optdefault": "1"
                 },
                 {
                     "name": "parent",
-                    "description": "[Optional]\n                The DOM element to which the diagram should be appended as a child",
+                    "description": "[Optional]\n                            The DOM element to which the diagram should be appended as a child",
                     "type": "Object",
                     "optional": true,
                     "optdefault": "body"
@@ -2375,288 +2644,413 @@
             },
             "throws": [
                 "-   Illegal Argument Exception",
-                "if ticks isn't a positive integer\n                    -   Wrong number of arguments Exception",
-                "if width or height are not passed as arguments (directly)\n                    -   Illegal Argument Exception",
+                "if ticks isn't a positive integer\n                                -   Wrong number of arguments Exception",
+                "if width or height are not passed as arguments (directly)\n                                -   Illegal Argument Exception",
                 "if width or height aren't valid (numeric",
-                "positive) values \n                        (through setWidth or setHeight)\n                    -   Illegal Argument Exception",
-                "if dataDim is passed but it's invalid (not numeric or not positive)\n                    -   Exception",
-                "if dataDim exceeds the maximum data dimension\n                    -   Exception",
+                "positive) values \n                                    (through setWidth or setHeight)\n                                -   Illegal Argument Exception",
+                "if dataDim is passed but it's invalid (not numeric or not positive)\n                                -   Exception",
+                "if dataDim exceeds the maximum data dimension\n                                -   Exception",
                 "if parent is passed but it is not a valid DOM element"
             ],
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2916,
-            "class": "FixedWidthBarChart",
+            "line": 3066,
+            "description": "Label stating the time corresponding to the first tick;",
+            "itemtype": "property",
+            "name": "__startTime__",
+            "type": "{String}",
+            "access": "protected",
+            "tagname": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2925,
-            "class": "FixedWidthBarChart",
+            "line": 3079,
+            "description": "Size in points of the static labels showing time references on the wheel;",
+            "itemtype": "property",
+            "name": "__startTime__",
+            "type": "{String}",
+            "access": "protected",
+            "tagname": "",
+            "default": "data labels' size",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2935,
-            "description": "Sets the size of the labels used for the wheel",
+            "line": 3094,
+            "description": "Sets the size of the labels used for the wheel.",
+            "itemtype": "method",
+            "name": "setTimeWheelLabelsSize",
             "chainable": 1,
             "params": [
                 {
-                    "name": "size:",
-                    "description": "[Mandatory]\n                                                                The new size for the labels (must be an integer gt zero);"
+                    "name": "size",
+                    "description": "[Mandatory]\n                                                                        The new size for the labels (must be an integer gt zero);",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    This chart object, to allow for method chaining;"
+                "description": "This chart object, to allow for method chaining;",
+                "type": "Object"
             },
             "throws": [
                 "- Illegal Argument Exception",
                 "if the argument is not valid (see above)."
             ],
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2968,
-            "class": "FixedWidthBarChart",
+            "line": 3128,
+            "description": "Color used for the static part of the wheel",
+            "itemtype": "property",
+            "name": "__startTime__",
+            "type": "{String|Object}",
+            "access": "protected",
+            "tagname": "",
+            "default": "\"lightgrey\"",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 2978,
-            "description": "Sets the color used for the static part of the wheel's drawing, \n                                                i.e. for labels and lines representing time ticks \n                                                of the time wheel",
+            "line": 3143,
+            "description": "Sets the color used for the static part of the wheel's drawing, \n                                                i.e. for labels and lines representing time ticks \n                                                of the time wheel.",
+            "itemtype": "method",
+            "name": "setTimeWheelForeColor",
             "chainable": 1,
             "params": [
                 {
-                    "name": "color:",
-                    "description": "[Mandatory]\n                                                                The new forecolor for the wheel;"
+                    "name": "color",
+                    "description": "[Mandatory]\n                                                                                The new forecolor for the wheel;",
+                    "type": "String|Object"
                 }
             ],
             "return": {
-                "description": ":    This chart object, to allow for method chaining;"
+                "description": "This chart object, to allow for method chaining;",
+                "type": "Object"
             },
             "throws": [
                 "- Illegal Argument Exception",
                 "if color isn't passed or is null."
             ],
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3014,
+            "line": 3180,
+            "description": "Checks whether or not the labels showing time references on the wheel\n                                                should be drawn",
+            "itemtype": "method",
+            "name": "__timeLabelsVisible__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\nChecks whether or not the labels showing time references on the wheel\nshould be drawn",
-            "class": "FixedWidthBarChart",
+            "tagname": "",
+            "return": {
+                "description": "True <=> the time reference labels are visible.",
+                "type": "Boolean"
+            },
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3030,
-            "description": "Sets the width of this chart's bars",
+            "line": 3199,
+            "description": "Sets the width of this chart's bars.",
+            "itemtype": "method",
+            "name": "setBarWidth",
             "chainable": 1,
             "params": [
                 {
-                    "name": "barWidth:",
-                    "description": "[Mandatory]\n                                                                 The new bar width to be set;\n                                                                 Can be a positive number or its base 10 string representation."
+                    "name": "barWidth",
+                    "description": "[Mandatory]\n                                                                 The new bar width to be set;<br>\n                                                                 MUST be a positive number or its base 10 string representation.",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    This object, to allow for method chaining;"
+                "description": "This object, to allow for method chaining;",
+                "type": "Object"
             },
             "throws": [
                 "Illegal Argument Exception",
                 "if the argument isn't valid (see above)."
             ],
-            "override": ":  basicBarChartSharedPrototype.setBarWidth",
-            "class": "FixedWidthBarChart",
+            "override": "BasicBarChart.setBarWidth",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3056,
+            "line": 3226,
             "description": "Sets the position of the center of the wheel.\n                                If it is valid and it is different from the current position,\n                                the drawing is moved to the new position",
+            "itemtype": "method",
+            "name": "setWheelCenter",
             "chainable": 1,
             "params": [
                 {
-                    "name": "cx,",
-                    "description": "cy:  [Mandatory]\n                                                x and y coordinates of the new center;"
+                    "name": "cx",
+                    "description": "[Mandatory]\n                                                   x coordinate of the new center;<br>\n                                                   Only non negative integers or values that can be converted \n                                                   to non negative integers are accepted;",
+                    "type": "Number"
+                },
+                {
+                    "name": "cy",
+                    "description": "[Mandatory]\n                                                   y coordinate of the new center;<br>\n                                                   Only non negative integers or values that can be converted \n                                                   to non negative integers are accepted;",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    This chart object, to allow for method chaining;"
+                "description": "This chart object, to allow for method chaining;",
+                "type": "Object"
             },
             "throws": [
                 "- Illegal Argument Exception",
                 "if cx or cy aren't valid."
             ],
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3086,
+            "line": 3263,
+            "description": "When the center of the time wheel is moved,\n                                it takes care of all the updates needed for the chart",
+            "itemtype": "method",
+            "name": "__moveWheelCenter__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\nWhen the center of the time wheel is moved,\nthen takes care of all the updates needed for the chart",
+            "tagname": "",
             "params": [
                 {
-                    "name": "cx,",
-                    "description": "cy:  [Mandatory]\n                The new center coordinates;"
+                    "name": "cx",
+                    "description": "[Mandatory]\n                                                   x coordinate of the new center;",
+                    "type": "Number"
+                },
+                {
+                    "name": "cy",
+                    "description": "[Mandatory]\n                                                   y coordinate of the new center;",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ":    Nothing."
+                "description": "",
+                "type": "Undefined"
             },
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3142,
+            "line": 3321,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                   this method and __updateDrawing__ in order to obtain a custom chart.<br>\n                                See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__drawNewData__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n                                               \n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __updateDrawing__ in order to obtain a custom chart.",
-            "override": ":   fixedWidthBarChart.__drawNewData__",
-            "class": "FixedWidthBarChart",
+            "tagname": "",
+            "override": "fixedWidthBarChart.__drawNewData__",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3204,
+            "line": 3384,
+            "description": "<b>WARNING</b>:    if you inherit from this class you might want to override both\n                                                   this method and __drawNewData__ in order to obtain a custom chart.<br>\n                                See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__updateDrawing__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>:    if you inherit from this class you might want to override both\n            this method and __drawNewData__ in order to obtain a custom chart.",
-            "override": ":  fixedWidthBarChart.__updateDrawing__",
-            "class": "FixedWidthBarChart",
+            "tagname": "",
+            "override": "fixedWidthBarChart.__updateDrawing__",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3248,
+            "line": 3429,
+            "description": "[Protected method, not supposed to be used by consumers]\n<b>WARNING</b>:    Inherited objects MIGHT NEED to override this function<br>\n                                                   See base class for method signature and details.",
+            "itemtype": "method",
+            "name": "__onClearData__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\n<b>WARNING</b>:    Inherited objects MIGHT NEED to override this function",
-            "override": ": basicBarChartSharedPrototype.__onClearData__",
-            "class": "FixedWidthBarChart",
+            "tagname": "",
+            "override": "BasicBarChart.__onClearData__",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3266,
+            "line": 3449,
+            "description": "Updates the drawing of the static elements of the wheel<br>\n                                <br>\n                                <b>WARNING</b>:    Inherited objects MIGHT NEED to override this function",
+            "itemtype": "method",
+            "name": "__updateWheelDrawing__",
             "access": "protected",
-            "tagname": "[Protected method, not supposed to be used by consumers]\n\nUpdates the drawing of the static elements of the wheel\n\n<b>WARNING</b>:    Inherited objects MIGHT NEED to override this function",
+            "tagname": "",
             "return": {
-                "description": ":    Nothing."
+                "description": "",
+                "type": "Undefined"
             },
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3325,
-            "description": "Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.\n<b>WARNING</b>: calling destroy on an object will force any further reference \n                                         to its attributes / methods to throw exceptions.\nNOTE:   This function should be override by any class inheriting from this chart.\n                                        In order to properly work, any overriding destroyer should:\n                                        - Free any array specific to the object on which is called;\n                                        - Remove any event listener on chart objects;\n                                        - Call super object's destroy method.",
+            "line": 3508,
+            "description": "Object's destructor: helps garbage collector freeing memory, and removes chart DOM elements.<br>\n                                <br>\n                                <b>WARNING</b>: calling destroy on an object will force any further reference \n                                                to its attributes / methods to throw exceptions.<br>\n                                <br>\n                                <b>NOTE</b>:   This function should be override by any class inheriting from this chart.<br>\n                                               In order to properly work, any overriding destroyer should:\n                                                <ol>\n                                                    <li> Free any array specific to the object on which is called;</li>\n                                                    <li> Remove any event listener on chart objects;</li>\n                                                    <li> Call super object's destroy method.</li>\n                                                </ol>",
+            "itemtype": "method",
+            "name": "destroy",
             "return": {
-                "description": ":    null, to state that the object has been destroyed."
+                "description": "to state that the object has been destroyed.",
+                "type": "Null"
             },
-            "class": "FixedWidthBarChart",
+            "override": "BasicBarChart.destroy()",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3360,
+            "line": 3547,
+            "description": "Inits the chart;",
+            "itemtype": "method",
+            "name": "__init__",
             "access": "private",
-            "tagname": "[Private method, not visible to consumers]\n\nInits the chart;",
+            "tagname": "",
             "params": [
                 {
-                    "name": "chart:",
-                    "description": "[Mandatory]\n                The chart that need initialization;"
+                    "name": "chart",
+                    "description": "[Mandatory]\n                                        The chart that need initialization;",
+                    "type": "Object"
                 },
                 {
-                    "name": "width:",
-                    "description": "[Mandatory]\n                Chart's width;"
+                    "name": "width",
+                    "description": "[Mandatory]\n                                        Chart's width;",
+                    "type": "Number"
                 },
                 {
-                    "name": "height:",
-                    "description": "[Mandatory]\n                Chart's height;"
+                    "name": "height",
+                    "description": "[Mandatory]\n                                        Chart's height;",
+                    "type": "Number"
                 },
                 {
-                    "name": "wheelRadius:",
-                    "description": "[Mandatory]   \n                     Wheel inner radius;"
+                    "name": "wheelRadius",
+                    "description": "[Mandatory]   \n                                            Wheel inner radius;",
+                    "type": "Number"
                 }
             ],
             "return": {
-                "description": ": This chart object (see how it's called)"
+                "description": "",
+                "type": "Undefined"
             },
-            "override": ":  fixedWidthBarChart.3",
-            "class": "FixedWidthBarChart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3379,
-            "description": "Defaults to 8, can be changed at runtime",
-            "override": ":  fixedWidthBarChart.__barWidth__",
-            "class": "FixedWidthBarChart",
+            "line": 3566,
+            "description": "Chart's bars' width, in pixel <br>\nCan be changed at runtime",
+            "itemtype": "property",
+            "name": "__barWidth__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "default": "8",
+            "override": ":  FixedWidthBarChart.__barWidth__",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3390,
-            "description": "Defaults to the horizontal center of the chart\nCan be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3581,
+            "description": "X coordinate of the center of the wheel\nCan be changed at runtime",
+            "itemtype": "property",
+            "name": "__cx__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "default": "the horizontal center of the chart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3401,
-            "description": "Defaults to the vertical center of the chart\nCan be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3597,
+            "description": "Y coordinate of the center of the wheel<br>\nCan be changed at runtime",
+            "itemtype": "property",
+            "name": "__cy__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "default": "the vertical center of the chart",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3415,
-            "description": "CAN NOT be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3623,
+            "description": "Radius of the wheel<br>\n<b>CAN NOT</b> be changed at runtime",
+            "itemtype": "property",
+            "name": "__r__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "readonly": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3424,
-            "description": "CAN NOT be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3637,
+            "description": "Maximum height for each bar<br>\n<b>CAN NOT</b> be changed at runtime",
+            "itemtype": "property",
+            "name": "__barHeight__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "readonly": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3436,
-            "description": "CAN NOT be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3658,
+            "description": "The angle between two consecutive ticks<br>\n<b>CAN NOT</b> be changed at runtime",
+            "itemtype": "property",
+            "name": "__tickStep__",
+            "type": "{Number}",
+            "access": "protected",
+            "tagname": "",
+            "readonly": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3445,
-            "description": "CAN NOT be changed at runtime",
-            "class": "FixedWidthBarChart",
+            "line": 3677,
+            "description": "The actual svg object for the static part of the wheel",
+            "itemtype": "property",
+            "name": "__wheel__",
+            "type": "{Object}",
+            "access": "protected",
+            "tagname": "",
+            "readonly": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3471,
-            "class": "FixedWidthBarChart",
+            "line": 3775,
+            "description": "List of labels for wheel's time references",
+            "itemtype": "property",
+            "name": "__timeLabels__",
+            "type": "{Array}",
+            "access": "protected",
+            "tagname": "",
+            "readonly": "",
+            "class": "TimeWheelChart",
             "module": "DynamicChart"
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3563,
-            "class": "FixedWidthBarChart",
-            "module": "DynamicChart"
-        },
-        {
-            "file": "dynamic_chart.js",
-            "line": 3583,
+            "line": 3801,
             "itemtype": "method",
             "name": "BasicBarChart",
             "chainable": 1,
@@ -2704,7 +3098,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3611,
+            "line": 3829,
             "itemtype": "method",
             "name": "FixedWidthBarChart",
             "chainable": 1,
@@ -2763,7 +3157,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3646,
+            "line": 3864,
             "itemtype": "method",
             "name": "SlidingBarChart",
             "chainable": 1,
@@ -2818,7 +3212,7 @@
         },
         {
             "file": "dynamic_chart.js",
-            "line": 3679,
+            "line": 3897,
             "itemtype": "method",
             "name": "TimeWheelChart",
             "chainable": 1,
@@ -2879,63 +3273,59 @@
     "warnings": [
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2110"
+            "line": " dynamic_chart.js:2136"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2127"
+            "line": " dynamic_chart.js:2154"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2171"
+            "line": " dynamic_chart.js:2199"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2216"
+            "line": " dynamic_chart.js:2246"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2517"
+            "line": " dynamic_chart.js:2634"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2674"
+            "line": " dynamic_chart.js:2793"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2727"
+            "line": " dynamic_chart.js:2848"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2771"
+            "line": " dynamic_chart.js:2920"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:2800"
+            "line": " dynamic_chart.js:3199"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3030"
+            "line": " dynamic_chart.js:3321"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3142"
+            "line": " dynamic_chart.js:3384"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3204"
+            "line": " dynamic_chart.js:3429"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3248"
+            "line": " dynamic_chart.js:3508"
         },
         {
             "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3360"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " dynamic_chart.js:3379"
+            "line": " dynamic_chart.js:3566"
         },
         {
             "message": "Missing item type\nmodule ChartUtils",
@@ -2971,227 +3361,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " dynamic_chart.js:1618"
-        },
-        {
-            "message": "Missing item type\ndrawn at the same time in this chart",
-            "line": " dynamic_chart.js:1999"
-        },
-        {
-            "message": "Missing item type\n[Defaults to 1]",
-            "line": " dynamic_chart.js:2008"
-        },
-        {
-            "message": "Missing item type\nnew plots would override previous ones.\nTwo solutions are made available:\n1)  By default, new data is rejected, generating a full stack exception;\n2)  A certain number of the oldest data points can be purged off the chart,\n    counter-clockwise rotating the data",
-            "line": " dynamic_chart.js:2018"
-        },
-        {
-            "message": "Missing item type\nSets fixed data length mode.\n                                                \n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.\n                                                Two solutions are made available:\n                                                1)  By default, new data is rejected, generating a full stack exception;\n                                                2)  A certain number of the oldest data points can be purged off the chart,\n                                                    counter-clockwise rotating the data\n                                                    \n                                                This function sets the first option.",
-            "line": " dynamic_chart.js:2034"
-        },
-        {
-            "message": "Missing item type\nSets data shift mode.\n                                                \n                                                When __ticks__ data points have already been plotted,\n                                                new plots would override previous ones.\n                                                Two solutions are made available:\n                                                1)  By default, new data is rejected, generating a full stack exception;\n                                                2)  A certain number of the oldest data points can be purged off the chart,\n                                                    shifting back (left) the remaining data.\n                                                    \n                                                This function sets the second option.",
-            "line": " dynamic_chart.js:2069"
-        },
-        {
-            "message": "Missing item type\nReturns current bars' width.\n                                                The overridden version takes a parameter, but this method\n                                                doesn't need it because barWidth is fixed for this chart.",
-            "line": " dynamic_chart.js:2110"
+            "line": " dynamic_chart.js:1621"
         },
         {
             "message": "Missing item type",
-            "line": " dynamic_chart.js:2127"
+            "line": " dynamic_chart.js:2302"
         },
         {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2171"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2216"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2251"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2271"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2288"
-        },
-        {
-            "message": "Missing item type\nthe chart from its creation (to synch the highlighted ticks)",
-            "line": " dynamic_chart.js:2348"
-        },
-        {
-            "message": "Missing item type\nEvery __ticksBetweenHighlights__ ticks, the data is \"higlighted\"\nby applying the selected highlight style to the background\n[Defaults to 10]",
-            "line": " dynamic_chart.js:2358"
-        },
-        {
-            "message": "Missing item type\nReturns the number of ticks between two consecutive highlights (one extreme inclusive)",
-            "line": " dynamic_chart.js:2370"
-        },
-        {
-            "message": "Missing item type\nSets the number of ticks between two consecutive highlights (one extreme inclusive)",
-            "line": " dynamic_chart.js:2384"
-        },
-        {
-            "message": "Missing item type\nDefaults to DEFAULT_BACKGROUND (\"lightgrey\")",
-            "line": " dynamic_chart.js:2411"
-        },
-        {
-            "message": "Missing item type\nDefaults to DEFAULT_BACKGROUND_HIGHLIGHT (\"lightpink\")",
-            "line": " dynamic_chart.js:2422"
-        },
-        {
-            "message": "Missing item type\nChanges the background color (not highlighted points)",
-            "line": " dynamic_chart.js:2433"
-        },
-        {
-            "message": "Missing item type\nReturns current background bars' color",
-            "line": " dynamic_chart.js:2462"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2477"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2504"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2517"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2563"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2588"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2624"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2674"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2727"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2771"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2800"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2864"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2916"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2925"
-        },
-        {
-            "message": "Missing item type\nSets the size of the labels used for the wheel",
-            "line": " dynamic_chart.js:2935"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:2968"
-        },
-        {
-            "message": "Missing item type\nSets the color used for the static part of the wheel's drawing, \n                                                i.e. for labels and lines representing time ticks \n                                                of the time wheel",
-            "line": " dynamic_chart.js:2978"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3014"
-        },
-        {
-            "message": "Missing item type\nSets the width of this chart's bars",
-            "line": " dynamic_chart.js:3030"
-        },
-        {
-            "message": "Missing item type\nSets the position of the center of the wheel.\n                                If it is valid and it is different from the current position,\n                                the drawing is moved to the new position",
-            "line": " dynamic_chart.js:3056"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3086"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3142"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3204"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3248"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3266"
-        },
-        {
-            "message": "Missing item type\nObject's destructor: helps garbage collector freeing memory, and removes chart DOM elements.\n<b>WARNING</b>: calling destroy on an object will force any further reference \n                                         to its attributes / methods to throw exceptions.\nNOTE:   This function should be override by any class inheriting from this chart.\n                                        In order to properly work, any overriding destroyer should:\n                                        - Free any array specific to the object on which is called;\n                                        - Remove any event listener on chart objects;\n                                        - Call super object's destroy method.",
-            "line": " dynamic_chart.js:3325"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3360"
-        },
-        {
-            "message": "Missing item type\nDefaults to 8, can be changed at runtime",
-            "line": " dynamic_chart.js:3379"
-        },
-        {
-            "message": "Missing item type\nDefaults to the horizontal center of the chart\nCan be changed at runtime",
-            "line": " dynamic_chart.js:3390"
-        },
-        {
-            "message": "Missing item type\nDefaults to the vertical center of the chart\nCan be changed at runtime",
-            "line": " dynamic_chart.js:3401"
-        },
-        {
-            "message": "Missing item type\nCAN NOT be changed at runtime",
-            "line": " dynamic_chart.js:3415"
-        },
-        {
-            "message": "Missing item type\nCAN NOT be changed at runtime",
-            "line": " dynamic_chart.js:3424"
-        },
-        {
-            "message": "Missing item type\nCAN NOT be changed at runtime",
-            "line": " dynamic_chart.js:3436"
-        },
-        {
-            "message": "Missing item type\nCAN NOT be changed at runtime",
-            "line": " dynamic_chart.js:3445"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3471"
-        },
-        {
-            "message": "Missing item type",
-            "line": " dynamic_chart.js:3563"
+            "message": "Missing item type\nTimeWheelChart (pseudo)Constructor.",
+            "line": " dynamic_chart.js:3022"
         }
     ]
 }
