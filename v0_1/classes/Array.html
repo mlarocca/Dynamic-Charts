@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ChartUtils</title>
+    <title>Array</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -102,7 +102,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>ChartUtils Class</h1>
+                        <h1>Array Class</h1>
 <div class="box meta">
     
 
@@ -135,8 +135,6 @@
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-        
         
         
     </ul>
@@ -152,42 +150,42 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_abbreviateNumber">abbreviateNumber</a>
+                                <a href="#method_clear">clear</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_addIntToTimeString">addIntToTimeString</a>
+                                <a href="#method_map">map</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_addTimeStrings">addTimeStrings</a>
+                                <a href="#method_max">max</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_fillArray">fillArray</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_formatTimeString">formatTimeString</a>
+                                <a href="#method_min">min</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_validateTimeString">validateTimeString</a>
+                                <a href="#method_shallowCopy">shallowCopy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_sum">sum</a>
 
                                 
                                 
@@ -197,21 +195,6 @@
                 </div>
             
 
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property_SUFFIXES">SUFFIXES</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
             
 
             
@@ -224,8 +207,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_abbreviateNumber" class="method item">
-    <h3 class="name"><code>abbreviateNumber</code></h3>
+                    <div id="method_clear" class="method item">
+    <h3 class="name"><code>clear</code></h3>
 
     
         <div class="args">
@@ -233,13 +216,7 @@
             
                 <li class="arg">
                     
-                        <code>value</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>n</code>
+                        <code class="optional">[deepClear=false]</code>
                     
                 </li>
             
@@ -276,7 +253,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l620"><code>chart_utils.js:620</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l136"><code>chart_utils.js:136</code></a>
         
         </p>
 
@@ -287,34 +264,7 @@
     </div>
 
     <div class="description">
-        <p>Takes a value and returns it's abbreviated text representation.<br></p>
-
-<ul>
-    <li>If abs(val) > 1, the following standard abbreviations will be used:
-        <ul>
-            <li><b>K</b> thousands</li>
-            <li><b>M</b> million</li>
-            <li><b>G</b> billion</li>
-            <li><b>T</b> trillion</li>
-            <li><b>P</b> quadrillion</li>
-            <li><b>E</b> quintillion</li>
-        </ul>
-        One decimal place is always kept.<br>
-        F.i.:
-        <ul>
-            <li>123 -> "123"</li>
-            <li>1234 -> "1.2K"</li>
-            <li>12345 -> "12.3K"</li>
-            <li>123456789 -> "123.4M"</li>
-        </ul>                                            
-    </li>
-    <li> If abs(val)
-    </li>
-</ul>
-
-<p><br>
-<b>WARNING</b>:   since shallow copy is used, only works for
-                  primitive (immutable) values</p>
+        <p>Clears an Array, removing all its elements;</p>
     </div>
 
     
@@ -325,31 +275,19 @@
             
                 <li class="param">
                     
-                        <code class="param-name">value</code>
-                        <span class="type">String | Number</span>
+                        <code class="param-name optional">[deepClear=false]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The value to assign to each element of the newly created array.
-                             If value is a function, it is called  n times, with no parameters</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">n</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The size of the final array;<br>
-                  Must be a positive integer.</p>
+                        <p>If it is required for all the array elements to be cleared,
+                                   this paramenter should be true; can  be omitted otherwise; <br>
+                                   If deep clearance is required, thie method will try to 
+                                   call the clear method for each and every element of this array
+                                   (Object class has already been extended with a clear method).</p>
                     </div>
 
                     
@@ -368,7 +306,7 @@
                     
                         <span class="type">Array</span>:
                     
-                    The newly created array.
+                    This array.
                 
             </div>
         </div>
@@ -378,8 +316,8 @@
 </div>
 
                 
-                    <div id="method_addIntToTimeString" class="method item">
-    <h3 class="name"><code>addIntToTimeString</code></h3>
+                    <div id="method_map" class="method item">
+    <h3 class="name"><code>map</code></h3>
 
     
         <div class="args">
@@ -387,269 +325,13 @@
             
                 <li class="arg">
                     
-                        <code>timeString</code>
+                        <code>f</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>minutes</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l785"><code>chart_utils.js:785</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Takes a string and an int value and checks if it is a valid
-                time representation, according to the format HH:MM</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">timeString</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The time string taken as initial time</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">minutes</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>How many minutes needs to be added to the time string;</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    A string representation of the sum of the two time values, in the format HH:MM (modulo 24 hours)
-                                &lt;=> Both inputs validates successfully
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_addTimeStrings" class="method item">
-    <h3 class="name"><code>addTimeStrings</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>timeString_1</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>timeString_2</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l752"><code>chart_utils.js:752</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Takes two strings as input and checks if they are valid
-time representations, according to the format HH:MM<br>
-If it is so, sums them and returns a new string representing
-the resulting time;</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">timeString_1</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The first time string to be added</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">timeString_2</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The second time string to be added</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    A string representation of the sum of the two timeStamps, in the format HH:MM (modulo 24 hours)
-                &lt;=> Both strings validates successfully
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_fillArray" class="method item">
-    <h3 class="name"><code>fillArray</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>value</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>n</code>
+                        <code class="optional">[contest=window]</code>
                     
                 </li>
             
@@ -686,7 +368,7 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l692"><code>chart_utils.js:692</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l163"><code>chart_utils.js:163</code></a>
         
         </p>
 
@@ -697,10 +379,8 @@ the resulting time;</p>
     </div>
 
     <div class="description">
-        <p>Takes a value and a positive integer n and returns an Array of n copies of that value.<br>
-<br>
-<b>WARNING</b>:   since shallow copy is used, only works for
-                  primitive (immutable) values</p>
+        <p>Maps a function on every element of the array, creting a new array populated
+with the results of these calls.</p>
     </div>
 
     
@@ -711,15 +391,14 @@ the resulting time;</p>
             
                 <li class="param">
                     
-                        <code class="param-name">value</code>
-                        <span class="type">String | Number</span>
+                        <code class="param-name">f</code>
+                        <span class="type">Function</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The value to assign to each element of the newly created array.
-                             If value is a function, it is called  n times, with no parameters</p>
+                        <p>The function to map on the array;</p>
                     </div>
 
                     
@@ -727,15 +406,15 @@ the resulting time;</p>
             
                 <li class="param">
                     
-                        <code class="param-name">n</code>
-                        <span class="type">Number</span>
+                        <code class="param-name optional">[contest=window]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The size of the final array;<br>
-                  Must be a positive integer.</p>
+                        <p>The new this pointer for the function to map, if needed;</p>
                     </div>
 
                     
@@ -754,7 +433,7 @@ the resulting time;</p>
                     
                         <span class="type">Array</span>:
                     
-                    The newly created array.
+                    The array of the results of mapping f over the elements this array.
                 
             </div>
         </div>
@@ -764,8 +443,8 @@ the resulting time;</p>
 </div>
 
                 
-                    <div id="method_formatTimeString" class="method item private">
-    <h3 class="name"><code>formatTimeString</code></h3>
+                    <div id="method_max" class="method item">
+    <h3 class="name"><code>max</code></h3>
 
     
         <div class="args">
@@ -773,13 +452,7 @@ the resulting time;</p>
             
                 <li class="arg">
                     
-                        <code>HH</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>MM</code>
+                        <code class="optional">[extract_element_key]</code>
                     
                 </li>
             
@@ -789,133 +462,7 @@ the resulting time;</p>
 
     
         <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l587"><code>chart_utils.js:587</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Format a hours, minutes couple into a proper time string<br>
-<br>
-<b>INVARIANT</b>: HH and MM must be valid, positive integers 
-                  (since it's a private method, defensive programming is avoided<br>
-           If the overcome their range, proper formatting is enforced:
-           F.i. HH=23, MM=60 -> "00:00"</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">HH</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>An int value (between 0 and 23), representing the hours</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">MM</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>An int value (between 0 and 59), representing the minutes</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    The properly formatted time string.
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_validateTimeString" class="method item">
-    <h3 class="name"><code>validateTimeString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>timeString</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array | Null</span>
+            <span class="type">Number | NaN</span>
         </span>
     
 
@@ -942,7 +489,7 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l726"><code>chart_utils.js:726</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l253"><code>chart_utils.js:253</code></a>
         
         </p>
 
@@ -953,8 +500,7 @@ the resulting time;</p>
     </div>
 
     <div class="description">
-        <p>Takes a string as input and checks if it is a valid
-                time representation, according to the format HH:MM</p>
+        <p>Return the maximum element of an array.</p>
     </div>
 
     
@@ -965,14 +511,16 @@ the resulting time;</p>
             
                 <li class="param">
                     
-                        <code class="param-name">timeString</code>
-                        <span class="type">String</span>
+                        <code class="param-name optional">[extract_element_key]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The string to be evaluated</p>
+                        <p>A function that, given any element of the array, will produce
+                             a numeric value used for ranking the element itself (its sorting key)</p>
                     </div>
 
                     
@@ -989,13 +537,11 @@ the resulting time;</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">Array | Null</span>:
+                        <span class="type">Number | NaN</span>:
                     
-                    <ul>
-                                        <li>An array with two integers, the values for hours and minutes
-                                            <=> The input string validates successfully</li>
-                                        <li>null  Otherwise</li>
-                                    </ul>
+                    The maximum value in the array, if all elements (or their keys)
+                     are Number;
+                     NaN otherwise
                 
             </div>
         </div>
@@ -1005,26 +551,37 @@ the resulting time;</p>
 </div>
 
                 
-            </div>
-        
+                    <div id="method_min" class="method item">
+    <h3 class="name"><code>min</code></h3>
 
-        
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[extract_element_key]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
 
-                
-                    <div id="property_SUFFIXES" class="property item private">
-    <h3 class="name"><code>SUFFIXES</code></h3>
-    <span class="type">Array</span>
+    
+        <span class="returns-inline">
+            <span class="type">Number | NaN</span>
+        </span>
+    
+
+    
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
-        <span class="flag final">final</span>
+
     
 
     
@@ -1040,9 +597,10 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l608"><code>chart_utils.js:608</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l274"><code>chart_utils.js:274</code></a>
         
         </p>
+
 
         
 
@@ -1050,11 +608,235 @@ the resulting time;</p>
     </div>
 
     <div class="description">
-        <p>Abbreviations suffixes for large numbers;</p>
+        <p>Return the minimum element of an array.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[extract_element_key]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A function that, given any element of the array, will produce
+                              a numeric value used for ranking the element itself (its sorting key)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Number | NaN</span>:
+                    
+                    The minimum value in the array, if all elements (or their keys)
+                     are Number;
+                     NaN otherwise
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_shallowCopy" class="method item">
+    <h3 class="name"><code>shallowCopy</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[n]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Array</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l222"><code>chart_utils.js:222</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Creates a new array (shallow) copying the elements of the current one</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[n]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If defined, the max number of elements to copy from the current array</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Array</span>:
+                    
+                    A new array, with a shallow copy of all the elements in the original one.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_sum" class="method item">
+    <h3 class="name"><code>sum</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Number | String</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l193"><code>chart_utils.js:193</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sums the elements of an array.</p>
     </div>
 
     
 
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Number | String</span>:
+                    
+                    The sum of the elements in the array;
+
+WARNING: 
+    <ul>
+        <li>If all the elements in the array are numbers, then returs their arithmetic sum</li>
+        <li>If any element of the array isn't a number, returns a string obtained by concatenating
+            the partial arithmetic sum until that element, and the concatenation
+            of the string conversion of every other element in the array.</li>
+    </ul>
+                
+            </div>
+        </div>
     
 
     
@@ -1062,6 +844,8 @@ the resulting time;</p>
 
                 
             </div>
+        
+
         
 
         

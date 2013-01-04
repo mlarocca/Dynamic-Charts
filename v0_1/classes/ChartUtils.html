@@ -135,8 +135,6 @@
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-        
         
         
     </ul>
@@ -150,13 +148,6 @@
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_abbreviateNumber">abbreviateNumber</a>
-
-                                
-                                
-                            </li>
                         
                             <li class="index-item method">
                                 <a href="#method_addIntToTimeString">addIntToTimeString</a>
@@ -198,21 +189,6 @@
             
 
             
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property_SUFFIXES">SUFFIXES</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
 
             
 
@@ -222,160 +198,6 @@
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_abbreviateNumber" class="method item">
-    <h3 class="name"><code>abbreviateNumber</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>value</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>n</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l620"><code>chart_utils.js:620</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Takes a value and returns it's abbreviated text representation.<br></p>
-
-<ul>
-    <li>If abs(val) > 1, the following standard abbreviations will be used:
-        <ul>
-            <li><b>K</b> thousands</li>
-            <li><b>M</b> million</li>
-            <li><b>G</b> billion</li>
-            <li><b>T</b> trillion</li>
-            <li><b>P</b> quadrillion</li>
-            <li><b>E</b> quintillion</li>
-        </ul>
-        One decimal place is always kept.<br>
-        F.i.:
-        <ul>
-            <li>123 -> "123"</li>
-            <li>1234 -> "1.2K"</li>
-            <li>12345 -> "12.3K"</li>
-            <li>123456789 -> "123.4M"</li>
-        </ul>                                            
-    </li>
-    <li> If abs(val)
-    </li>
-</ul>
-
-<p><br>
-<b>WARNING</b>:   since shallow copy is used, only works for
-                  primitive (immutable) values</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
-                        <span class="type">String | Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The value to assign to each element of the newly created array.
-                             If value is a function, it is called  n times, with no parameters</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">n</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The size of the final array;<br>
-                  Must be a positive integer.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array</span>:
-                    
-                    The newly created array.
-                
-            </div>
-        </div>
-    
-
-    
-</div>
 
                 
                     <div id="method_addIntToTimeString" class="method item">
@@ -430,7 +252,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l785"><code>chart_utils.js:785</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l470"><code>chart_utils.js:470</code></a>
         
         </p>
 
@@ -557,7 +379,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l752"><code>chart_utils.js:752</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l437"><code>chart_utils.js:437</code></a>
         
         </p>
 
@@ -686,7 +508,7 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l692"><code>chart_utils.js:692</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l377"><code>chart_utils.js:377</code></a>
         
         </p>
 
@@ -818,7 +640,7 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l587"><code>chart_utils.js:587</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l353"><code>chart_utils.js:353</code></a>
         
         </p>
 
@@ -942,7 +764,7 @@ the resulting time;</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l726"><code>chart_utils.js:726</code></a>
+        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l411"><code>chart_utils.js:411</code></a>
         
         </p>
 
@@ -1008,60 +830,6 @@ the resulting time;</p>
             </div>
         
 
-        
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property_SUFFIXES" class="property item private">
-    <h3 class="name"><code>SUFFIXES</code></h3>
-    <span class="type">Array</span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;chart_utils.js.html#l608"><code>chart_utils.js:608</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Abbreviations suffixes for large numbers;</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
         
 
         

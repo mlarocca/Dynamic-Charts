@@ -24,7 +24,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "DynamicChart",
             "name": "DynamicChart",
-            "description": "Module DynamicChart"
+            "description": "Module DynamicChart\n        \nThis module requires:\n<ol>\n    <li>{{#crossLinkModule \"chart_utils.js\"}}{{/crossLinkModule}}</li>\n    <li>{{#crossLink \"http://d3js.org/d3.v2.js\"}}{{/crossLink}}</li>\n</ol>\n<br>\nExposes methods for creating different types of dynamic charts:\n<ul>\n    <li>BasicBarChart</li>\n    <li>FixedWidthBarChart</li>\n    <li>SlidingBarChart</li>\n    <li>TimeWheelChart</li>\n</ul>"
         }
     ]
 } };
