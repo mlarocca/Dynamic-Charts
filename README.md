@@ -2,7 +2,7 @@
 ============================
 This is a high-level lib built on _D3js_ to allow for easy and quick development of dynamically populated charts, especially thought to represent live, real-time data.
 
-* **Minified** : https://github.mlarocca.com/Dynamic-Charts/dynamic_chart.min.js
+* **Minified** : https://raw.github.com/mlarocca/Dynamic-Charts/master/dynamic_chart.min.js
 * **Docs**: http://mlarocca.github.com/Dynamic-Charts/
 
 ## Version 0.2
@@ -15,8 +15,8 @@ This is a high-level lib built on _D3js_ to allow for easy and quick development
     
 Since I realize how painful it could get to review all of your code in order to switch to a new version,
 support to the old versions of the libs will be maintained; from now on, each release minified version will be uploaded to two locations:
-* https://github.mlarocca.com/Dynamic-Charts/dynamic_chart.min.js will always point to the most recent version;
-* https://github.mlarocca.com/Dynamic-Charts/vX_Y/dynamic_chart.vX_Y.min.js will point to version X.Y; this release will only be updated to fix bugs, but no change in the interface will be made, so that the permalink to the lib will work over time.
+* **_/Dynamic-Charts/master/dynamic_chart.min.js_** will always point to the most recent version;
+* **_/Dynamic-Charts/master/vX_Y/dynamic_chart.vX_Y.min.js_** will point to version X.Y; this release will only be updated to fix bugs, but no change in the interface will be made, so that the permalink to the lib will work over time.
 
 I apologize for the hassle, but some change was needed to improve the lib, which was not in a stable release yet. We'll try to keep these changes to a minimum in the future.
 
@@ -31,11 +31,11 @@ I apologize for the hassle, but some change was needed to improve the lib, which
 *   _setVerticalAxe_, _setHorizontalAxe_: vertical and horizontal axes are now supported and can be added or hidden at runtime.
 
 ###Downloads
-* **Source**: https://github.mlarocca.com/Dynamic-Charts/
-* **Minified** (persistent link): https://github.mlarocca.com/Dynamic-Charts/v0_2/dynamic_chart.v0_2.min.js
-* **Docs**: http://mlarocca.github.com/Dynamic-Charts/
+* **Source**: https://github.com/mlarocca/Dynamic-Charts/tree/master/v0_2/
+* **Minified** (persistent link): https://raw.github.com/mlarocca/Dynamic-Charts/master/v0_2/dynamic_chart.v0_2.min.js
+* **Docs**: http://mlarocca.github.com/Dynamic-Charts/v0_2
     
 ## Version 0.1
-* **Source**: https://github.mlarocca.com/Dynamic-Charts/v0_1/
-* **Minified** (persistent link): https://github.mlarocca.com/Dynamic-Charts/v_0.1/dynamic_chart.v0_1.min.js
+* **Source**: https://github.com/mlarocca/Dynamic-Charts/tree/master/v0_1/
+* **Minified** (persistent link): https://raw.github.com/mlarocca/Dynamic-Charts/master/v0_1/dynamic_chart.v0_1.min.js
 * **Docs**: http://mlarocca.github.com/Dynamic-Charts/v0_1/
