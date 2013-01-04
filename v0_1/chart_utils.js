@@ -68,109 +68,6 @@ Exposes a few utility functions
 		
 		}
 
-        
-        /** addPublicMethod(methodName, method)
-            
-            Shortcut for defyning a method which will be considered
-            public by createSafeProxy;<br>
-            Usage: obj.addPublicMethod("name", method)<br>
-            to add function method to obj as property obj["name"].
-            
-            @method addPublicMethod
-            @for Object
-            @chainable
-            @param  {String} methodName    The name of the new property to be added to this object<br>
-                                          <b>WARNING</b>: if Object[methodName] exists, then it will
-                                                          be overwritten.
-            @param method {Function}       The method body.
-            @return {Object} This object, to enable method chaining
-            @throws   
-                    <ul>
-                        <li>    Wrong number of arguments Exception, if either is missing or null;</li>
-                        <li>    Illegal Argument Exception, if methodName is not a String;</li>
-                        <li>    Illegal Argument Exception, if method is not a Function.</li>
-                    </ul>     
-          */
-        function addPublicMethod(methodName, method){
-            
-            if (!methodName || !method){
-                throw "Wrong number of arguments Exception";
-            }
-            if (!Object.isString(methodName)){
-                throw "Illegal Argument Exception: methodName must be a string";
-            }                                                            
-            if (!Object.isFunction(method)){
-                throw "Illegal Argument Exception: method must be a function";
-            }
-            Object.defineProperty(this, methodName, {
-                value: method,
-                writable: false,
-                enumerable: true,
-                configurable:false
-            });
-            return this;    //Chainable
-        }   
-        
-        if (!Object.prototype.addPublicMethod){
-            Object.defineProperty(Object.prototype, "addPublicMethod", {
-                                    value: addPublicMethod,
-                                    writable: false,
-                                    enumerable: false,
-                                    configurable: false
-                                });
-        }
-        
-	
-        /** addProtectedMethod(methodName, method)
-            
-            Shortcut for defyning a method which will be considered
-            protected by createSafeProxy;<br>
-            Usage: obj.addProtectedMethod("name", method)<br>
-            to add function method to obj as property obj["name"].
-            
-            @method addProtectedMethod
-            @for Object
-            @chainable
-            @param  {String} methodName    The name of the new property to be added to this object<br>
-                                          <b>WARNING</b>: if Object[methodName] exists, then it will
-                                                          be overwritten.
-            @param method {Function}       The method body.
-            @return {Object} This object, to enable method chaining
-            @throws   
-                    <ul>
-                        <li>    Wrong number of arguments Exception, if either is missing or null;</li>
-                        <li>    Illegal Argument Exception, if methodName is not a String;</li>
-                        <li>    Illegal Argument Exception, if method is not a Function.</li>
-                    </ul>     
-          */
-        function addProtectedMethod(methodName, method){
-            
-            if (!methodName || !method){
-                throw "Wrong number of arguments Exception";
-            }
-            if (!Object.isString(methodName)){
-                throw "Illegal Argument Exception: methodName must be a string";
-            }                                                            
-            if (!Object.isFunction(method)){
-                throw "Illegal Argument Exception: method must be a function";
-            }
-            Object.defineProperty(this, methodName, {
-                value: method,
-                writable: false,
-                enumerable: false,
-                configurable:false
-            });
-        }    
-        
-        if (!Object.prototype.addProtectedMethod){
-            Object.defineProperty(Object.prototype, "addProtectedMethod", {
-                                    value: addProtectedMethod,
-                                    writable: false,
-                                    enumerable: false,
-                                    configurable: false
-                                });
-        }        
-                    
         if (!Object.prototype.createSafeProxy){
                                                 /** createSafeProxy()
                                                 
@@ -234,103 +131,6 @@ Exposes a few utility functions
                 return proxy;
             };
         }        
-      
-        /** superMethod(methodName)
-           
-           Checks if the super object of this object has a method (i.e. a property which is a function) whose name is methodName, 
-           and then calls it. Otherwise checks recursively its super object, i.e. its prototype.
-           
-           @method superMethod
-           @for Object
-           @param {String} methodName The name of the method to look up for in this object's super objects.
-           @param [args]* The arguments to be passed to the super method, if any is needed;
-           @return The result of the call to the method named methodName of this object's super object.
-           @throws
-                    <ul>
-                        <li>Wrong number of arguments Exception, if methodName is missing or null;</li>
-                        <li>Illegal Argument Exception, if methodName is not a String;</li>                                                                    
-                        <li>Method not found Exception, if there isn't such a method in the whole inheritance chain.</li>
-                    </ul>
-         */
-        function superMethod(methodName /*, args*/){
-            if (!methodName){
-                throw "Wrong number of arguments Exception";
-            }
-            if (!Object.isString(methodName)){
-                throw "Illegal Argument Exception: methodName must be a string";
-            }    
-            
-            //Looks up for this object's prototype
-            var proto = this.prototype && this.prototype[methodName] ? this.prototype : this.__proto__;
-            if (proto && proto[methodName] && Object.isFunction(proto[methodName])){
-                return proto[methodName].apply(proto, Array.prototype.slice.apply(arguments, [1]));
-            }else{
-                throw "Super object has no method " + methodName;
-            }
-        }
-        
-        if (!Object.prototype.superMethod){
-            Object.defineProperty(Object.prototype, "superMethod", {
-                                    value: superMethod,
-                                    writable: false,
-                                    enumerable: false,
-                                    configurable: false
-                                });
-        }                    
-      
-      
-        /** setProperty(property, value)
-           
-           Assign the value "value" to the property "property" of the current object.<br>
-           "property" MUST be an existing property of current object or of its ancestors:
-           if this[property] is undefined, it recursively checks along its inheritance chain. 
-           
-           @method setProperty
-           @for Object
-           @chainable
-           @param {String} property The name of the property to look up for in this object and its super object.
-           @param value The value to be assigned to the property.
-           @return This object, to allow for method chaining
-           @throws
-                    <ul>
-                        <li>Wrong number of arguments Exception, if property is missing or null; (undefined is accepted for value)</li>
-                        <li>Illegal Argument Exception, if property is not a String;</li>                                                                    
-                        <li>Method not found Exception, if neither this object or its super object has such a property.</li>
-                        <li>TypeError, if property exists but it isn't writable.</li>
-                    </ul>
-         */
-        function setProperty(property, value){
-            if (!property){
-                throw "Wrong number of arguments Exception";
-            }
-            if (!Object.isString(property)){
-                throw "Illegal Argument Exception: property must be a string";
-            }    
-            
-            if (this.hasOwnProperty(property)){
-                this[property] = value;
-                return this;
-            }
-            
-            //Looks up for this object's prototype
-            var proto = this.prototype && this.prototype[property] ? this.prototype : this.__proto__;
-            if (proto && !Object.isUndefined(proto[property])){
-                proto.setProperty(property, value);
-                return this;
-            }else{
-                throw "Super object has no property " + property;
-            }
-            
-        }
-        
-        if (!Object.prototype.setProperty){
-            Object.defineProperty(Object.prototype, "setProperty", {
-                                    value: setProperty,
-                                    writable: false,
-                                    enumerable: false,
-                                    configurable: false
-                                });
-        }
         
 		if (Array.prototype.clear){
                 /** 
@@ -429,7 +229,7 @@ Exposes a few utility functions
                                         */
 			Array.prototype.shallowCopy =  function(n){
                                                 var len = this.length;
-                                                if (Object.isUndefined(n)){
+                                                if (n === undefined){
                                                     n = len;
                                                 }else{
                                                     n = parseInt(n, 10);
@@ -525,10 +325,10 @@ Exposes a few utility functions
                 
                 @method isFunction
                 @for Object
-                @param {Object} arg The argument to be checked.
+                @param {Object} obj The argument to be checked.
                 @return {Boolean} true <=> the object is a Function.
             */              
-        	Object.prototype.isFunction = function(arg){
+        	Object.prototype.isFunction = function(arg) {
 				return typeof(arg) === 'function';
 			};
         }        
@@ -545,41 +345,7 @@ Exposes a few utility functions
             Object.prototype.isNumber = function(n){
               return !isNaN(parseFloat(n)) && isFinite(n);
             };
-        } 
-
-        if (!Object.prototype.isUndefined){
-            /** 
-                Checks if its argument is undefined.
-                
-                @method isUndefined
-                @for Object
-                @param {Object} arg The argument to be checked.
-                @return {Boolean} true <=> the argument is undefined.
-            */              
-        	Object.prototype.isUndefined = function(arg){
-				return typeof(arg) === "undefined";
-			};
-        }         
-           
-		if (!Object.prototype.shallowCopy){
-                                        /** Array.shallowCopy()
-                                            Creates a new object (shallow)copying the elements of the current one.
-                                            
-                                            @method shallowCopy
-                                            @for Object
-                                            @return {Object} A new object, with a shallow copy of all the properties in the original one.
-                                        */
-			Object.prototype.shallowCopy =  function(){
-                                                var res = {};
-                                                for (var key in this){
-                                                    if (this.hasOwnProperty(key)){
-                                                        res[key] = this[key];
-                                                    }
-                                                }
-
-                                                return res;
-                                            };	
-		}           
+        }        
 		
         var TIME_REGEXP = /^\d\d?:\d\d?$/;
             
@@ -605,90 +371,9 @@ Exposes a few utility functions
                 return (HH < 10 ? "0" + HH : HH) + ":" + (MM < 10 ? "0" + MM : MM);
             } 
 
-        /** 
-            Abbreviations suffixes for large numbers;
-            @property SUFFIXES
-            @for ChartUtils
-            @type {Array}
-            @final
-            @private     
-          */    
-        var SUFFIXES = ["", "K", "M", "G", "T", "P", "E"];              
                               
 		var utils = {
 
-                                /** abbreviateNumber(val)
-                                    Takes a value and returns it's abbreviated text representation.<br>
-                                    <ul>
-                                        <li>If abs(val) > 1, the following standard abbreviations will be used:
-                                            <ul>
-                                                <li><b>K</b> thousands</li>
-                                                <li><b>M</b> million</li>
-                                                <li><b>G</b> billion</li>
-                                                <li><b>T</b> trillion</li>
-                                                <li><b>P</b> quadrillion</li>
-                                                <li><b>E</b> quintillion</li>
-                                            </ul>
-                                            One decimal place is always kept.<br>
-                                            F.i.:
-                                            <ul>
-                                                <li>123 -> "123"</li>
-                                                <li>1234 -> "1.2K"</li>
-                                                <li>12345 -> "12.3K"</li>
-                                                <li>123456789 -> "123.4M"</li>
-                                            </ul>                                            
-                                        </li>
-                                        <li> If abs(val)
-                                        </li>
-                                    </ul>
-                                    <br>
-                                    <b>WARNING</b>:   since shallow copy is used, only works for
-                                                      primitive (immutable) values                            
-                                    @method abbreviateNumber
-                                    @for ChartUtils
-                                    @param {String|Number} value The value to assign to each element of the newly created array.
-                                                                 If value is a function, it is called  n times, with no parameters
-                                    @param {Number} n The size of the final array;<br>
-                                                      Must be a positive integer.
-                                    @return {Array} The newly created array.
-                                    @throws {Invalid Argument Exception} if n isn't passed, it's not a number, or it's not positive.
-
-                                */
-            abbreviateNumber:   function (val){
-                                    var index;
-                                    if (val === 0){
-                                        return "0";
-                                    }
-                                    if (Math.abs(val) < 1){
-                                        //Very small number
-                                        index = 0;  //WARNING: Reusing the variable index as the exponent of scientific notation
-                                        while (Math.abs(val) < 1){
-                                            index += 1;
-                                            val *= 10;
-                                        }                                              
-                                        return (Math.round(val * 100) / 100.0) + "e-" + index;
-                                    } else{
-                                        index = 0;  //WARNING: Reusing the variable index as the index of the suffixes array
-                                        while (index < SUFFIXES.length - 1){
-                                            if (Math.abs(val) < 1000){
-                                                if (index === 0){
-                                                    val = Math.round(val * 100.0) / 100.0;   //Keeps only two decimal digits for numbers smaller than 100
-                                                }                                            
-                                                return val + SUFFIXES[index];
-                                            }else{
-                                                index += 1;
-                                                val = Math.round(val / 100.0) / 10.0;   //Keep one decimal digits when dividing by 1K
-                                            }
-                                        }
-                                        //Here, index == SUFFIXES.length - 1
-                                        if (Math.abs(val) < 1000){
-                                            return val + SUFFIXES[index];
-                                        }else{
-                                            //If it reaches here, the number is too long for the suffixes list: we abbreviate as much as we can anyway
-                                            return val + SUFFIXES[SUFFIXES.length - 1];
-                                        }                
-                                    }
-                                },        
                         /** fillArray(value, n)
                             Takes a value and a positive integer n and returns an Array of n copies of that value.<br>
                             <br>

@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DynamicChart</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0pr2&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Array.html">Array</a></li>
+            
+                <li><a href="..&#x2F;classes/BasicBarChart.html">BasicBarChart</a></li>
+            
+                <li><a href="..&#x2F;classes/ChartUtils.html">ChartUtils</a></li>
+            
+                <li><a href="..&#x2F;classes/DynamicChart.html">DynamicChart</a></li>
+            
+                <li><a href="..&#x2F;classes/FixedWidthBarChart.html">FixedWidthBarChart</a></li>
+            
+                <li><a href="..&#x2F;classes/Legend.html">Legend</a></li>
+            
+                <li><a href="..&#x2F;classes/Object.html">Object</a></li>
+            
+                <li><a href="..&#x2F;classes/SlidingBarChart.html">SlidingBarChart</a></li>
+            
+                <li><a href="..&#x2F;classes/TimeWheelChart.html">TimeWheelChart</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/ChartUtils.html">ChartUtils</a></li>
+            
+                <li><a href="..&#x2F;modules/DynamicChart.html">DynamicChart</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>DynamicChart Class</h1>
+<div class="box meta">
+    
+
+    
+
+    
+
+    
+        
+            Module: <a href="../modules/DynamicChart.html">DynamicChart</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_BasicBarChart">BasicBarChart</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_FixedWidthBarChart">FixedWidthBarChart</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_SlidingBarChart">SlidingBarChart</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_TimeWheelChart">TimeWheelChart</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_AXE_MARGIN">DEFAULT_AXE_MARGIN</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_AXES_COLOR">DEFAULT_AXES_COLOR</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_AXES_LABEL_SIZE">DEFAULT_AXES_LABEL_SIZE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_AXES_LINE_WIDTH">DEFAULT_AXES_LINE_WIDTH</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_INNER_BACKGROUND">DEFAULT_INNER_BACKGROUND</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_INNER_BORDER">DEFAULT_INNER_BORDER</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_LABEL_SIZE">DEFAULT_LABEL_SIZE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_OUTER_BACKGROUND">DEFAULT_OUTER_BACKGROUND</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_OUTER_BORDER">DEFAULT_OUTER_BORDER</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_DEFAULT_TITLE_SIZE">DEFAULT_TITLE_SIZE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_FILL_COLORS">FILL_COLORS</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_LEGEND_ITEM_FONT_SIZE">LEGEND_ITEM_FONT_SIZE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_LEGEND_ITEM_HEIGHT">LEGEND_ITEM_HEIGHT</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_LEGEND_ITEM_LEFT">LEGEND_ITEM_LEFT</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_LEGEND_ITEM_WIDTH">LEGEND_ITEM_WIDTH</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_LEGEND_MARGIN">LEGEND_MARGIN</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_MAX_SPACE_DIMENSION">MAX_SPACE_DIMENSION</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_NOTCH_LINE_LENGTH">NOTCH_LINE_LENGTH</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_BasicBarChart" class="method item">
+    <h3 class="name"><code>BasicBarChart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[chartMargins=&quot;&quot;]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[dataDim=1]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=body]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l5964"><code>dynamic_chart.js:5964</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired width for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired height for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[chartMargins=&quot;&quot;]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                A String of 0 to 4 space-separated values that specifies the 4 margins of the chart.<br>
+                The string should respect the following format: <b>"top right bottom left;"</b> (notice the trailing semicolon)<br>
+                If less then 4 values are passed, only the covered subfield will be assigned using the input string,
+                while the remaining ones will take a default value specified as an inner attribute of the class.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[dataDim=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The dimension of the data space, i.e. the number of subvalues for each data entry<br>
+                Can be any value that is or can be converted to an integer between 1 and MAX<em>SPACE</em>DIMENSION.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=body]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The DOM element to which the diagram should be appended as a child</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    A (wrapped-in-a-proxy version of a) BasicBarChart object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_FixedWidthBarChart" class="method item">
+    <h3 class="name"><code>FixedWidthBarChart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ticks</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>startingPoint</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[chartMargins=&quot;&quot;]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[dataDim=1]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=body]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l5998"><code>dynamic_chart.js:5998</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ticks</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">startingPoint</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory, but not used at the moment: inserted for future back-compatibility]<br>
+                The reference for the label of the first point.<br>
+                Should be an incrementable value;</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired width for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired height for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[chartMargins=&quot;&quot;]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                A String of 0 to 4 space-separated values that specifies the 4 margins of the chart.<br>
+                The string should respect the following format: <b>"top right bottom left;"</b> (notice the trailing semicolon)<br>
+                If less then 4 values are passed, only the covered subfield will be assigned using the input string,
+                while the remaining ones will take a default value specified as an inner attribute of the class.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[dataDim=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The dimension of the data space, i.e. the number of subvalues for each data entry<br>
+                Can be any value that is or can be converted to an integer between 1 and MAX<em>SPACE</em>DIMENSION.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=body]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The DOM element to which the diagram should be appended as a child</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    A properly initialized (wrapped-in-a-proxy version of a) FixedWidthBarChart object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_SlidingBarChart" class="method item">
+    <h3 class="name"><code>SlidingBarChart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ticks</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[chartMargins=&quot;&quot;]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[dataDim=1]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=body]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l6039"><code>dynamic_chart.js:6039</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ticks</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The number of values that can be drawn at the same time (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired width for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired height for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[chartMargins=&quot;&quot;]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                A String of 0 to 4 space-separated values that specifies the 4 margins of the chart.<br>
+                The string should respect the following format: <b>"top right bottom left;"</b> (notice the trailing semicolon)<br>
+                If less then 4 values are passed, only the covered subfield will be assigned using the input string,
+                while the remaining ones will take a default value specified as an inner attribute of the class. 
+                For this particular chart the right margin can't be less than AXES<em>LABEL</em>WIDTH pixel wide (if a smaller
+                value is passed, it will be overwritten).</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[dataDim=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The dimension of the data space, i.e. the number of subvalues for each data entry <br>
+                Can be any value that is or can be converted to an integer between 1 and MAX<em>SPACE</em>DIMENSION.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=body]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The DOM element to which the diagram should be appended as a child</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    A properly initialized (wrapped-in-a-proxy version of a) SlidingBarChart object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_TimeWheelChart" class="method item">
+    <h3 class="name"><code>TimeWheelChart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ticks</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>startTime</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[chartMargins=&quot;&quot;]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[dataDim=1]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=body]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l6080"><code>dynamic_chart.js:6080</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ticks</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The number of values that can be drawn at the same time (<b>can't be changed later</b>)
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">startTime</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The reference for the label of the first point.<br>
+                Should be an incrementable value.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired width for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Mandatory]
+                The desired height for the chart (<b>can't be changed later</b>)<br>
+                Can be any value that is or can be converted to a positive integer.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[chartMargins=&quot;&quot;]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                A String of 0 to 4 space-separated values that specifies the 4 margins of the chart.<br>
+                The string should respect the following format: <b>"top right bottom left;"</b> (notice the trailing semicolon)<br>
+                If less then 4 values are passed, only the covered subfield will be assigned using the input string,
+                while the remaining ones will take a default value specified as an inner attribute of the class.<br></p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[dataDim=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The dimension of the data space, i.e. the number of subvalues for each data entry<br>
+                Can be any value that is or can be converted to an integer between 1 and MAX<em>SPACE</em>DIMENSION.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=body]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Optional]
+                The DOM element to which the diagram should be appended as a child<br></p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    A properly initialized (wrapped-in-a-proxy version of a) TimeWheelChart object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_DEFAULT_AXE_MARGIN" class="property item private">
+    <h3 class="name"><code>DEFAULT_AXE_MARGIN</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l66"><code>dynamic_chart.js:66</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default axes margin (in pixels);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_AXES_COLOR" class="property item private">
+    <h3 class="name"><code>DEFAULT_AXES_COLOR</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l151"><code>dynamic_chart.js:151</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default line width for axes and notches;</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = &quot;black&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_AXES_LABEL_SIZE" class="property item private">
+    <h3 class="name"><code>DEFAULT_AXES_LABEL_SIZE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l118"><code>dynamic_chart.js:118</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size of axes' labels lext</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 14</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_AXES_LINE_WIDTH" class="property item private">
+    <h3 class="name"><code>DEFAULT_AXES_LINE_WIDTH</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l140"><code>dynamic_chart.js:140</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default line width for axes and notches;</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 1</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_INNER_BACKGROUND" class="property item private">
+    <h3 class="name"><code>DEFAULT_INNER_BACKGROUND</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l76"><code>dynamic_chart.js:76</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default background color for the main chart area.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = &quot;white&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_INNER_BORDER" class="property item private">
+    <h3 class="name"><code>DEFAULT_INNER_BORDER</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l97"><code>dynamic_chart.js:97</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default border for the main chart area.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = none</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_LABEL_SIZE" class="property item private">
+    <h3 class="name"><code>DEFAULT_LABEL_SIZE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l48"><code>dynamic_chart.js:48</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size for chart's labels (in points);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_OUTER_BACKGROUND" class="property item private">
+    <h3 class="name"><code>DEFAULT_OUTER_BACKGROUND</code></h3>
+    <span class="type">String | Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l86"><code>dynamic_chart.js:86</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default background color for the outer chart area.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = &quot;white&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_OUTER_BORDER" class="property item private">
+    <h3 class="name"><code>DEFAULT_OUTER_BORDER</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l107"><code>dynamic_chart.js:107</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default border for the outer chart area.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = none</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_DEFAULT_TITLE_SIZE" class="property item private">
+    <h3 class="name"><code>DEFAULT_TITLE_SIZE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l57"><code>dynamic_chart.js:57</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size for chart's title text (in points);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_FILL_COLORS" class="property item private">
+    <h3 class="name"><code>FILL_COLORS</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l39"><code>dynamic_chart.js:39</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default fill colors bor graphic elements;</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_LEGEND_ITEM_FONT_SIZE" class="property item private">
+    <h3 class="name"><code>LEGEND_ITEM_FONT_SIZE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l198"><code>dynamic_chart.js:198</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default font size for labels attached to legend's items (in pixel);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_LEGEND_ITEM_HEIGHT" class="property item private">
+    <h3 class="name"><code>LEGEND_ITEM_HEIGHT</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l171"><code>dynamic_chart.js:171</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default height for legend's item boxes (in pixel);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_LEGEND_ITEM_LEFT" class="property item private">
+    <h3 class="name"><code>LEGEND_ITEM_LEFT</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l189"><code>dynamic_chart.js:189</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default left margin for legend's items (in pixel);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_LEGEND_ITEM_WIDTH" class="property item private">
+    <h3 class="name"><code>LEGEND_ITEM_WIDTH</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l162"><code>dynamic_chart.js:162</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default width for legend's item boxes (in pixel);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_LEGEND_MARGIN" class="property item private">
+    <h3 class="name"><code>LEGEND_MARGIN</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l180"><code>dynamic_chart.js:180</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default margin for legends (in pixel);</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_MAX_SPACE_DIMENSION" class="property item private">
+    <h3 class="name"><code>MAX_SPACE_DIMENSION</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l28"><code>dynamic_chart.js:28</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Maximum dimension of the input space, i.e. max number of subvalues for each single point</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_NOTCH_LINE_LENGTH" class="property item private">
+    <h3 class="name"><code>NOTCH_LINE_LENGTH</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;dynamic_chart.js.html#l129"><code>dynamic_chart.js:129</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Length of notch lines, in pixels;</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> = 5</p>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>
