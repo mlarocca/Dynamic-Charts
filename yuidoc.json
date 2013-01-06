@@ -1,0 +1,7 @@
+{
+    "name": "Dynamic-Charts lib",
+    "description": "A library based on D3js to plot realtime data",
+    "version": "0.2",
+    "url": "https://github.com/mlarocca/Dynamic-Charts",
+    "options": {}
+}

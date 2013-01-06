@@ -7,6 +7,15 @@ This is a high-level lib built on _D3js_ to allow for easy and quick development
 
 ## Version 0.2
 
+<table>
+  <tr height="146" valign="top">
+    <td align="center">Showcase #1<br><a href="http://bl.ocks.org/4339162"><img src="https://raw.github.com/mlarocca/Dynamic-Charts/master/thumbs/thumb.png" width="202"></a></td>
+    <td align="center">Showcase #2<br><a href="http://bl.ocks.org/4340039"><img src="https://raw.github.com/mlarocca/Dynamic-Charts/master/thumbs/thumb_2.png" width="202"></a></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
 ### What's new
 
 #### WARNING: Back Compatibility alert: Interface have undergone many different changes:
